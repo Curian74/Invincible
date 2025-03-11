@@ -9,10 +9,12 @@ public class Movements : MonoBehaviour
 	private bool _playerDetected = false;
 	private Animator _animator;
 	private Transform _player;
+	private Attacks _attacks;
 	void Awake()
     {
 		_player = GameObject.FindWithTag("Player").transform;
 		_animator = GetComponent<Animator>();
+		_attacks = GetComponent<Attacks>();
 	}
 
     void Update()
@@ -33,7 +35,7 @@ public class Movements : MonoBehaviour
 		Collider2D hit = Physics2D.OverlapCircle(transform.position, _detectionRange, _playerLayer);
 
 		if (hit != null)
-		{
+		{		
 			_playerDetected = true;
 		}
 		else
@@ -44,16 +46,25 @@ public class Movements : MonoBehaviour
 
 	private void MoveTowardsPlayer()
 	{
-		Vector3 direction = (_player.position - transform.position).normalized;
-		transform.position += direction * _movementSpeed * Time.deltaTime;
-		//flip
-		if (direction.x < 0)
+		float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+
+		if (distanceToPlayer > 3f) 
 		{
-			transform.localScale = new Vector3(3, 3, 3);
+			Vector3 direction = (_player.position - transform.position).normalized;
+			transform.position += direction * _movementSpeed * Time.deltaTime;
+
+			if (direction.x < 0)
+			{
+				transform.localScale = new Vector3(3, 3, 3);
+			}
+			else if (direction.x > 0)
+			{
+				transform.localScale = new Vector3(-3, 3, 3);
+			}
 		}
-		else if (direction.x > 0)
+		else 
 		{
-			transform.localScale = new Vector3(-3, 3, 3);
+			_attacks.CastSpell();
 		}
 	}
 
