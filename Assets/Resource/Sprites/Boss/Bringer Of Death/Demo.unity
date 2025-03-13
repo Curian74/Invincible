@@ -527,7 +527,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.73, y: -0.01, z: -0.74996394}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 5, y: 5, z: 5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -566,17 +566,17 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.02082938, y: -0.17270242}
+  m_Offset: {x: -0.0078031123, y: -0.19134024}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 0.45, y: 0.91}
+    pivot: {x: 0.48649025, y: 0.51018685}
+    oldSize: {x: 0.4, y: 0.91}
     newSize: {x: 1.4, y: 0.93}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.42191327, y: 0.5845949}
+  m_Size: {x: 0.39586073, y: 0.5650284}
   m_EdgeRadius: 0
 --- !u!50 &1939717965
 Rigidbody2D:
@@ -622,6 +622,8 @@ MonoBehaviour:
   _playerLayer:
     serializedVersion: 2
     m_Bits: 64
+  _orbitSpeed: 2
+  _orbitRadius: 3
 --- !u!114 &1939717967
 MonoBehaviour:
   m_ObjectHideFlags: 0
