@@ -55,11 +55,11 @@ public class Movements : MonoBehaviour
 
 			if (direction.x < 0)
 			{
-				transform.localScale = new Vector3(3, 3, 3);
+				transform.localScale = new Vector3(5, 5, 5);
 			}
 			else if (direction.x > 0)
 			{
-				transform.localScale = new Vector3(-3, 3, 3);
+				transform.localScale = new Vector3(-5, 5, 5);
 			}
 		}
 		else 

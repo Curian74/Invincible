@@ -15,7 +15,7 @@ public class Attacks : MonoBehaviour
 		if (_castCoolDown > 0)
 		{
 			_castCoolDown -= Time.deltaTime;
-			_animator.SetFloat("CastCoolDown", _castCoolDown);
+			_animator.SetFloat("CastCooldown", _castCoolDown);
 		}
 	}
 
@@ -26,7 +26,7 @@ public class Attacks : MonoBehaviour
 		{
 			_animator.SetTrigger("CastSpell");
 			_castCoolDown = castCooldownTime; 
-			_animator.SetFloat("CastCoolDown", _castCoolDown);
+			_animator.SetFloat("CastCooldown", _castCoolDown);
 		}
 	}
 }
