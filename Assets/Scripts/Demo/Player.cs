@@ -4,13 +4,13 @@ public class Player : MonoBehaviour
 {
     [SerializeField] private float speed = 5;
     private Rigidbody2D rb;
-    private PoolingTest poolingTest;
+    // private PoolingTest poolingTest;
     private float inputX;
     private float inputY;
     
     void Start()
     {
-        poolingTest = FindFirstObjectByType<PoolingTest>();
+        // poolingTest = FindFirstObjectByType<PoolingTest>();
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        poolingTest.ReturnPlayer(this); 
+        // poolingTest.ReturnPlayer(this); 
     }
 
 }
