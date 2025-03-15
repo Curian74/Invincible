@@ -4,9 +4,9 @@ using UnityEngine;
 public class Movements : MonoBehaviour
 {
     [SerializeField] private float _movementSpeed = 5f;
-    [SerializeField] private float _detectionRange = 7f;
+    [SerializeField] private float _detectionRange = 10f;
 	[SerializeField] private LayerMask _playerLayer;
-	[SerializeField] private float _orbitSpeed = 2f;
+	[SerializeField] private float _orbitSpeed = 1f;
 	[SerializeField] private float _orbitRadius = 3f; 
 	private bool _isOrbiting = false;
 	private float _orbitAngle = 0f;
@@ -29,8 +29,6 @@ public class Movements : MonoBehaviour
 		{
 			_animator.SetBool("PlayerDetected", _playerDetected);
 			MoveTowardsPlayer();
-			Debug.Log(_playerDetected);
-			Console.WriteLine(_playerDetected);
 		}
 		
 	}
@@ -51,14 +49,14 @@ public class Movements : MonoBehaviour
 
 	private void MoveTowardsPlayer()
 	{
-		float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+		float distanceToPlayer = Mathf.Abs(Vector3.Distance(transform.position, _player.position));
 
 		if (_isOrbiting)
 		{
 			OrbitAroundPlayer();
 		}
 
-		if (distanceToPlayer > 3f) 
+		if (distanceToPlayer >= 10f) 
 		{
 			Vector3 direction = (_player.position - transform.position).normalized;
 			transform.position += direction * _movementSpeed * Time.deltaTime;
@@ -72,20 +70,41 @@ public class Movements : MonoBehaviour
 				transform.localScale = new Vector3(-5, 5, 5);
 			}
 		}
-		else 
+		else if(distanceToPlayer >= 8f)
 		{
 			_attacks.CastSpell();
-			_isOrbiting = true;
+			Invoke(nameof(LungeTowardsPlayer), 0.8f);
+			//LungeTowardsPlayer();				
+			//_isOrbiting = true;
 		}
+		else if (distanceToPlayer >= 2f || distanceToPlayer <= 2f)
+		{
+			_attacks.MelleAttack();
+		}
+		
 	}
 
-	private void OrbitAroundPlayer()
+	public void LungeTowardsPlayer()
+	{	
+		Vector3 direction = (_player.position - transform.position).normalized;
+		for (int i = 0; i < 2; i++)
+		{
+			transform.position += direction * _movementSpeed * Time.deltaTime * 4;
+			if (direction.x < 0)
+			{
+				transform.localScale = new Vector3(5, 5, 5);
+			}
+			else if (direction.x > 0)
+			{
+				transform.localScale = new Vector3(-5, 5, 5);
+			}
+		}
+	}
+	public void OrbitAroundPlayer()
 	{
 		_orbitAngle += _orbitSpeed * Time.deltaTime; 
-
 		float x = _player.position.x + Mathf.Cos(_orbitAngle) * _orbitRadius;
 		float y = _player.position.y + Mathf.Sin(_orbitAngle) * _orbitRadius;
-
 		transform.position = new Vector3(x, y, transform.position.z);
 	}
 
