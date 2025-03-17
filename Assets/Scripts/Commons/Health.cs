@@ -38,11 +38,17 @@ public class Health : MonoBehaviour
     private void Die()
     {
         //Co the them animation o day
-        HealthBar healthBar = FindFirstObjectByType<HealthBar>();
-        healthBar.gameObject.SetActive(false);
+        HealthBar healthBar = GetComponentInChildren<HealthBar>();
+
+        if (healthBar != null)
+        {
+            healthBar.gameObject.SetActive(false);
+        }
+
         OnDeath?.Invoke();
         gameObject.SetActive(false);
     }
+
 
     public float GetCurrentHealth() => currentHealth;
     public float GetMaxHealth() => maxHealth;
