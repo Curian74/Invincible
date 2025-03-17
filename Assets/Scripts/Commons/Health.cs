@@ -8,11 +8,11 @@ public class Health : MonoBehaviour
     public event Action OnDeath; // Event when entity dies
 
     [SerializeField] private float maxHealth = 100f;
-    [SerializeField] private float currentHealth;
+    private float currentHealth;
 
     private void Awake()
     {
-        //currentHealth = maxHealth;
+        currentHealth = maxHealth;
         Debug.Log($"Current health: {currentHealth}");
     }
 

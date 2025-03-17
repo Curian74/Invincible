@@ -5,9 +5,6 @@ public class PoisonDebuff : Powerup
 {
     [SerializeField] private float Strength = 5f; // damage per second
 
-    private Health health;
-    private Coroutine poisonCoroutine;
-
     public override void Activate(GameObject target)
     {
         Health health = target.GetComponent<Health>();
