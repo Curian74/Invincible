@@ -1204,52 +1204,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!1 &696614391
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 696614393}
-  - component: {fileID: 696614392}
-  m_Layer: 0
-  m_Name: PlayerPoolManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &696614392
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696614391}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 71c6fee9a63c78f4e8fd603d34d16af5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  spawnRate: 1
-  playerPrefab: {fileID: 0}
---- !u!4 &696614393
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 696614391}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.60872114, y: 1.1537466, z: 0.22423373}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &835700177
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4675,7 +4629,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firePoint: {fileID: 2002760595}
   bulletPrefab: {fileID: 236726716}
-  bullet: {fileID: 236726721}
   coolDown: 0.1
   bulletPoolSize: 30
 --- !u!1 &2002760594
@@ -4703,7 +4656,7 @@ Transform:
   m_GameObject: {fileID: 2002760594}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.59, y: 0.15, z: 0}
+  m_LocalPosition: {x: -0.25, y: -0.13, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -69316,7 +69269,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TrackerSettings:
     BindingMode: 4
-    PositionDamping: {x: 1, y: 1, z: 1}
+    PositionDamping: {x: 0, y: 0, z: 0}
     AngularDampingMode: 0
     RotationDamping: {x: 1, y: 1, z: 1}
     QuaternionDamping: 1
@@ -69386,7 +69339,6 @@ SceneRoots:
   - {fileID: 1825739864}
   - {fileID: 491002497}
   - {fileID: 84053828}
-  - {fileID: 696614393}
   - {fileID: 1203582647}
   - {fileID: 1187627794}
   - {fileID: 835700177}
