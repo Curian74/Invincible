@@ -4,16 +4,11 @@ using UnityEngine;
 public class Attacks : MonoBehaviour
 {
 	private Animator _animator;
-	private float _castCoolDown = 0f;
 	private Spell _spell;
 	private Transform _player;
-	private float _meleeCoolDown = 0f;
 	private Movements _movement;
 	private bool isTeleporting = false;
 	private bool isPerformingAction = false; // Kiểm soát Boss có đang thực hiện hành động nào không
-
-	[SerializeField] private float castCooldownTime = 2f;
-	[SerializeField] private float meleeCooldownTime = 2f;
 
 	void Awake()
 	{
@@ -25,21 +20,17 @@ public class Attacks : MonoBehaviour
 
 	void Update()
 	{
-		if (_castCoolDown > 0) _castCoolDown -= Time.deltaTime;
-		if (_meleeCoolDown > 0) _meleeCoolDown -= Time.deltaTime;
-
-		float distanceToPlayer = Mathf.Abs(Vector3.Distance(transform.position, _player.position));
+		float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
 
 		if (!isPerformingAction)
 		{
 			if (distanceToPlayer <= 8f && distanceToPlayer >= 2f)
 			{
-				int randomDecision = GetRandomDecision();
-				StartCoroutine(PerformStringAttack(randomDecision)); // Sử dụng Coroutine để thực hiện từng hành động một
+				StartCoroutine(PerformStringAttack(GetRandomDecision()));
 			}
-			else if (distanceToPlayer <= 2f)
+			else if (distanceToPlayer < 2f)
 			{
-				StartCoroutine(PerformMeleeAttack()); // Nếu gần người chơi, thực hiện melee attack
+				StartCoroutine(PerformMeleeAttack());
 			}
 		}
 	}
@@ -51,7 +42,7 @@ public class Attacks : MonoBehaviour
 		switch (decision)
 		{
 			case 1:
-				yield return StartCoroutine(BarageSpell());
+				yield return StartCoroutine(PerformCastSpell());
 				break;
 			case 2:
 				yield return StartCoroutine(LungeTowardsPlayer());
@@ -60,68 +51,8 @@ public class Attacks : MonoBehaviour
 				yield return StartCoroutine(TeleportToPlayer());
 				break;
 		}
-
-		yield return new WaitForSeconds(1f); // Thêm delay trước khi thực hiện hành động tiếp theo
+		if(decision != 2) yield return new WaitForSeconds(3f);
 		isPerformingAction = false;
-	}
-
-	private IEnumerator BarageSpell()
-	{
-		for (int i = 0; i < 5; i++)
-		{
-			CastSpell();
-			yield return new WaitForSeconds(0.1f); // Chờ một chút giữa các lần bắn spell
-		}
-	}
-
-	private void CastSpell()
-	{
-		if (_castCoolDown <= 0)
-		{
-			_animator.SetTrigger("CastSpell");
-			_castCoolDown = castCooldownTime;
-			_spell.SpawnSpell();
-		}
-	}
-
-	private IEnumerator TeleportToPlayer()
-	{
-		if (isTeleporting) yield break;
-		isTeleporting = true;
-
-		_animator.SetTrigger("Teleport");
-		yield return new WaitForSeconds(0.5f);
-
-		float randomX = Random.Range(-1.5f, 1.5f);
-		float randomZ = Random.Range(-1.5f, 1.5f);
-		Vector3 offset = new Vector3(randomX, 0f, randomZ);
-
-		Vector3 newPosition = _player.position;
-		//newPosition = ClampToMapBounds(newPosition);
-
-		transform.position = newPosition;
-		_animator.SetTrigger("Appear");
-		_animator.SetTrigger("Idle");
-		yield return new WaitForSeconds(1f); // Chờ Boss xuất hiện xong rồi mới tiếp tục
-
-		isTeleporting = false;
-	}
-
-	private IEnumerator PerformMeleeAttack()
-	{
-		isPerformingAction = true;
-		MeleeAttack();
-		yield return new WaitForSeconds(meleeCooldownTime); // Chờ cooldown xong mới tiếp tục
-		isPerformingAction = false;
-	}
-
-	private void MeleeAttack()
-	{
-		if (_meleeCoolDown <= 0)
-		{
-			_animator.SetTrigger("MeleeAttack");
-			_meleeCoolDown = meleeCooldownTime;
-		}
 	}
 
 	private IEnumerator LungeTowardsPlayer()
@@ -137,20 +68,48 @@ public class Attacks : MonoBehaviour
 			elapsedTime += Time.deltaTime;
 			yield return null;
 		}
-
 		transform.position = targetPosition;
-		yield return new WaitForSeconds(0.5f);
+		yield return new WaitForSeconds(0.4f);
 	}
 
-	private Vector3 ClampToMapBounds(Vector3 position)
+
+	private IEnumerator PerformMeleeAttack()
 	{
-		float minX = -10f, maxX = 10f;
-		float minZ = -10f, maxZ = 10f;
+		isPerformingAction = true;
+		_animator.SetTrigger("MeleeAttack");
+		yield return new WaitForSeconds(2f);
+		isPerformingAction = false;
+	}
 
-		position.x = Mathf.Clamp(position.x, minX, maxX);
-		position.z = Mathf.Clamp(position.z, minZ, maxZ);
+	private IEnumerator PerformCastSpell()
+	{
+		_animator.SetTrigger("CastSpell");
+		_spell.SpawnSpell();
+		yield return null; 
+	}
 
-		return position;
+	private IEnumerator TeleportToPlayer()
+	{
+		if (isTeleporting) yield break;
+		isTeleporting = true;
+
+		_animator.SetTrigger("Teleport");
+		yield return new WaitForSeconds(0.5f);
+
+		Vector3 newPosition = _player.position + new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
+		transform.position = newPosition;
+
+		_animator.SetTrigger("Appear");
+		yield return new WaitForSeconds(0.5f);
+		QuickSlash();
+		yield return new WaitForSeconds(2f);
+		isTeleporting = false;
+	}
+
+	private void QuickSlash()
+	{
+		_animator.SetTrigger("QuickSlash");
+		_animator.SetTrigger("Idle");
 	}
 
 	private int GetRandomDecision()
