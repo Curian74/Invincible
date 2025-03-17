@@ -10,9 +10,5 @@ public class ConsumePowerup : MonoBehaviour
             Debug.Log($"Picked up: {other.gameObject.name}");
             powerup.Activate(gameObject);
         }
-        else
-        {
-            Debug.Log("No power-up script found.");
-        }
     }
 }
