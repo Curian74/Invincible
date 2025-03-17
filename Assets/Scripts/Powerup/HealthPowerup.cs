@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class HealthPowerup : Powerup
 {
-    [SerializeField] private float RecoveryAmount = 15f;
+    [SerializeField] private float Strength = 15f;
 
     public override void Activate(GameObject target)
     {
@@ -14,7 +14,7 @@ public class HealthPowerup : Powerup
         Health health = Target.GetComponent<Health>();
         if (health != null)
         {
-            health.Heal(RecoveryAmount);
+            health.Heal(Strength);
         }
     }
 }
