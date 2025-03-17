@@ -1,5 +1,6 @@
 using UnityEngine;
 using System;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public class Health : MonoBehaviour
 
     public void Heal(float amount)
     {
+        //Heal khi an pack hp (khong the vuot qua maxHealth)
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnHealthChanged?.Invoke(currentHealth / maxHealth);
@@ -35,6 +37,9 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
+        //Co the them animation o day
+        HealthBar healthBar = FindFirstObjectByType<HealthBar>();
+        healthBar.gameObject.SetActive(false);
         OnDeath?.Invoke();
         gameObject.SetActive(false);
     }
