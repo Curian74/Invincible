@@ -3,11 +3,13 @@ using UnityEngine;
 
 public class Attacks : MonoBehaviour
 {
+	[SerializeField] private Spell _spellPrefab;
 	private Animator _animator;
-	private Spell _spell;
 	private Transform _player;
 	private Movements _movement;
 	private bool isTeleporting = false;
+	private PoolingManager<Spell> _poolingManager;
+	private int _spellPool = 5;
 	private bool isPerformingAction = false; // Kiểm soát Boss có đang thực hiện hành động nào không
 
 	void Awake()
@@ -15,7 +17,7 @@ public class Attacks : MonoBehaviour
 		_movement = GetComponent<Movements>();
 		_player = GameObject.FindWithTag("Player").transform;
 		_animator = GetComponent<Animator>();
-		_spell = GetComponent<Spell>();
+		_poolingManager = new PoolingManager<Spell>(_spellPrefab, _spellPool, null);
 	}
 
 	void Update()
@@ -38,11 +40,10 @@ public class Attacks : MonoBehaviour
 	private IEnumerator PerformStringAttack(int decision)
 	{
 		isPerformingAction = true;
-
 		switch (decision)
 		{
 			case 1:
-				yield return StartCoroutine(PerformCastSpell());
+				yield return StartCoroutine(CastSpell());
 				break;
 			case 2:
 				yield return StartCoroutine(LungeTowardsPlayer());
@@ -51,7 +52,7 @@ public class Attacks : MonoBehaviour
 				yield return StartCoroutine(TeleportToPlayer());
 				break;
 		}
-		if(decision != 2) yield return new WaitForSeconds(3f);
+		if (decision != 2)  yield return new WaitForSeconds(3f); 
 		isPerformingAction = false;
 	}
 
@@ -81,11 +82,17 @@ public class Attacks : MonoBehaviour
 		isPerformingAction = false;
 	}
 
-	private IEnumerator PerformCastSpell()
+	private IEnumerator CastSpell()
 	{
-		_animator.SetTrigger("CastSpell");
-		_spell.SpawnSpell();
-		yield return null; 
+		var spell = _poolingManager.GetObject();
+		if (spell != null)
+		{
+			_animator.SetTrigger("CastSpell");
+			yield return new WaitForSeconds(0.5f);
+			spell.SetPosition(); 
+			yield return new WaitForSeconds(1f);
+			_poolingManager.BackToPool(spell);
+		}
 	}
 
 	private IEnumerator TeleportToPlayer()

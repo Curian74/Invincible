@@ -1,31 +1,29 @@
+﻿using System;
 using System.Collections;
 using UnityEngine;
 
 public class Spell : MonoBehaviour
 {
-	[SerializeField] private Transform _player;
+	private Transform _player;
 	private Animator _animator;
 	private BoxCollider2D _boxCollider;
-	[SerializeField] private GameObject _spell;
+	private Vector3 _offset = new Vector3(0, 2f, 0);
 	//private PoolingManager<Spell> _poolingManager;
     void Awake()
     {
         _animator = GetComponent<Animator>();
 		_boxCollider = GetComponent<BoxCollider2D>();
 		_player = GameObject.FindWithTag("Player").transform;
-		//_poolingManager = GetComponent<PoolingManager<Spell>>();
     }
 
-	public void SpawnSpell()
+	public void SetPosition()
 	{
-		_spell.transform.position = _player.transform.position;
-	    _spell.gameObject.SetActive(true);
+		gameObject.SetActive(false); 
+		transform.position = _player.transform.position + _offset;
+		transform.localScale = new Vector3(4, 5, 1);
+		gameObject.SetActive(true);
 		_animator.SetTrigger("SpawnSpell");
 	}
 
-	private void SetPosition(Transform player)
-	{
-		//transform.position = player.position + Vector3.up * 5;
-		transform.position = player.position;
-	}
+
 }
