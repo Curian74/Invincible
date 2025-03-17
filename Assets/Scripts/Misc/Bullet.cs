@@ -4,6 +4,7 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifeTime = 2f;
+    [SerializeField] private float damage = 5f;
 
     private Vector2 direction;
     private float timer;
@@ -28,7 +29,14 @@ public class Bullet : MonoBehaviour
     {
         if(collision.CompareTag("Enemy"))
         {
-            collision.gameObject.SetActive(false);
+            Health health = collision.GetComponent<Health>();
+
+            if(health != null)
+            {
+                health.TakeDamage(damage);
+                Debug.Log(health.GetCurrentHealth());
+            }
+
             gameObject.SetActive(false);
         }
     }
