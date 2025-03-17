@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KeyboardMovements : MonoBehaviour
 {
-    [SerializeField] private float speed = 5;
+    [SerializeField] public float speed = 5;
     private Rigidbody2D rb;
     private float inputX;
     private float inputY;
@@ -18,6 +18,8 @@ public class KeyboardMovements : MonoBehaviour
         inputY = Input.GetAxis("Vertical");
 
         rb.linearVelocity = new Vector2(inputX * speed, inputY * speed);
+
+        Debug.Log($"Speed: {speed}");
     }
 
     //Testing function
