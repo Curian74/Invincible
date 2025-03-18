@@ -227,9 +227,7 @@ public class EnemyMovement : MonoBehaviour
 {
     if (!_playerAwareness.AwareOfPlayer || Time.time < _nextFireTime)
         return false;
-    
-    // Kiểm tra khoảng cách trước khi bắn
-    float distanceToPlayer = Vector2.Distance(transform.position, _playerAwareness.PlayerPosition);
+        float distanceToPlayer = Vector2.Distance(transform.position, _playerAwareness.PlayerPosition);
     return distanceToPlayer <= _shootDistance;
 }
 

@@ -4,7 +4,7 @@ public class PlayerAware : MonoBehaviour
 {
     public bool AwareOfPlayer { get; private set; }
     public Vector2 DirectionToPlayer { get; private set; }
-    public Vector2 PlayerPosition => _player != null ? (Vector2)_player.position : Vector2.zero; // Thêm dòng này
+    public Vector2 PlayerPosition => _player != null ? (Vector2)_player.position : Vector2.zero; 
 
     [SerializeField]
     private float _playerAwarenessDistance;
