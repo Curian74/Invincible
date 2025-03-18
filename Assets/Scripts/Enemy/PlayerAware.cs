@@ -4,6 +4,7 @@ public class PlayerAware : MonoBehaviour
 {
     public bool AwareOfPlayer { get; private set; }
     public Vector2 DirectionToPlayer { get; private set; }
+    public Vector2 PlayerPosition => _player != null ? (Vector2)_player.position : Vector2.zero; 
 
     [SerializeField]
     private float _playerAwarenessDistance;
@@ -12,43 +13,43 @@ public class PlayerAware : MonoBehaviour
 
     void Update()
     {
-        FindNearestPlayer();
+        FindNearestTurret();
 
-        if (_player == null)
+        if (_player == null) 
         {
             AwareOfPlayer = false;
             return;
         }
 
-        Vector2 enemyToPlayerVector = _player.position - transform.position;
-        DirectionToPlayer = enemyToPlayerVector.normalized;
+        Vector2 enemyToTurretVector = _player.position - transform.position;
+        DirectionToPlayer = enemyToTurretVector.normalized;
 
-        AwareOfPlayer = enemyToPlayerVector.magnitude <= _playerAwarenessDistance;
+        AwareOfPlayer = enemyToTurretVector.magnitude <= _playerAwarenessDistance;
     }
 
-    private void FindNearestPlayer()
+    private void FindNearestTurret()
     {
-        GameObject[] players = GameObject.FindGameObjectsWithTag("Player");
+        GameObject[] turrets = GameObject.FindGameObjectsWithTag("Player");
 
-        if (players.Length == 0)
+        if (turrets.Length == 0)
         {
-            _player = null;
+            _player = null; 
             return;
         }
 
-        Transform nearestPlayer = null;
+        Transform nearestTurret = null;
         float closestDistance = Mathf.Infinity;
 
-        foreach (GameObject player in players)
+        foreach (GameObject turret in turrets)
         {
-            float distance = Vector2.Distance(transform.position, player.transform.position);
+            float distance = Vector2.Distance(transform.position, turret.transform.position);
             if (distance < closestDistance)
             {
                 closestDistance = distance;
-                nearestPlayer = player.transform;
+                nearestTurret = turret.transform;
             }
         }
 
-        _player = nearestPlayer;
+       _player = nearestTurret;
     }
 }

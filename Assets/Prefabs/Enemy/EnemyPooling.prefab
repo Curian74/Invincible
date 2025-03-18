@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &6473188986793114026
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5337511005613280481}
+  - component: {fileID: 31046284783464096}
+  m_Layer: 0
+  m_Name: EnemyPooling
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5337511005613280481
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473188986793114026}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.2754116, y: -2.5310721, z: 0.029374989}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &31046284783464096
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6473188986793114026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01641cedb029a849b8db742a5abb28a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pools:
+  - tag: EnemyBullet
+    prefab: {fileID: 7094175945680701664, guid: 55e9ead2bb1e3cc45bc7cddbbab39bae, type: 3}
+    size: 15
+  - tag: RangeEnemy
+    prefab: {fileID: 5562014775131117480, guid: 07433a887c2d1ab45829658e50b69a88, type: 3}
+    size: 6
+  - tag: MeleeEnemy
+    prefab: {fileID: 6204635262521180871, guid: 21bbec8ef1dce2b4aaeb3dea78dae8c8, type: 3}
+    size: 10
+  - tag: SuicideEnemy
+    prefab: {fileID: 2496134198608423538, guid: a918338597d07a7459ea9f6b7a9a4631, type: 3}
+    size: 2
