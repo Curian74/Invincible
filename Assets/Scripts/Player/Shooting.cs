@@ -8,9 +8,11 @@ public class Shooting : MonoBehaviour
     [SerializeField] private float coolDown = 0.5f;
     [SerializeField] private int bulletPoolSize = 30;
     private readonly List<GameObject> bulletPool = new List<GameObject>();
+    private Animator animator;
     private float coolDownTimer = 0;
     void Start()
     {
+        animator = GetComponent<Animator>();
         for (int i = 0; i < bulletPoolSize; i++)
         {
             GameObject bullet = Instantiate(bulletPrefab, firePoint.position, firePoint.rotation);
@@ -31,6 +33,7 @@ public class Shooting : MonoBehaviour
 
     public void Shoot()
     {
+        animator.SetTrigger("shoot");
         GameObject bullet = GetBullet();
         if (bullet == null) return;
 
