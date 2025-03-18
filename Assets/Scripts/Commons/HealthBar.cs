@@ -11,6 +11,7 @@ public class HealthBar : MonoBehaviour
         health = FindFirstObjectByType<Health>();
         slider = GetComponent<Slider>();
         slider.value = health.GetCurrentHealth() / health.GetMaxHealth();
+        health.OnHealthChanged += UpdateHealthBar;
     }
 
     public void UpdateHealthBar(float healthPercent)

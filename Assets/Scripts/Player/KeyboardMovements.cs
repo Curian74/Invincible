@@ -31,7 +31,7 @@ public class KeyboardMovements : MonoBehaviour
 
         rb.linearVelocity = new Vector2(inputX * speed, inputY * speed);
 
-        Debug.Log($"Speed: {speed}");
+        // Debug.Log($"Speed: {speed}");
     }
 
     //Testing function
