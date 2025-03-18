@@ -50,10 +50,10 @@ MonoBehaviour:
     size: 15
   - tag: RangeEnemy
     prefab: {fileID: 5562014775131117480, guid: 07433a887c2d1ab45829658e50b69a88, type: 3}
-    size: 6
+    size: 2
   - tag: MeleeEnemy
     prefab: {fileID: 6204635262521180871, guid: 21bbec8ef1dce2b4aaeb3dea78dae8c8, type: 3}
-    size: 10
+    size: 4
   - tag: SuicideEnemy
     prefab: {fileID: 2496134198608423538, guid: a918338597d07a7459ea9f6b7a9a4631, type: 3}
     size: 2
