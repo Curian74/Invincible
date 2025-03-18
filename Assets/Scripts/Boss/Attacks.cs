@@ -88,7 +88,6 @@ public class Attacks : MonoBehaviour
 		if (spell != null)
 		{
 			_animator.SetTrigger("CastSpell");
-			yield return new WaitForSeconds(0.5f);
 			spell.SetPosition(); 
 			yield return new WaitForSeconds(1f);
 			_poolingManager.BackToPool(spell);
