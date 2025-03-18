@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifeTime = 2f;
     [SerializeField] private float damage = 5f;
+    // [SerializeField] private float mobScore = 1f;
 
     private Vector2 direction;
     private float timer;
@@ -34,7 +35,10 @@ public class Bullet : MonoBehaviour
             if(health != null)
             {
                 health.TakeDamage(damage);
-                Debug.Log(health.GetCurrentHealth());
+                if(health.GetCurrentHealth() <= 0)
+                {
+                    ScoreManager.Instance.AddScore(1);
+                }
             }
 
             gameObject.SetActive(false);
