@@ -19,8 +19,6 @@ public class PlayerMovement : MonoBehaviour
 
 
 		rb.linearVelocity = new Vector2(inputX * speed, inputY * speed);
-
-		Debug.Log($"Speed: {speed}");
 	}
 
 	//Testing function
