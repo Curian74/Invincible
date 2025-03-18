@@ -10,7 +10,7 @@ public class Attacks : MonoBehaviour
 	private bool isTeleporting = false;
 	private PoolingManager<Spell> _poolingManager;
 	private int _spellPool = 5;
-	private bool isPerformingAction = false; // Kiểm soát Boss có đang thực hiện hành động nào không
+	private bool isPerformingAction = false; 
 
 	void Awake()
 	{
@@ -109,7 +109,7 @@ public class Attacks : MonoBehaviour
 		_animator.SetTrigger("Appear");
 		yield return new WaitForSeconds(0.5f);
 		QuickSlash();
-		yield return new WaitForSeconds(2f);
+		yield return new WaitForSeconds(2f); 
 		isTeleporting = false;
 	}
 
