@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
+        Debug.Log($"Current health: {currentHealth}");
     }
 
     public void TakeDamage(float damage)
@@ -20,6 +21,7 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnHealthChanged?.Invoke(currentHealth / maxHealth);
+        Debug.Log($"Current health: {currentHealth}");
 
         if (currentHealth <= 0)
         {
@@ -33,6 +35,7 @@ public class Health : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnHealthChanged?.Invoke(currentHealth / maxHealth);
+        Debug.Log($"Current health: {currentHealth}");
     }
 
     private void Die()
