@@ -405,16 +405,13 @@ PrefabInstance:
       addedObject: {fileID: 121167662}
     - targetCorrespondingSourceObject: {fileID: 7587296900539247473, guid: 83268204aed48b74d90fc0fdc8b0b5d0, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 121167661}
-    - targetCorrespondingSourceObject: {fileID: 7587296900539247473, guid: 83268204aed48b74d90fc0fdc8b0b5d0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 121167660}
-    - targetCorrespondingSourceObject: {fileID: 7587296900539247473, guid: 83268204aed48b74d90fc0fdc8b0b5d0, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 121167659}
     - targetCorrespondingSourceObject: {fileID: 7587296900539247473, guid: 83268204aed48b74d90fc0fdc8b0b5d0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 121167658}
+    - targetCorrespondingSourceObject: {fileID: 7587296900539247473, guid: 83268204aed48b74d90fc0fdc8b0b5d0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 121167667}
   m_SourcePrefab: {fileID: 100100000, guid: 83268204aed48b74d90fc0fdc8b0b5d0, type: 3}
 --- !u!1 &121167657 stripped
 GameObject:
@@ -449,41 +446,26 @@ MonoBehaviour:
   _speed: 1
   _rotationSpeed: 360
   _screenBorder: 0
---- !u!114 &121167660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121167657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e69b8951c4a75468bc1b5cd7cf63b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &121167661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 121167657}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 881f96d7a3afc4840b9d6c527eabf864, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _currentHealth: 10
-  _maximumHealth: 10
-  OnDied:
-    m_PersistentCalls:
-      m_Calls: []
-  OnDamaged:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHealthChanged:
-    m_PersistentCalls:
-      m_Calls: []
+  _canMove: 1
+  _canShoot: 0
+  _deathEffect: {fileID: 0}
+  _isMelee: 1
+  _isSuicideBomber: 0
+  _fireRate: 1.5
+  _shootDistance: 5
+  _explosionRadius: 2
+  _explosionDelay: 1.5
+  _explosionEffect: {fileID: 0}
+  _blinkRate: 0.2
+  _normalColor: {r: 1, g: 1, b: 1, a: 1}
+  _blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  _meleeAttackDistance: 1.2
+  _obstacleDetectionRadius: 1.5
+  _obstacleAvoidanceStrength: 2
+  _obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  _pathUpdateFrequency: 0.5
 --- !u!50 &121167662
 Rigidbody2D:
   serializedVersion: 5
@@ -547,6 +529,19 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: -0.10505537}
   m_Radius: 0.119944625
+--- !u!114 &121167667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 121167657}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
 --- !u!1 &204340981
 GameObject:
   m_ObjectHideFlags: 0

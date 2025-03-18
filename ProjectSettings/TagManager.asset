@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - MeleeEnemy
+  - RangeEnemy
+  - SuicideEnemy
   - Powerup
   layers:
   - Default
@@ -14,6 +17,7 @@ TagManager:
   - Water
   - UI
   - Player
+  - Enemy
   - Powerups
   - Obstacles
   - 
@@ -57,6 +61,9 @@ TagManager:
     locked: 0
   - name: UIs
     uniqueID: 4132102869
+    locked: 0
+  - name: Enemy
+    uniqueID: 3720841189
     locked: 0
   m_RenderingLayers:
   - Default
