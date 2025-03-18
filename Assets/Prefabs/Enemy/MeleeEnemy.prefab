@@ -247,7 +247,7 @@ MonoBehaviour:
   _screenBorder: 0
   _canMove: 1
   _canShoot: 0
-  _deathEffect: {fileID: 109797200405197759, guid: 0c0c79dd0cda084499d99f4a970de2fa, type: 3}
+  _deathEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
   _isMelee: 1
   _isSuicideBomber: 0
   _fireRate: 1.5
@@ -255,10 +255,15 @@ MonoBehaviour:
   _explosionRadius: 2
   _explosionDelay: 1.5
   _explosionEffect: {fileID: 0}
+  _explosionDetectionRadius: 1.5
+  _instantExplosionOnContact: 1
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  _meleeAttackDistance: 1.2
+  _meleeAttackDistance: 1
+  _meleeAttackCooldown: 0.5
+  _meleeDamage: 1
+  _enemyType: 0
 --- !u!114 &6905136429941700487
 MonoBehaviour:
   m_ObjectHideFlags: 0
