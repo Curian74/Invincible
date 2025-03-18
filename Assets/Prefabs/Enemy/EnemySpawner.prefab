@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6979961798464157588}
-  - component: {fileID: 7745316265605670863}
+  - component: {fileID: 588394778909894181}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -32,7 +32,7 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7745316265605670863
+--- !u!114 &588394778909894181
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -41,7 +41,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3300617161792780005}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 00e69b8951c4a75468bc1b5cd7cf63b1, type: 3}
+  m_Script: {fileID: 11500000, guid: 12e8f65fb7a3ec04d9a0792b889bee8f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _meleePrefab: {fileID: 6204635262521180871, guid: 21bbec8ef1dce2b4aaeb3dea78dae8c8, type: 3}
@@ -49,8 +49,8 @@ MonoBehaviour:
   _suicidePrefab: {fileID: 2496134198608423538, guid: a918338597d07a7459ea9f6b7a9a4631, type: 3}
   _minimumSpawnTime: 0.5
   _maximumSpawnTime: 1
-  _spawnAreaMin: {x: -9, y: -5}
-  _spawnAreaMax: {x: 9, y: 5}
+  _spawnAreaMin: {x: -30, y: -19}
+  _spawnAreaMax: {x: 47, y: 18}
   _meleeCount: 5
   _rangeCount: 3
   _suicideCount: 1
