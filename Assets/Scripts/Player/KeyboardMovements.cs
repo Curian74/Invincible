@@ -2,14 +2,16 @@ using UnityEngine;
 
 public class KeyboardMovements : MonoBehaviour
 {
-    [SerializeField] private float speed = 5;
+    [SerializeField] public float speed = 5;
     private Rigidbody2D rb;
+    private Animator anim;
     private float inputX;
     private float inputY;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -17,7 +19,19 @@ public class KeyboardMovements : MonoBehaviour
         inputX = Input.GetAxis("Horizontal");
         inputY = Input.GetAxis("Vertical");
 
+        if(inputX != 0 || inputY != 0)
+        {
+            anim.SetBool("run", true);
+        }
+        
+        else
+        {
+            anim.SetBool("run", false);
+        }
+
         rb.linearVelocity = new Vector2(inputX * speed, inputY * speed);
+
+        Debug.Log($"Speed: {speed}");
     }
 
     //Testing function

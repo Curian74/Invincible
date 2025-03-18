@@ -13,6 +13,7 @@ public class Health : MonoBehaviour
     private void Awake()
     {
         currentHealth = maxHealth;
+        Debug.Log($"Current health: {currentHealth}");
     }
 
     public void TakeDamage(float damage)
@@ -20,6 +21,7 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnHealthChanged?.Invoke(currentHealth / maxHealth);
+        Debug.Log($"Current health: {currentHealth}");
 
         if (currentHealth <= 0)
         {
@@ -33,16 +35,23 @@ public class Health : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnHealthChanged?.Invoke(currentHealth / maxHealth);
+        Debug.Log($"Current health: {currentHealth}");
     }
 
     private void Die()
     {
         //Co the them animation o day
-        HealthBar healthBar = FindFirstObjectByType<HealthBar>();
-        healthBar.gameObject.SetActive(false);
+        HealthBar healthBar = GetComponentInChildren<HealthBar>();
+
+        if (healthBar != null)
+        {
+            healthBar.gameObject.SetActive(false);
+        }
+
         OnDeath?.Invoke();
         gameObject.SetActive(false);
     }
+
 
     public float GetCurrentHealth() => currentHealth;
     public float GetMaxHealth() => maxHealth;

@@ -11,6 +11,7 @@ public class Movements : MonoBehaviour
 	private Animator _animator;
 	private Transform _player;
 	private Attacks _attacks;
+	public bool isPerformingAction = false;
 
 	void Awake()
     {
@@ -27,10 +28,9 @@ public class Movements : MonoBehaviour
 		{
 			return;
 		}
-		if (_playerDetected)
+		if (_playerDetected && !isPerformingAction)
 		{
-			MoveTowardsPlayer();	
-				
+			MoveTowardsPlayer();					
 		}
 		
 	}

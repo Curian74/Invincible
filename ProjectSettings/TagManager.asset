@@ -8,6 +8,7 @@ TagManager:
   - MeleeEnemy
   - RangeEnemy
   - SuicideEnemy
+  - Powerup
   layers:
   - Default
   - TransparentFX
@@ -17,6 +18,7 @@ TagManager:
   - UI
   - Player
   - Enemy
+  - Powerups
   - Obstacles
   - 
   - 
