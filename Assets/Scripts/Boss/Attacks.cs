@@ -49,7 +49,7 @@ public class Attacks : MonoBehaviour
 				yield return StartCoroutine(LungeTowardsPlayer());
 				break;
 			case 3:
-				yield return StartCoroutine(TeleportToPlayer());
+				yield return StartCoroutine(CastSpell());
 				break;
 		}
 		if (decision != 2)  yield return new WaitForSeconds(3f); 
@@ -88,7 +88,6 @@ public class Attacks : MonoBehaviour
 		if (spell != null)
 		{
 			_animator.SetTrigger("CastSpell");
-			yield return new WaitForSeconds(0.5f);
 			spell.SetPosition(); 
 			yield return new WaitForSeconds(1f);
 			_poolingManager.BackToPool(spell);
