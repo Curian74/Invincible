@@ -255,6 +255,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 2634728368243244895, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
+      propertyPath: maxHealth
+      value: 5000
+      objectReference: {fileID: 0}
     - target: {fileID: 7640339517627248873, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -466,6 +470,9 @@ MonoBehaviour:
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
   _meleeAttackDistance: 1.2
+  _meleeAttackCooldown: 1
+  _meleeDamage: 1
+  _enemyType: 0
 --- !u!50 &121167662
 Rigidbody2D:
   serializedVersion: 5
@@ -638,7 +645,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &279272551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69875,3 +69882,5 @@ SceneRoots:
   - {fileID: 1044975294}
   - {fileID: 450370047}
   - {fileID: 433701898}
+  - {fileID: 1258899485}
+  - {fileID: 1577557684}
