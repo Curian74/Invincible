@@ -37,6 +37,12 @@ public class Bullet : MonoBehaviour
                 health.TakeDamage(damage);
                 if(health.GetCurrentHealth() <= 0)
                 {
+                    Exp exp = FindFirstObjectByType<Exp>();
+                    if(exp != null)
+                    {
+                        exp.GainExp(10);
+                        Debug.Log(exp.GetCurrentExp());
+                    }
                     ScoreManager.Instance.AddScore(1);
                 }
             }
