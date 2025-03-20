@@ -323,28 +323,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085b1bebf0726d741a0f97fc4fe57066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 2
+  _speed: 2.5
   _rotationSpeed: 360
   _screenBorder: 0
-  _canMove: 1
-  _canShoot: 1
   _deathEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
-  _isMelee: 0
-  _isSuicideBomber: 0
-  _fireRate: 1
-  _shootDistance: 8
+  _enemyType: 1
+  _fireRate: 0.75
+  _shootDistance: 5
   _explosionRadius: 2
   _explosionDelay: 1.5
   _explosionEffect: {fileID: 0}
   _explosionDetectionRadius: 1.5
-  _instantExplosionOnContact: 1
-  _blinkRate: 0.2
-  _normalColor: {r: 1, g: 1, b: 1, a: 1}
-  _blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  _explosionBaseDamage: 50
+  _minHealthPercentDamage: 10
+  _maxHealthPercentDamage: 25
   _meleeAttackDistance: 1.2
   _meleeAttackCooldown: 1
   _meleeDamage: 1
-  _enemyType: 1
+  _blinkRate: 0.2
+  _normalColor: {r: 1, g: 1, b: 1, a: 1}
+  _blinkColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!114 &-3012368832789896439
 MonoBehaviour:
   m_ObjectHideFlags: 0
