@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8695731766664912016}
   - component: {fileID: 8564541873804948587}
   - component: {fileID: 552717494000789784}
-  - component: {fileID: 5698022168478071836}
+  - component: {fileID: 8951689669304704353}
   m_Layer: 7
   m_Name: SlownessDebuff
   m_TagString: Powerup
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.6334584, y: 1.6394744}
   m_EdgeRadius: 0
---- !u!114 &5698022168478071836
+--- !u!114 &8951689669304704353
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0cdaded46afd9f0478f3379dfe5ef1cd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 0}
   Duration: 10
   Lifetime: 15
   Strength: 1.5

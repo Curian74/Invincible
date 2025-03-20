@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6331202763655110740}
   - component: {fileID: 5781596871399006529}
   - component: {fileID: 6541823000393175702}
-  - component: {fileID: 1702018201810879433}
+  - component: {fileID: 6681481372713111921}
   m_Layer: 7
   m_Name: PoisonDebuff
   m_TagString: Powerup
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.2482532, y: 1.6560221}
   m_EdgeRadius: 0
---- !u!114 &1702018201810879433
+--- !u!114 &6681481372713111921
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c331346dd69245446ababc69cc0e1f7b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 7409751530599238737, guid: c112f1006e2014843a748220629a6277, type: 3}
   Duration: 5
   Lifetime: 15
   Strength: 5

@@ -9,7 +9,7 @@ public class HealthPowerup : Powerup
         base.Activate(target);
     }
 
-    protected override void ApplyEffect(GameObject Target)
+    public override void ApplyEffect(GameObject Target)
     {
         Health health = Target.GetComponent<Health>();
         if (health != null)

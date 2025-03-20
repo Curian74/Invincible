@@ -9,9 +9,9 @@ public class SpeedPowerup : Powerup
         base.Activate(target);
     }
 
-    protected override void ApplyEffect(GameObject Target)
+    public override void ApplyEffect(GameObject target)
     {
-        KeyboardMovements movement = Target.GetComponent<KeyboardMovements>();
+        KeyboardMovements movement = target.GetComponent<KeyboardMovements>();
 
         if (movement != null)
         {
@@ -19,9 +19,9 @@ public class SpeedPowerup : Powerup
         }
     }
 
-    protected override void RemoveEffect(GameObject target)
+    public override void RemoveEffect(GameObject target)
     {
-        KeyboardMovements movement = Target.GetComponent<KeyboardMovements>();
+        KeyboardMovements movement = target.GetComponent<KeyboardMovements>();
 
         if (movement != null)
         {

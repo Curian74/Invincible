@@ -225,6 +225,7 @@ GameObject:
   - component: {fileID: 3853367442429329897}
   - component: {fileID: 8989807671241055282}
   - component: {fileID: 1274065533486397711}
+  - component: {fileID: 3364286372311468357}
   m_Layer: 6
   m_Name: Player
   m_TagString: Player
@@ -524,6 +525,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 11ff73b95b61267448151bf4076430f1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &3364286372311468357
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906341980591837624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 792aea238e6dc774c8544a25ec246e6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2952523044069525993
@@ -1130,6 +1143,7 @@ MonoBehaviour:
   speed: 10
   lifeTime: 2
   damage: 5
+  expGain: 5
 --- !u!60 &1377471334490441011
 PolygonCollider2D:
   m_ObjectHideFlags: 0

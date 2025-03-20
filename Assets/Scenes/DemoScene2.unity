@@ -1458,8 +1458,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3833bdea246f2c64994758e010eeaa24, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  level: 1
   maxExp: 100
+  maxExpIncrease: 50
 --- !u!1 &820107293
 GameObject:
   m_ObjectHideFlags: 0

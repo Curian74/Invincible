@@ -7,13 +7,12 @@ public class Health : MonoBehaviour
     public event Action<float> OnHealthChanged; // Event for UI updates
     public event Action OnDeath; // Event when entity dies
 
-    [SerializeField] private float maxHealth = 100f;
-    private float currentHealth;
+    [SerializeField] protected float maxHealth = 100f;
+    protected float currentHealth;
 
-    private void Awake()
+    protected void Awake()
     {
         currentHealth = maxHealth;
-        Debug.Log($"Current health: {currentHealth}");
     }
 
     public void TakeDamage(float damage)
@@ -21,7 +20,6 @@ public class Health : MonoBehaviour
         currentHealth -= damage;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnHealthChanged?.Invoke(currentHealth / maxHealth);
-        Debug.Log($"Current health: {currentHealth}");
 
         if (currentHealth <= 0)
         {
@@ -35,10 +33,9 @@ public class Health : MonoBehaviour
         currentHealth += amount;
         currentHealth = Mathf.Clamp(currentHealth, 0, maxHealth);
         OnHealthChanged?.Invoke(currentHealth / maxHealth);
-        Debug.Log($"Current health: {currentHealth}");
     }
 
-    private void Die()
+    protected virtual void Die()
     {
         //Co the them animation o day
         HealthBar healthBar = GetComponentInChildren<HealthBar>();
