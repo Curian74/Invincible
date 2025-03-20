@@ -127,7 +127,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 2
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -154,28 +154,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085b1bebf0726d741a0f97fc4fe57066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
+  _speed: 1
   _rotationSpeed: 360
   _screenBorder: 0
-  _canMove: 1
-  _canShoot: 0
   _deathEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
-  _isMelee: 0
-  _isSuicideBomber: 1
+  _enemyType: 2
   _fireRate: 1.5
   _shootDistance: 5
-  _explosionRadius: 5
+  _explosionRadius: 3
   _explosionDelay: 2
   _explosionEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
   _explosionDetectionRadius: 1.5
-  _instantExplosionOnContact: 1
-  _blinkRate: 0.2
-  _normalColor: {r: 1, g: 1, b: 1, a: 1}
-  _blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  _explosionBaseDamage: 25
+  _minHealthPercentDamage: 0
+  _maxHealthPercentDamage: 0
   _meleeAttackDistance: 2
   _meleeAttackCooldown: 0.5
   _meleeDamage: 1
-  _enemyType: 2
+  _blinkRate: 0.2
+  _normalColor: {r: 1, g: 1, b: 1, a: 1}
+  _blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  _obstacleCheckCircleRadius: 0.5
+  _obstacleCheckDistance: 1.5
+  _obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!114 &3308495804331672861
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 15
 --- !u!58 &-1384576383294045102
 CircleCollider2D:
   m_ObjectHideFlags: 0
