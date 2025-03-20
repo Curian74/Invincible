@@ -5,10 +5,10 @@ public class Exp : MonoBehaviour
 {
     public event Action<float> OnExpChanged; // Event for UI updates
     public event Action<int> OnLevelUp; // Event triggered on level up
-
-    [SerializeField] private int level = 1;
-    [SerializeField] private float maxExp = 100f;
     private float currentExp;
+    private int level = 1;
+    [SerializeField] private float maxExp = 100f;
+    [SerializeField] private float maxExpIncrease = 50f;
 
     private void Awake()
     {
@@ -32,7 +32,7 @@ public class Exp : MonoBehaviour
     {
         level++;
         currentExp = 0;
-        maxExp += 50; // Increase EXP needed for next level
+        maxExp += maxExpIncrease; // Increase EXP needed for next level
 
         OnLevelUp?.Invoke(level);
         Debug.Log($"Leveled Up! New Level: {level}");

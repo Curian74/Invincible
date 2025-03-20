@@ -5,6 +5,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifeTime = 2f;
     [SerializeField] private float damage = 5f;
+    [SerializeField] private float expGain = 5f;
     // [SerializeField] private float mobScore = 1f;
 
     private Vector2 direction;
@@ -40,7 +41,7 @@ public class Bullet : MonoBehaviour
                     Exp exp = FindFirstObjectByType<Exp>();
                     if(exp != null)
                     {
-                        exp.GainExp(10);
+                        exp.GainExp(expGain);
                         Debug.Log(exp.GetCurrentExp());
                     }
                     ScoreManager.Instance.AddScore(1);
