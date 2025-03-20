@@ -40,7 +40,7 @@ public class SoundManager : MonoBehaviour
 
     public void PlaySFX(int index)
     {
-        sfxSource.PlayOneShot(sfxClips[index]); // Play sound effect without stopping the current one
+        sfxSource.PlayOneShot(sfxClips[index]);
     }
 
     public void SetMusicVolume(float volume)

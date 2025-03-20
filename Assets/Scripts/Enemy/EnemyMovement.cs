@@ -274,7 +274,7 @@ public class EnemyMovement : MonoBehaviour
                 EnemyMovement enemyMovement = obj.GetComponent<EnemyMovement>();
                 if (enemyMovement != null)
                 {
-                    ScoreManager.Instance.AddScore(1);
+                    // ScoreManager.Instance.AddScore(1);
 
                     if (enemyMovement.GetEnemyType() == EnemyType.Suicide)
                     {
@@ -340,7 +340,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnEnemyDeath()
     {
-        ScoreManager.Instance.AddScore(1);
+        // ScoreManager.Instance.AddScore(1);
 
         if (_enemyType == EnemyType.Suicide)
             Explode();
