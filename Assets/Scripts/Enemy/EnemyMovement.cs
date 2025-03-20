@@ -314,7 +314,7 @@ private void UpdateTargetDirection()
                 EnemyMovement enemyMovement = obj.GetComponent<EnemyMovement>();
                 if (enemyMovement != null)
                 {
-                    ScoreManager.Instance.AddScore(1);
+                    // ScoreManager.Instance.AddScore(1);
 
                     if (enemyMovement.GetEnemyType() == EnemyType.Suicide)
                     {
@@ -391,7 +391,7 @@ private void UpdateTargetDirection()
 
     private void OnEnemyDeath()
     {
-        ScoreManager.Instance.AddScore(1);
+        // ScoreManager.Instance.AddScore(1);
 
         if (_enemyType == EnemyType.Suicide)
         {
