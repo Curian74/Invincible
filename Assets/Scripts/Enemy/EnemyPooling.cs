@@ -66,7 +66,7 @@ public class ObjectPool : MonoBehaviour
         }
 
         objectToReturn.SetActive(false);
-        ResetGameObject(objectToReturn);
+        // ResetGameObject(objectToReturn);
         poolDictionary[tag].Enqueue(objectToReturn);
     }
     

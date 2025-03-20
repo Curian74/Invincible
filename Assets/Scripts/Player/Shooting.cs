@@ -33,6 +33,7 @@ public class Shooting : MonoBehaviour
 
     public void Shoot()
     {
+        SoundManager.Instance.PlaySFX(0);
         animator.SetTrigger("shoot");
         GameObject bullet = GetBullet();
         if (bullet == null) return;
