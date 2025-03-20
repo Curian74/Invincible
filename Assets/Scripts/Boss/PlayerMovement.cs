@@ -29,7 +29,6 @@ public class PlayerMovement : MonoBehaviour
 			Health health = GetComponent<Health>();
 			if (health != null)
 			{
-				health.TakeDamage(15);
 				HealthBar healthBar = FindFirstObjectByType<HealthBar>();
 				if (healthBar != null)
 				{

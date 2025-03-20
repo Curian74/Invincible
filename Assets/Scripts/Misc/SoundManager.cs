@@ -1,21 +1,24 @@
+using Unity.VisualScripting;
 using UnityEngine;
+using static Unity.VisualScripting.Member;
 
 public class SoundManager : MonoBehaviour
 {
-    public static SoundManager Instance;
-
-    [SerializeField] private AudioSource musicSource;
+    public static SoundManager Instance { get; private set; }
+	private AudioSource source;
+	[SerializeField] private AudioSource musicSource;
     [SerializeField] private AudioSource sfxSource;
     [SerializeField] private AudioClip[] musicClips;
     [SerializeField] private AudioClip[] sfxClips;
 
     void Awake()
     {
-        if (Instance == null)
+		source = GetComponent<AudioSource>();
+		if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
+            DontDestroyOnLoad(gameObject);		
+		}
         else
         {
             Destroy(gameObject);
@@ -41,7 +44,12 @@ public class SoundManager : MonoBehaviour
     public void PlaySFX(int index)
     {
         sfxSource.PlayOneShot(sfxClips[index]); // Play sound effect without stopping the current one
-    }
+	}
+
+    public void PlaySFX(AudioClip audioClip)
+    {
+		source.PlayOneShot(audioClip);
+	}
 
     public void SetMusicVolume(float volume)
     {

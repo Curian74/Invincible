@@ -4,9 +4,14 @@ using UnityEngine;
 public class Attacks : MonoBehaviour
 {
 	[SerializeField] private Spell _spellPrefab;
+	[SerializeField] private AudioClip _strongSlashSound;
+	[SerializeField] private AudioClip _quickSlashSound;
+	[SerializeField] private AudioClip _teleportSound;
+	[SerializeField] private AudioClip _castingSpellSound;
+	[SerializeField] private AudioClip _spellSound;
+	[SerializeField] private AudioClip _appearSound;
 	private Animator _animator;
 	private Transform _player;
-	private Movements _movement;
 	private bool _isTeleporting = false;
 	private PoolingManager<Spell> _poolingManager;
 	private int _spellPool = 5;
@@ -14,25 +19,26 @@ public class Attacks : MonoBehaviour
 
 	void Awake()
 	{
-		_movement = GetComponent<Movements>();
 		_player = GameObject.FindWithTag("Player").transform;
 		_animator = GetComponent<Animator>();
 		_poolingManager = new PoolingManager<Spell>(_spellPrefab, _spellPool, null);
 	}
 
 	void Update()
-	{
-		float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
-
-		if (!_isPerformingAction)
+	{	
+		if (_player != null && _player.gameObject.activeInHierarchy)
 		{
-			if (distanceToPlayer <= 8f && distanceToPlayer >= 2f)
+			float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+			if (!_isPerformingAction)
 			{
-				StartCoroutine(PerformStringAttack(GetRandomDecision()));
-			}
-			else if (distanceToPlayer < 2f)
-			{
-				StartCoroutine(PerformMeleeAttack());
+				if (distanceToPlayer <= 8f && distanceToPlayer >= 2f)
+				{
+					StartCoroutine(PerformStringAttack(GetRandomDecision()));
+				}
+				else if (distanceToPlayer < 2f)
+				{
+					StartCoroutine(PerformMeleeAttack());
+				}
 			}
 		}
 	}
@@ -52,7 +58,7 @@ public class Attacks : MonoBehaviour
 				yield return StartCoroutine(TeleportToPlayer());
 				break;
 		}
-		if (decision != 2)  yield return new WaitForSeconds(3f); 
+		if (decision != 2) yield return new WaitForSeconds(3f);
 		_isPerformingAction = false;
 	}
 
@@ -78,6 +84,7 @@ public class Attacks : MonoBehaviour
 	{
 		_isPerformingAction = true;
 		_animator.SetTrigger("MeleeAttack");
+		SoundManager.Instance.PlaySFX(_strongSlashSound);
 		yield return new WaitForSeconds(2f);
 		_isPerformingAction = false;
 	}
@@ -88,7 +95,9 @@ public class Attacks : MonoBehaviour
 		if (spell != null)
 		{
 			_animator.SetTrigger("CastSpell");
-			spell.SetPosition(); 
+			SoundManager.Instance.PlaySFX(_castingSpellSound);
+			spell.SetPosition();
+			SoundManager.Instance.PlaySFX(_spellSound);
 			yield return new WaitForSeconds(1f);
 			_poolingManager.BackToPool(spell);
 		}
@@ -100,21 +109,25 @@ public class Attacks : MonoBehaviour
 		_isTeleporting = true;
 
 		_animator.SetTrigger("Teleport");
+		SoundManager.Instance.PlaySFX(_teleportSound);
 		yield return new WaitForSeconds(0.5f);
 
 		Vector3 newPosition = _player.position + new Vector3(Random.Range(-1.5f, 1.5f), 0, Random.Range(-1.5f, 1.5f));
 		transform.position = newPosition;
 
 		_animator.SetTrigger("Appear");
+		SoundManager.Instance.PlaySFX(_appearSound);
 		yield return new WaitForSeconds(0.5f);
 		QuickSlash();
-		yield return new WaitForSeconds(2f); 
+		
+		yield return new WaitForSeconds(2f);
 		_isTeleporting = false;
 	}
 
 	private void QuickSlash()
 	{
 		_animator.SetTrigger("QuickSlash");
+		SoundManager.Instance.PlaySFX(_quickSlashSound);
 		_animator.SetTrigger("Idle");
 	}
 

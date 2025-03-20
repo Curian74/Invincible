@@ -11,6 +11,7 @@ public class AttackController : MonoBehaviour
 	private Health _playerHealth;
 
 
+
 	private void Awake()
 	{
 		_collider = GetComponent<PolygonCollider2D>();
@@ -19,7 +20,6 @@ public class AttackController : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		Debug.Log("Entered event");
 		if (other.CompareTag(_playerTag))
 		{
 			float overallDamage = _attackDamage * _damageMultiplier;

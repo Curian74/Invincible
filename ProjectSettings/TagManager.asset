@@ -9,6 +9,7 @@ TagManager:
   - RangeEnemy
   - SuicideEnemy
   - Powerup
+  - BossTopBar
   layers:
   - Default
   - TransparentFX
@@ -20,7 +21,6 @@ TagManager:
   - Enemy
   - Powerups
   - Obstacles
-  - 
   - 
   - 
   - 
