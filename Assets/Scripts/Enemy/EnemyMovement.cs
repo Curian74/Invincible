@@ -35,10 +35,12 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _blinkRate = 0.2f;
     [SerializeField] private Color _normalColor = Color.white;
     [SerializeField] private Color _blinkColor = Color.red;
+
     [Header("Obstacle Avoidance")]
     [SerializeField] private float _obstacleCheckCircleRadius = 0.5f;
     [SerializeField] private float _obstacleCheckDistance = 1.5f;
     [SerializeField] private LayerMask _obstacleLayerMask;
+
     private bool _canMove = true;
     private bool _isCountingDown = false;
     private bool _isBlinkingRed = false;
@@ -47,31 +49,23 @@ public class EnemyMovement : MonoBehaviour
     private Rigidbody2D _rigidbody;
     private PlayerAware _playerAwareness;
     private Vector2 _targetDirection;
-    private Camera _camera;
     private SpriteRenderer _spriteRenderer;
     private string _originalPoolName;
-    public enum EnemyType
-    {
-        Melee,
-        Range,
-        Suicide
-    }
+
+    public enum EnemyType { Melee, Range, Suicide }
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerAwareness = GetComponent<PlayerAware>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        _camera = Camera.main;
-
+        
         _targetDirection = transform.up;
         _rigidbody.gravityScale = 0;
         _originalPoolName = GetEnemyPoolName();
 
         if (_normalColor == Color.white && _spriteRenderer != null)
-        {
             _normalColor = _spriteRenderer.color;
-        }
     }
 
     private void FixedUpdate()
@@ -86,37 +80,28 @@ public class EnemyMovement : MonoBehaviour
         RotateTowardsTarget();
 
         if (_canMove)
-        {
             SetVelocity();
-        }
         else
-        {
             _rigidbody.linearVelocity = Vector2.zero;
-        }
 
         if (_enemyType == EnemyType.Melee && _playerAwareness.AwareOfPlayer && IsAtMeleeRange())
-        {
             TryMeleeAttack();
-        }
 
         if (_enemyType == EnemyType.Suicide && _playerAwareness.AwareOfPlayer && !_isCountingDown)
-        {
             CheckForExplosion();
-        }
     }
 
     private void Update()
     {
         if (_enemyType == EnemyType.Range && CanFire())
-        {
             Fire();
-        }
     }
 
-private void UpdateTargetDirection()
-{
-    if (_playerAwareness != null && _playerAwareness.AwareOfPlayer)
+    private void UpdateTargetDirection()
     {
+        if (_playerAwareness == null || !_playerAwareness.AwareOfPlayer) 
+            return;
+
         Vector2 directionToPlayer = _playerAwareness.DirectionToPlayer.normalized;
 
         Collider2D[] nearbyEnemies = Physics2D.OverlapCircleAll(transform.position, 1.2f, LayerMask.GetMask("Enemy"));
@@ -124,90 +109,77 @@ private void UpdateTargetDirection()
 
         foreach (Collider2D enemy in nearbyEnemies)
         {
-            if (enemy.gameObject != this.gameObject)
+            if (enemy.gameObject != gameObject)
             {
                 Vector2 pushDirection = (Vector2)(transform.position - enemy.transform.position);
                 separationForce += pushDirection.normalized / pushDirection.magnitude;
             }
         }
+        
         if (separationForce != Vector2.zero)
-        {
             directionToPlayer += separationForce * 0.5f;
-        }
+
         RaycastHit2D hit = Physics2D.CircleCast(transform.position, _obstacleCheckCircleRadius, directionToPlayer, _obstacleCheckDistance, _obstacleLayerMask);
         if (hit.collider != null)
-        {
-            Vector2 avoidDirection = Vector2.Perpendicular(directionToPlayer).normalized;
-            directionToPlayer += avoidDirection * 0.75f;
-        }
+            directionToPlayer += Vector2.Perpendicular(directionToPlayer).normalized * 0.75f;
 
         _targetDirection = directionToPlayer.normalized;
     }
-}
 
     private void RotateTowardsTarget()
     {
         if (_canMove && !(_enemyType == EnemyType.Melee && IsAtMeleeRange()))
-        {
             transform.rotation = Quaternion.Euler(0, _targetDirection.x < 0 ? 180 : 0, 0);
-        }
     }
 
     private void SetVelocity()
     {
-        float distanceToPlayer = _playerAwareness.AwareOfPlayer ?
+        float distanceToPlayer = _playerAwareness.AwareOfPlayer ? 
             Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) : float.MaxValue;
 
-        if (_enemyType == EnemyType.Melee && _playerAwareness.AwareOfPlayer)
+        switch (_enemyType)
         {
-            _rigidbody.linearVelocity = distanceToPlayer <= _meleeAttackDistance ?
-                Vector2.zero : _targetDirection.normalized * _speed;
-        }
-        else if (_enemyType == EnemyType.Range && _playerAwareness.AwareOfPlayer)
-        {
-            if (distanceToPlayer > _shootDistance + 0.5f)
+            case EnemyType.Melee when _playerAwareness.AwareOfPlayer:
+                _rigidbody.linearVelocity = distanceToPlayer <= _meleeAttackDistance ? 
+                    Vector2.zero : _targetDirection.normalized * _speed;
+                break;
+            
+            case EnemyType.Range when _playerAwareness.AwareOfPlayer:
+                if (distanceToPlayer > _shootDistance + 0.5f)
+                    _rigidbody.linearVelocity = _targetDirection.normalized * _speed;
+                else if (distanceToPlayer < _shootDistance - 0.5f)
+                    _rigidbody.linearVelocity = -_targetDirection.normalized * _speed;
+                else
+                    _rigidbody.linearVelocity = Vector2.zero;
+                break;
+            
+            default:
                 _rigidbody.linearVelocity = _targetDirection.normalized * _speed;
-            else if (distanceToPlayer < _shootDistance - 0.5f)
-                _rigidbody.linearVelocity = -_targetDirection.normalized * _speed;
-            else
-                _rigidbody.linearVelocity = Vector2.zero;
-        }
-        else
-        {
-            _rigidbody.linearVelocity = _targetDirection.normalized * _speed;
+                break;
         }
     }
 
-    private bool IsAtMeleeRange()
-    {
-        if (!_playerAwareness.AwareOfPlayer) return false;
-        return Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) <= _meleeAttackDistance;
-    }
+    private bool IsAtMeleeRange() => 
+        _playerAwareness.AwareOfPlayer && Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) <= _meleeAttackDistance;
 
     private void TryMeleeAttack()
     {
-        if (Time.time >= _nextMeleeAttackTime)
+        if (Time.time < _nextMeleeAttackTime) 
+            return;
+
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        if (player != null)
         {
-            GameObject player = GameObject.FindGameObjectWithTag("Player");
-            if (player != null)
-            {
-                Health playerHealth = player.GetComponent<Health>();
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(_meleeDamage);
-                }
-            }
-            _nextMeleeAttackTime = Time.time + _meleeAttackCooldown;
+            Health playerHealth = player.GetComponent<Health>();
+            playerHealth?.TakeDamage(_meleeDamage);
         }
+        
+        _nextMeleeAttackTime = Time.time + _meleeAttackCooldown;
     }
 
-    private bool CanFire()
-    {
-        if (!_playerAwareness.AwareOfPlayer || Time.time < _nextFireTime)
-            return false;
-
-        return Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) <= _shootDistance;
-    }
+    private bool CanFire() => 
+        _playerAwareness.AwareOfPlayer && Time.time >= _nextFireTime && 
+        Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) <= _shootDistance;
 
     private void Fire()
     {
@@ -216,22 +188,16 @@ private void UpdateTargetDirection()
         if (bullet != null)
         {
             bullet.SetActive(true);
-            Vector2 direction = _playerAwareness.AwareOfPlayer ?
-                _playerAwareness.DirectionToPlayer : _targetDirection;
+            Vector2 direction = _playerAwareness.AwareOfPlayer ? _playerAwareness.DirectionToPlayer : _targetDirection;
             bullet.GetComponent<EnemyBullet>().SetDirection(direction);
         }
     }
 
     private void CheckForExplosion()
     {
-        if (_playerAwareness.AwareOfPlayer)
-        {
-            float distanceToPlayer = Vector2.Distance(transform.position, _playerAwareness.PlayerPosition);
-            if (distanceToPlayer <= _explosionDetectionRadius)
-            {
-                StartExplosionCountdown();
-            }
-        }
+        if (_playerAwareness.AwareOfPlayer && 
+            Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) <= _explosionDetectionRadius)
+            StartExplosionCountdown();
     }
 
     private void StartExplosionCountdown()
@@ -244,12 +210,7 @@ private void UpdateTargetDirection()
         _rigidbody.bodyType = RigidbodyType2D.Kinematic;
 
         foreach (Collider2D col in GetComponents<Collider2D>())
-        {
-            if (!col.isTrigger)
-            {
-                col.isTrigger = true;
-            }
-        }
+            if (!col.isTrigger) col.isTrigger = true;
 
         CancelInvoke(nameof(Explode));
         Invoke(nameof(Explode), _explosionDelay);
@@ -257,22 +218,20 @@ private void UpdateTargetDirection()
 
     private void HandleBlinking()
     {
-        if (Time.time >= _nextBlinkTime)
+        if (Time.time < _nextBlinkTime) 
+            return;
+            
+        _nextBlinkTime = Time.time + _blinkRate;
+
+        if (_spriteRenderer != null)
         {
-            _nextBlinkTime = Time.time + _blinkRate;
-
-            if (_spriteRenderer != null)
-            {
-                _isBlinkingRed = !_isBlinkingRed;
-                _spriteRenderer.color = _isBlinkingRed ? _blinkColor : _normalColor;
-            }
-
-            float remainingTime = _explosionDelay - (Time.time - (Time.time + _explosionDelay - _nextBlinkTime));
-            if (remainingTime < _explosionDelay / 2)
-            {
-                _blinkRate = 0.1f;
-            }
+            _isBlinkingRed = !_isBlinkingRed;
+            _spriteRenderer.color = _isBlinkingRed ? _blinkColor : _normalColor;
         }
+
+        float remainingTime = _explosionDelay - (Time.time - (Time.time + _explosionDelay - _nextBlinkTime));
+        if (remainingTime < _explosionDelay / 2)
+            _blinkRate = 0.1f;
     }
 
     private void Explode()
@@ -293,7 +252,8 @@ private void UpdateTargetDirection()
         Collider2D[] objectsHit = Physics2D.OverlapCircleAll(transform.position, _explosionRadius);
         foreach (Collider2D obj in objectsHit)
         {
-            if (obj == null || !obj.gameObject.activeInHierarchy) continue;
+            if (obj == null || !obj.gameObject.activeInHierarchy) 
+                continue;
 
             if (obj.CompareTag("Player"))
             {
@@ -346,17 +306,10 @@ private void UpdateTargetDirection()
         _rigidbody.bodyType = RigidbodyType2D.Kinematic;
 
         foreach (Collider2D col in GetComponents<Collider2D>())
-        {
-            if (!col.isTrigger)
-            {
-                col.isTrigger = true;
-            }
-        }
+            if (!col.isTrigger) col.isTrigger = true;
 
         if (_spriteRenderer != null)
-        {
             _spriteRenderer.color = _blinkColor;
-        }
 
         CancelInvoke(nameof(Explode));
         Invoke(nameof(Explode), delay);
@@ -375,18 +328,14 @@ private void UpdateTargetDirection()
     {
         Health health = GetComponent<Health>();
         if (health != null)
-        {
             health.OnDeath += OnEnemyDeath;
-        }
     }
 
     private void OnDisable()
     {
         Health health = GetComponent<Health>();
         if (health != null)
-        {
             health.OnDeath -= OnEnemyDeath;
-        }
     }
 
     private void OnEnemyDeath()
@@ -394,9 +343,7 @@ private void UpdateTargetDirection()
         ScoreManager.Instance.AddScore(1);
 
         if (_enemyType == EnemyType.Suicide)
-        {
             Explode();
-        }
         else
         {
             DeathEffect();
@@ -404,32 +351,24 @@ private void UpdateTargetDirection()
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        HandleCollision(collision.gameObject);
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        HandleCollision(collision.gameObject);
-    }
+    private void OnTriggerEnter2D(Collider2D collision) => HandleCollision(collision.gameObject);
+    
+    private void OnCollisionEnter2D(Collision2D collision) => HandleCollision(collision.gameObject);
 
     private void HandleCollision(GameObject collisionObject)
     {
-        if (collisionObject.CompareTag("Player"))
+        if (!collisionObject.CompareTag("Player")) 
+            return;
+            
+        if (_enemyType == EnemyType.Suicide)
         {
-            if (_enemyType == EnemyType.Suicide)
-            {
-                if (!_isCountingDown) StartExplosionCountdown();
-            }
-            else if (_enemyType == EnemyType.Melee)
-            {
-                Health playerHealth = collisionObject.GetComponent<Health>();
-                if (playerHealth != null)
-                {
-                    playerHealth.TakeDamage(_meleeDamage);
-                }
-            }
+            if (!_isCountingDown) 
+                StartExplosionCountdown();
+        }
+        else if (_enemyType == EnemyType.Melee)
+        {
+            Health playerHealth = collisionObject.GetComponent<Health>();
+            playerHealth?.TakeDamage(_meleeDamage);
         }
     }
 
@@ -445,9 +384,7 @@ private void UpdateTargetDirection()
             float amountToHeal = maxHealth - currentHealth;
 
             if (amountToHeal > 0)
-            {
                 health.Heal(amountToHeal);
-            }
         }
 
         _targetDirection = transform.up;
@@ -460,18 +397,15 @@ private void UpdateTargetDirection()
         _nextMeleeAttackTime = 0f;
 
         if (_spriteRenderer != null)
-        {
             _spriteRenderer.color = _normalColor;
-        }
 
         _rigidbody.bodyType = RigidbodyType2D.Kinematic;
 
         foreach (Collider2D col in GetComponents<Collider2D>())
         {
             if (_enemyType == EnemyType.Suicide)
-            {
                 col.isTrigger = false;
-            }
+                
             col.enabled = true;
         }
 
@@ -479,30 +413,19 @@ private void UpdateTargetDirection()
         _canMove = true;
     }
 
-    public void SetMovement(bool canMove)
-    {
-        _canMove = canMove;
-    }
-
-    public EnemyType GetEnemyType()
-    {
-        return _enemyType;
-    }
-
-    public string GetOriginalPoolName()
-    {
-        return _originalPoolName;
-    }
+    public void SetMovement(bool canMove) => _canMove = canMove;
+    public EnemyType GetEnemyType() => _enemyType;
+    public string GetOriginalPoolName() => _originalPoolName;
 
     private string GetEnemyPoolName()
     {
-        switch (_enemyType)
+        return _enemyType switch
         {
-            case EnemyType.Range: return "RangeEnemy";
-            case EnemyType.Melee: return "MeleeEnemy";
-            case EnemyType.Suicide: return "SuicideEnemy";
-            default: return "Enemy";
-        }
+            EnemyType.Range => "RangeEnemy",
+            EnemyType.Melee => "MeleeEnemy",
+            EnemyType.Suicide => "SuicideEnemy",
+            _ => "Enemy"
+        };
     }
 
     private void OnDrawGizmosSelected()
@@ -521,6 +444,7 @@ private void UpdateTargetDirection()
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, _meleeAttackDistance);
         }
+        
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, _obstacleCheckCircleRadius);
         Gizmos.DrawRay(transform.position, transform.up * _obstacleCheckDistance);
