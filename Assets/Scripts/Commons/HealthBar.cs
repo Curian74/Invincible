@@ -8,7 +8,8 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        health = FindFirstObjectByType<Health>();
+        var player = GameObject.FindGameObjectWithTag("Player");
+        health = player.GetComponent<Health>();
         slider = GetComponent<Slider>();
         slider.value = health.GetCurrentHealth() / health.GetMaxHealth();
         health.OnHealthChanged += UpdateHealthBar;
