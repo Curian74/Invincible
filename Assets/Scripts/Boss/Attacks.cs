@@ -7,10 +7,10 @@ public class Attacks : MonoBehaviour
 	private Animator _animator;
 	private Transform _player;
 	private Movements _movement;
-	private bool isTeleporting = false;
+	private bool _isTeleporting = false;
 	private PoolingManager<Spell> _poolingManager;
 	private int _spellPool = 5;
-	private bool isPerformingAction = false; 
+	private bool _isPerformingAction = false;
 
 	void Awake()
 	{
@@ -24,7 +24,7 @@ public class Attacks : MonoBehaviour
 	{
 		float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
 
-		if (!isPerformingAction)
+		if (!_isPerformingAction)
 		{
 			if (distanceToPlayer <= 8f && distanceToPlayer >= 2f)
 			{
@@ -39,7 +39,7 @@ public class Attacks : MonoBehaviour
 
 	private IEnumerator PerformStringAttack(int decision)
 	{
-		isPerformingAction = true;
+		_isPerformingAction = true;
 		switch (decision)
 		{
 			case 1:
@@ -53,7 +53,7 @@ public class Attacks : MonoBehaviour
 				break;
 		}
 		if (decision != 2)  yield return new WaitForSeconds(3f); 
-		isPerformingAction = false;
+		_isPerformingAction = false;
 	}
 
 	private IEnumerator LungeTowardsPlayer()
@@ -76,10 +76,10 @@ public class Attacks : MonoBehaviour
 
 	private IEnumerator PerformMeleeAttack()
 	{
-		isPerformingAction = true;
+		_isPerformingAction = true;
 		_animator.SetTrigger("MeleeAttack");
 		yield return new WaitForSeconds(2f);
-		isPerformingAction = false;
+		_isPerformingAction = false;
 	}
 
 	private IEnumerator CastSpell()
@@ -96,8 +96,8 @@ public class Attacks : MonoBehaviour
 
 	private IEnumerator TeleportToPlayer()
 	{
-		if (isTeleporting) yield break;
-		isTeleporting = true;
+		if (_isTeleporting) yield break;
+		_isTeleporting = true;
 
 		_animator.SetTrigger("Teleport");
 		yield return new WaitForSeconds(0.5f);
@@ -109,7 +109,7 @@ public class Attacks : MonoBehaviour
 		yield return new WaitForSeconds(0.5f);
 		QuickSlash();
 		yield return new WaitForSeconds(2f); 
-		isTeleporting = false;
+		_isTeleporting = false;
 	}
 
 	private void QuickSlash()
