@@ -4,6 +4,7 @@ public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _lifeTime = 3f;
+    [SerializeField] private float _dame = 3f;
 
     private Vector2 _direction;
     private float _spawnTime;
@@ -27,7 +28,7 @@ private void OnTriggerEnter2D(Collider2D collision)
 {
     if (collision.CompareTag("Player"))
     {
-          collision.GetComponent<Health>().TakeDamage(1);
+          collision.GetComponent<Health>().TakeDamage(_dame);
         
         ReturnToPool();
     }

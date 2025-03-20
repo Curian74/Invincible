@@ -50,7 +50,7 @@ public class SoundManager : MonoBehaviour
     {
 		source.PlayOneShot(audioClip);
 	}
-
+        
     public void SetMusicVolume(float volume)
     {
         musicSource.volume = Mathf.Clamp01(volume);

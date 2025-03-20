@@ -172,7 +172,7 @@ SpriteRenderer:
   m_SortingOrder: 2
   m_Sprite: {fileID: 1544975445, guid: d33598d781682e049a53a0a13104ef29, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 1
+  m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 1, y: 1}
@@ -245,25 +245,28 @@ MonoBehaviour:
   _speed: 3
   _rotationSpeed: 360
   _screenBorder: 0
-  _canMove: 1
-  _canShoot: 0
   _deathEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
-  _isMelee: 1
-  _isSuicideBomber: 0
+  _enemyType: 0
   _fireRate: 1.5
   _shootDistance: 5
   _explosionRadius: 2
   _explosionDelay: 1.5
   _explosionEffect: {fileID: 0}
   _explosionDetectionRadius: 1.5
-  _instantExplosionOnContact: 1
+  _explosionBaseDamage: 50
+  _minHealthPercentDamage: 10
+  _maxHealthPercentDamage: 25
+  _meleeAttackDistance: 1.5
+  _meleeAttackCooldown: 1
+  _meleeDamage: 5
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  _meleeAttackDistance: 1
-  _meleeAttackCooldown: 0.5
-  _meleeDamage: 1
-  _enemyType: 0
+  _obstacleCheckCircleRadius: 0.5
+  _obstacleCheckDistance: 1.5
+  _obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 641
 --- !u!114 &6905136429941700487
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -320,7 +323,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
