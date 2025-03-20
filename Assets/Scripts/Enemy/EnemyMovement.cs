@@ -30,6 +30,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _meleeAttackCooldown = 1f;
     [SerializeField] private int _meleeDamage = 1;
     private float _nextMeleeAttackTime = 0f;
+    private bool _isAttacking = false;
 
     [Header("Visual Settings")]
     [SerializeField] private float _blinkRate = 0.2f;
@@ -53,13 +54,14 @@ public class EnemyMovement : MonoBehaviour
     private string _originalPoolName;
 
     public enum EnemyType { Melee, Range, Suicide }
+    private Animator anim;
 
     private void Awake()
     {
         _rigidbody = GetComponent<Rigidbody2D>();
         _playerAwareness = GetComponent<PlayerAware>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
-        
+        anim = GetComponent<Animator>();
         _targetDirection = transform.up;
         _rigidbody.gravityScale = 0;
         _originalPoolName = GetEnemyPoolName();
@@ -99,7 +101,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void UpdateTargetDirection()
     {
-        if (_playerAwareness == null || !_playerAwareness.AwareOfPlayer) 
+        if (_playerAwareness == null || !_playerAwareness.AwareOfPlayer)
             return;
 
         Vector2 directionToPlayer = _playerAwareness.DirectionToPlayer.normalized;
@@ -115,7 +117,7 @@ public class EnemyMovement : MonoBehaviour
                 separationForce += pushDirection.normalized / pushDirection.magnitude;
             }
         }
-        
+
         if (separationForce != Vector2.zero)
             directionToPlayer += separationForce * 0.5f;
 
@@ -134,51 +136,81 @@ public class EnemyMovement : MonoBehaviour
 
     private void SetVelocity()
     {
-        float distanceToPlayer = _playerAwareness.AwareOfPlayer ? 
+        float distanceToPlayer = _playerAwareness.AwareOfPlayer ?
             Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) : float.MaxValue;
+
+        bool isMoving = false;
 
         switch (_enemyType)
         {
             case EnemyType.Melee when _playerAwareness.AwareOfPlayer:
-                _rigidbody.linearVelocity = distanceToPlayer <= _meleeAttackDistance ? 
-                    Vector2.zero : _targetDirection.normalized * _speed;
+                isMoving = distanceToPlayer > _meleeAttackDistance;
+                _rigidbody.linearVelocity = isMoving ?
+                    _targetDirection.normalized * _speed : Vector2.zero;
                 break;
-            
+
             case EnemyType.Range when _playerAwareness.AwareOfPlayer:
+                isMoving = true;
                 if (distanceToPlayer > _shootDistance + 0.5f)
                     _rigidbody.linearVelocity = _targetDirection.normalized * _speed;
                 else if (distanceToPlayer < _shootDistance - 0.5f)
                     _rigidbody.linearVelocity = -_targetDirection.normalized * _speed;
                 else
+                {
                     _rigidbody.linearVelocity = Vector2.zero;
+                    isMoving = false;
+                }
                 break;
-            
+
             default:
+                isMoving = true;
                 _rigidbody.linearVelocity = _targetDirection.normalized * _speed;
                 break;
         }
+
+        if (_enemyType == EnemyType.Melee)
+            anim.SetBool("walk", isMoving && !_isAttacking);
     }
 
-    private bool IsAtMeleeRange() => 
+    private bool IsAtMeleeRange() =>
         _playerAwareness.AwareOfPlayer && Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) <= _meleeAttackDistance;
-
-    private void TryMeleeAttack()
+    private void StartMeleeAttack()
     {
-        if (Time.time < _nextMeleeAttackTime) 
-            return;
+        if (_isAttacking) return;
+
+        _isAttacking = true;
+        anim.SetTrigger("attack");
+        _nextMeleeAttackTime = Time.time + _meleeAttackCooldown;
+        Invoke(nameof(ApplyMeleeDamage), 1.2f);
+
+        Invoke(nameof(ResetAttackState), 1.2f);
+    }
+    private void ApplyMeleeDamage()
+    {
+        if (!_isAttacking) return;
 
         GameObject player = GameObject.FindGameObjectWithTag("Player");
-        if (player != null)
+        if (player != null && Vector2.Distance(transform.position, player.transform.position) <= _meleeAttackDistance)
         {
             Health playerHealth = player.GetComponent<Health>();
             playerHealth?.TakeDamage(_meleeDamage);
         }
-        
-        _nextMeleeAttackTime = Time.time + _meleeAttackCooldown;
+    }
+    private void TryMeleeAttack()
+    {
+        if (Time.time < _nextMeleeAttackTime || _isAttacking)
+            return;
+
+        StartMeleeAttack();
     }
 
-    private bool CanFire() => 
-        _playerAwareness.AwareOfPlayer && Time.time >= _nextFireTime && 
+    private void ResetAttackState()
+    {
+        _isAttacking = false;
+    }
+
+    private bool CanFire() =>
+        _playerAwareness.AwareOfPlayer && Time.time >= _nextFireTime &&
         Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) <= _shootDistance;
 
     private void Fire()
@@ -195,7 +227,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void CheckForExplosion()
     {
-        if (_playerAwareness.AwareOfPlayer && 
+        if (_playerAwareness.AwareOfPlayer &&
             Vector2.Distance(transform.position, _playerAwareness.PlayerPosition) <= _explosionDetectionRadius)
             StartExplosionCountdown();
     }
@@ -218,9 +250,9 @@ public class EnemyMovement : MonoBehaviour
 
     private void HandleBlinking()
     {
-        if (Time.time < _nextBlinkTime) 
+        if (Time.time < _nextBlinkTime)
             return;
-            
+
         _nextBlinkTime = Time.time + _blinkRate;
 
         if (_spriteRenderer != null)
@@ -252,7 +284,7 @@ public class EnemyMovement : MonoBehaviour
         Collider2D[] objectsHit = Physics2D.OverlapCircleAll(transform.position, _explosionRadius);
         foreach (Collider2D obj in objectsHit)
         {
-            if (obj == null || !obj.gameObject.activeInHierarchy) 
+            if (obj == null || !obj.gameObject.activeInHierarchy)
                 continue;
 
             if (obj.CompareTag("Player"))
@@ -352,23 +384,25 @@ public class EnemyMovement : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) => HandleCollision(collision.gameObject);
-    
+
     private void OnCollisionEnter2D(Collision2D collision) => HandleCollision(collision.gameObject);
 
     private void HandleCollision(GameObject collisionObject)
     {
-        if (!collisionObject.CompareTag("Player")) 
+        if (!collisionObject.CompareTag("Player"))
             return;
-            
+
         if (_enemyType == EnemyType.Suicide)
         {
-            if (!_isCountingDown) 
+            if (!_isCountingDown)
                 StartExplosionCountdown();
         }
         else if (_enemyType == EnemyType.Melee)
         {
-            Health playerHealth = collisionObject.GetComponent<Health>();
-            playerHealth?.TakeDamage(_meleeDamage);
+            if (!_isAttacking && Time.time >= _nextMeleeAttackTime)
+            {
+                StartMeleeAttack();
+            }
         }
     }
 
@@ -405,7 +439,7 @@ public class EnemyMovement : MonoBehaviour
         {
             if (_enemyType == EnemyType.Suicide)
                 col.isTrigger = false;
-                
+
             col.enabled = true;
         }
 
@@ -444,7 +478,7 @@ public class EnemyMovement : MonoBehaviour
             Gizmos.color = Color.yellow;
             Gizmos.DrawWireSphere(transform.position, _meleeAttackDistance);
         }
-        
+
         Gizmos.color = Color.cyan;
         Gizmos.DrawWireSphere(transform.position, _obstacleCheckCircleRadius);
         Gizmos.DrawRay(transform.position, transform.up * _obstacleCheckDistance);
