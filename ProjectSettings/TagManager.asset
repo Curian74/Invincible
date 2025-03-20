@@ -10,6 +10,7 @@ TagManager:
   - SuicideEnemy
   - Powerup
   - BossTopBar
+  - BringerOfDeath
   layers:
   - Default
   - TransparentFX

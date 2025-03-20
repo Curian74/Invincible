@@ -6,17 +6,23 @@ public class PlayerMovement : MonoBehaviour
 	private Rigidbody2D rb;
 	private float inputX;
 	private float inputY;
+	private Transform _boss;
 
 	void Start()
 	{
 		rb = GetComponent<Rigidbody2D>();
+		_boss = GameObject.FindWithTag("BringerOfDeath").transform;
 	}
 
 	void Update()
 	{
 		inputX = Input.GetAxis("Horizontal");
 		inputY = Input.GetAxis("Vertical");
-
+		if (Input.GetMouseButtonDown(0)) 
+		{
+			var bossHealth = _boss.GetComponent<Health>();
+			bossHealth.TakeDamage(10);
+		}
 
 		rb.linearVelocity = new Vector2(inputX * speed, inputY * speed);
 	}

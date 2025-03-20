@@ -1048,6 +1048,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss (Bringer Of Death)
       objectReference: {fileID: 0}
+    - target: {fileID: 3233327362763001490, guid: e615644714098fc45b359b73155cf31d, type: 3}
+      propertyPath: m_TagString
+      value: BringerOfDeath
+      objectReference: {fileID: 0}
     - target: {fileID: 3969867382530735703, guid: e615644714098fc45b359b73155cf31d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 11.56
