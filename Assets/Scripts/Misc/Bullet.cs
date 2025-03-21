@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy"))
+        if(collision.CompareTag("Enemy") || collision.CompareTag("Border"))
         {
             Health health = collision.GetComponent<Health>();
             

@@ -590,6 +590,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 0}
+  _hurtSound: {fileID: 0}
+  _deathSound: {fileID: 0}
   maxHealth: 20
 --- !u!1 &184907106
 GameObject:
@@ -776,6 +779,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spellPrefab: {fileID: 3891464492076515657, guid: 3456096af0e225a438eca898f129dc89, type: 3}
+  _strongSlashSound: {fileID: 0}
+  _quickSlashSound: {fileID: 0}
+  _teleportSound: {fileID: 0}
+  _castingSpellSound: {fileID: 0}
+  _spellSound: {fileID: 0}
+  _appearSound: {fileID: 0}
 --- !u!114 &279272552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -793,7 +802,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   _movementSpeed: 1.5
-  isPerformingAction: 0
 --- !u!61 &279272553
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2128,6 +2136,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 0}
+  _hurtSound: {fileID: 0}
+  _deathSound: {fileID: 0}
   maxHealth: 30
 --- !u!58 &1216968561
 CircleCollider2D:
@@ -2815,7 +2826,7 @@ GameObject:
   - component: {fileID: 1737557279}
   m_Layer: 0
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Border
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -70813,6 +70824,6 @@ SceneRoots:
   - {fileID: 1044975294}
   - {fileID: 450370047}
   - {fileID: 433701898}
-  - {fileID: 1258899485}
-  - {fileID: 1577557684}
-  - {fileID: 1426078988}
+  - {fileID: 2005529061}
+  - {fileID: 425852684}
+  - {fileID: 1745589688}
