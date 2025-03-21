@@ -188,7 +188,7 @@ GameObject:
   - component: {fileID: 4115991846576916368}
   - component: {fileID: 8954288411997325351}
   - component: {fileID: 2569617558954786284}
-  - component: {fileID: -3012368832789896439}
+  - component: {fileID: -5431795671539956475}
   m_Layer: 7
   m_Name: RangeEnemy
   m_TagString: Enemy
@@ -352,10 +352,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5562014775131117480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
+  m_Script: {fileID: 11500000, guid: a99532f5caf36e54f87e2e4c782a64e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 20
+  powerupPrefabs:
+  - {fileID: 5185045411227346833, guid: 39106a942426be742a7b2feca58da4ea, type: 3}
+  - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}
+  dropChance: 0.5
 --- !u!1 &6932673321537064675
 GameObject:
   m_ObjectHideFlags: 0

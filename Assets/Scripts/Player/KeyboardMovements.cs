@@ -19,19 +19,19 @@ public class KeyboardMovements : MonoBehaviour
         inputX = Input.GetAxis("Horizontal");
         inputY = Input.GetAxis("Vertical");
 
-        if(inputX != 0 || inputY != 0)
+        Vector2 moveDirection = new(inputX, inputY);
+
+        if (moveDirection.magnitude > 0)
         {
             anim.SetBool("run", true);
+            moveDirection.Normalize(); // Ensures uniform speed in all directions
         }
-        
         else
         {
             anim.SetBool("run", false);
         }
 
-        rb.linearVelocity = new Vector2(inputX * speed, inputY * speed);
-
-        // Debug.Log($"Speed: {speed}");
+        rb.linearVelocity = moveDirection * speed;
     }
 
     //Testing function

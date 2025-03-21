@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4183490052153594870}
   - component: {fileID: 611229755712439715}
   - component: {fileID: 5598758337439745532}
-  - component: {fileID: 6551607330101265634}
+  - component: {fileID: 290254231545752193}
   m_Layer: 7
   m_Name: HealthPowerup
   m_TagString: Powerup
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 0.70286655, y: 0.60286677}
   m_EdgeRadius: 0
---- !u!114 &6551607330101265634
+--- !u!114 &290254231545752193
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef33f4d680107a84d83e7bc400dd64fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 7409751530599238737, guid: c112f1006e2014843a748220629a6277, type: 3}
+  Target: {fileID: 0}
   Duration: 0
   Lifetime: 15
   Strength: 15

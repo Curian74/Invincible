@@ -101,8 +101,8 @@ GameObject:
   - component: {fileID: 1331324190776359904}
   - component: {fileID: 2585985473339486065}
   - component: {fileID: 6905136429941700487}
-  - component: {fileID: -6540003743601857080}
   - component: {fileID: 7158722040946830561}
+  - component: {fileID: 7376456956608393665}
   m_Layer: 7
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -280,19 +280,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAwarenessDistance: 100
---- !u!114 &-6540003743601857080
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6204635262521180871}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 40
 --- !u!60 &7158722040946830561
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -349,3 +336,20 @@ PolygonCollider2D:
       - {x: 0.21764421, y: -0.03329575}
       - {x: 0.3859663, y: 0.38596642}
   m_UseDelaunayMesh: 0
+--- !u!114 &7376456956608393665
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6204635262521180871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99532f5caf36e54f87e2e4c782a64e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 40
+  powerupPrefabs:
+  - {fileID: 5185045411227346833, guid: 39106a942426be742a7b2feca58da4ea, type: 3}
+  - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}
+  dropChance: 0.5

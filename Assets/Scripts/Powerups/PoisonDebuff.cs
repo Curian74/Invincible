@@ -1,3 +1,4 @@
+using Assets.Scripts.Powerups;
 using System.Collections;
 using UnityEngine;
 
@@ -7,14 +8,22 @@ public class PoisonDebuff : Powerup
 
     public override void Activate(GameObject target)
     {
-        Health health = target.GetComponent<Health>();
+        PowerupManager manager = target.GetComponent<PowerupManager>();
+        if (manager != null)
+        {
+            manager.ApplyPowerup(this, target);
+        }
 
+        Destroy(gameObject);
+    }
+
+    public override void ApplyEffect(GameObject target)
+    {
+        Health health = target.GetComponent<Health>();
         if (health != null)
         {
             target.GetComponent<MonoBehaviour>().StartCoroutine(ApplyPoisonEffect(health));
         }
-
-        Destroy(gameObject);
     }
 
     private IEnumerator ApplyPoisonEffect(Health health)
@@ -26,7 +35,6 @@ public class PoisonDebuff : Powerup
             if (health != null)
             {
                 health.TakeDamage(Strength);
-                Debug.Log($"Damaged player for: {Strength} HP");
             }
 
             yield return new WaitForSeconds(1f);
