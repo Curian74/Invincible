@@ -22,6 +22,13 @@ public class Attacks : MonoBehaviour
 		_player = GameObject.FindWithTag("Player").transform;
 		_animator = GetComponent<Animator>();
 		_poolingManager = new PoolingManager<Spell>(_spellPrefab, _spellPool, null);
+		_isPerformingAction = false;
+	}
+
+	void OnEnable()
+	{
+		_isPerformingAction = false; 
+		_isTeleporting = false; 
 	}
 
 	void Update()

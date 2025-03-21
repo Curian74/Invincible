@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2578998006436303750}
   - component: {fileID: 5337806940399535655}
   - component: {fileID: 5950109699349294920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FastSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,9 +147,9 @@ GameObject:
   - component: {fileID: 860341137001091619}
   - component: {fileID: 7616076575650888551}
   - component: {fileID: 3925655373466876965}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss (Bringer Of Death)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,8 +235,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 428658465
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -4551999497626061999, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -386,7 +386,7 @@ GameObject:
   - component: {fileID: 2666528769809737511}
   - component: {fileID: 6628168614581863092}
   - component: {fileID: 7596152746751115768}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: BossTopBar
   m_Icon: {fileID: 0}
@@ -489,7 +489,7 @@ GameObject:
   - component: {fileID: 4043883431003923499}
   - component: {fileID: 2592946057687460964}
   - component: {fileID: 6661182420060246855}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StrongSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +628,7 @@ GameObject:
   - component: {fileID: 8097385444873770075}
   - component: {fileID: 348304305936961327}
   - component: {fileID: 3514979641284907347}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +730,7 @@ GameObject:
   - component: {fileID: 7248281070563285676}
   - component: {fileID: 3045098015514537070}
   - component: {fileID: 3188378677756498706}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +805,7 @@ GameObject:
   - component: {fileID: 3771040695372393624}
   - component: {fileID: 8607210105353614669}
   - component: {fileID: 8892143543059549416}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +878,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6385253874654843686}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -916,7 +916,7 @@ GameObject:
   - component: {fileID: 3693741159543789818}
   - component: {fileID: 8972540757058576510}
   - component: {fileID: 623485822637967339}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: BossName
   m_TagString: Untagged
   m_Icon: {fileID: 0}

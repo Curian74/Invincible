@@ -10,17 +10,19 @@ public class Spell : MonoBehaviour
 	private BoxCollider2D _boxCollider;
 	private Vector3 _offset = new Vector3(0, 2f, 0);
 	private float damage = 30;
-    void Awake()
-    {
-        _animator = GetComponent<Animator>();
+	private bool _boxColliderEnabled;
+	void Awake()
+	{
+		_animator = GetComponent<Animator>();
 		_boxCollider = GetComponent<BoxCollider2D>();
 		_player = GameObject.FindWithTag("Player").transform;
-    }
+	}
 
 	public void SetPosition()
 	{
 		transform.position = _player.transform.position + _offset;
-		transform.localScale = new Vector3(4, 5, 1);
+		transform.localScale = new Vector3(4, 6, 1);
+		_boxCollider.enabled = true;
 		gameObject.SetActive(true);
 		_animator.SetTrigger("SpawnSpell");
 	}
@@ -36,6 +38,7 @@ public class Spell : MonoBehaviour
 			}
 		}
 	}
-
-
 }
+
+
+

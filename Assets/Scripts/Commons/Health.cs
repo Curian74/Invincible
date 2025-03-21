@@ -42,20 +42,6 @@ public class Health : MonoBehaviour
 
     private void Die()
     {
-        //Co the them animation o day
-        HealthBar healthBar = GetComponentInChildren<HealthBar>();
-        ExpBar expBar = GetComponentInChildren<ExpBar>();
-
-        if (healthBar != null)
-        {
-            healthBar.gameObject.SetActive(false);
-        }
-
-        if(expBar != null)
-        {
-            expBar.gameObject.SetActive(false);
-        }
-
         OnDeath?.Invoke();
         gameObject.SetActive(false);
     }
