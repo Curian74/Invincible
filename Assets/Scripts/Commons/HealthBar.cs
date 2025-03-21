@@ -8,12 +8,23 @@ public class HealthBar : MonoBehaviour
 
     void Start()
     {
-        var player = GameObject.FindGameObjectWithTag("Player");
-        health = player.GetComponent<Health>();
-        slider = GetComponent<Slider>();
-        slider.value = health.GetCurrentHealth() / health.GetMaxHealth();
-        health.OnHealthChanged += UpdateHealthBar;
-    }
+		Transform parentTransform = transform.parent?.parent;
+		health = parentTransform.GetComponent<Health>();
+		if (parentTransform != null)
+		{
+			health = parentTransform.GetComponent<Health>();
+		}
+		if (health != null)
+		{
+			slider = GetComponent<Slider>();
+			slider.value = health.GetCurrentHealth() / health.GetMaxHealth();
+			health.OnHealthChanged += UpdateHealthBar;
+		}
+		else
+		{
+			Debug.LogError("Boss Health component not found!");
+		}
+	}
 
     public void UpdateHealthBar(float healthPercent)
     {
