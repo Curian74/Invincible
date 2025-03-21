@@ -14,8 +14,9 @@ GameObject:
   - component: {fileID: 6690947951389006157}
   - component: {fileID: 3311847125240827563}
   - component: {fileID: 3308495804331672861}
-  - component: {fileID: 3065297261155750402}
   - component: {fileID: -1384576383294045102}
+  - component: {fileID: 7086434829872592643}
+  - component: {fileID: 3065297261155750402}
   m_Layer: 7
   m_Name: SuicideEnemy
   m_TagString: Enemy
@@ -192,19 +193,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAwarenessDistance: 100
---- !u!114 &3065297261155750402
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2496134198608423538}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 15
 --- !u!58 &-1384576383294045102
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -241,3 +229,39 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0.03393934, y: -0.10989871}
   m_Radius: 0.10702054
+--- !u!114 &7086434829872592643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496134198608423538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99532f5caf36e54f87e2e4c782a64e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 0}
+  _hurtSound: {fileID: 0}
+  _deathSound: {fileID: 0}
+  maxHealth: 50
+  powerupPrefabs:
+  - {fileID: 5185045411227346833, guid: 39106a942426be742a7b2feca58da4ea, type: 3}
+  - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}
+  dropChance: 0.1
+--- !u!114 &3065297261155750402
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2496134198608423538}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 0}
+  _hurtSound: {fileID: 0}
+  _deathSound: {fileID: 0}
+  maxHealth: 15

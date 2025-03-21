@@ -343,6 +343,11 @@ MonoBehaviour:
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  _obstacleCheckCircleRadius: 0.5
+  _obstacleCheckDistance: 1.5
+  _obstacleLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &-3012368832789896439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -352,10 +357,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 5562014775131117480}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
+  m_Script: {fileID: 11500000, guid: a99532f5caf36e54f87e2e4c782a64e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 0}
+  _hurtSound: {fileID: 0}
+  _deathSound: {fileID: 0}
   maxHealth: 20
+  powerupPrefabs:
+  - {fileID: 5185045411227346833, guid: 39106a942426be742a7b2feca58da4ea, type: 3}
+  - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}
+  dropChance: 0.1
 --- !u!1 &6932673321537064675
 GameObject:
   m_ObjectHideFlags: 0

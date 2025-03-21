@@ -200,4 +200,58 @@ private bool ValidateObjectPool()
             Gizmos.DrawWireSphere(_player.transform.position, _minDistanceFromPlayer);
         }
     }
+
+    public void BurstSpawnOnDeath(Vector2 deathPosition, EggHealth.EnemyType enemyType)
+    {
+        int burstCount = Random.Range(5, 10); // spawn 5 to 10 enemies on death
+
+        for (int i = 0; i < burstCount; i++)
+        {
+            Vector2 spawnPosition = GetBurstSpawnPosition(deathPosition);
+            if (spawnPosition == Vector2.zero) continue; // skip if no valid position
+
+            string enemyPoolType = GetBurstSpawnType(enemyType);
+            GameObject enemy = ObjectPool.Instance.SpawnFromPool(enemyPoolType, spawnPosition, Quaternion.identity);
+
+            if (enemy != null)
+            {
+                enemy.SetActive(true);
+                EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
+                enemyMovement?.ResetEnemy();
+                _activeEnemies.Add(enemy);
+            }
+        }
+    }
+
+    private Vector2 GetBurstSpawnPosition(Vector2 origin)
+    {
+        for (int i = 0; i < 10; i++) // Try 10 times to find a valid spot
+        {
+            Vector2 randomOffset = Random.insideUnitCircle * 2f;
+            Vector2 spawnPosition = origin + randomOffset;
+
+            bool isTooCloseToEnemies = _activeEnemies.Exists(enemy =>
+                enemy != null && enemy.activeInHierarchy && Vector2.Distance(spawnPosition, enemy.transform.position) < _minDistanceBetweenEnemies);
+
+            if (!isTooCloseToEnemies) return spawnPosition;
+        }
+
+        return Vector2.zero;
+    }
+
+    private string GetBurstSpawnType(EggHealth.EnemyType enemyType)
+    {
+        // Customize burst spawn type
+        switch (enemyType)
+        {
+            case EggHealth.EnemyType.Melee:
+                return MELEE_POOL;
+            case EggHealth.EnemyType.Range:
+                return RANGE_POOL;
+            case EggHealth.EnemyType.Suicide:
+                return Random.value > 0.5f ? MELEE_POOL : RANGE_POOL; // 50/50 split
+            default:
+                return MELEE_POOL;
+        }
+    }
 }
