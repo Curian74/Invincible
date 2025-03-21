@@ -11,6 +11,7 @@ TagManager:
   - Powerup
   - BossTopBar
   - BringerOfDeath
+  - Border
   layers:
   - Default
   - TransparentFX
