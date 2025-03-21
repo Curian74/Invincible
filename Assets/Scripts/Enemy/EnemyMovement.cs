@@ -41,7 +41,11 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _obstacleCheckCircleRadius = 0.5f;
     [SerializeField] private float _obstacleCheckDistance = 1.5f;
     [SerializeField] private LayerMask _obstacleLayerMask;
-
+    [Header("Boundary Settings")]
+    [SerializeField] private float _minX = -30f;
+    [SerializeField] private float _maxX = 47f;
+    [SerializeField] private float _minY = -20f;
+    [SerializeField] private float _maxY = 20f;
     private bool _canMove = true;
     private bool _isCountingDown = false;
     private bool _isBlinkingRed = false;
@@ -53,7 +57,7 @@ public class EnemyMovement : MonoBehaviour
     private SpriteRenderer _spriteRenderer;
     private string _originalPoolName;
 
-    public enum EnemyType { Melee, Range, Suicide }
+    public enum EnemyType { Melee, Range, Suicide, Egg }
     private Animator anim;
 
     private void Awake()
@@ -133,7 +137,13 @@ public class EnemyMovement : MonoBehaviour
         if (_canMove && !(_enemyType == EnemyType.Melee && IsAtMeleeRange()))
             transform.rotation = Quaternion.Euler(0, _targetDirection.x < 0 ? 180 : 0, 0);
     }
-
+    private Vector2 EnforceBoundaries(Vector2 position)
+    {
+        return new Vector2(
+            Mathf.Clamp(position.x, _minX, _maxX),
+            Mathf.Clamp(position.y, _minY, _maxY)
+        );
+    }
     private void SetVelocity()
     {
         float distanceToPlayer = _playerAwareness.AwareOfPlayer ?
@@ -170,6 +180,20 @@ public class EnemyMovement : MonoBehaviour
 
         if (_enemyType == EnemyType.Melee)
             anim.SetBool("walk", isMoving && !_isAttacking);
+
+        Vector2 nextPosition = (Vector2)transform.position + _rigidbody.linearVelocity * Time.fixedDeltaTime;
+        Vector2 clampedPosition = EnforceBoundaries(nextPosition);
+
+        if (nextPosition != clampedPosition)
+        {
+            transform.position = clampedPosition;
+            _rigidbody.linearVelocity = Vector2.zero;
+
+            if (nextPosition.x != clampedPosition.x || nextPosition.y != clampedPosition.y)
+            {
+                _targetDirection = Random.insideUnitCircle.normalized;
+            }
+        }
     }
 
     private bool IsAtMeleeRange() =>
@@ -179,7 +203,7 @@ public class EnemyMovement : MonoBehaviour
         if (_isAttacking) return;
 
         _isAttacking = true;
-        anim.SetTrigger("attack");
+        anim.SetTrigger("walk");
         _nextMeleeAttackTime = Time.time + _meleeAttackCooldown;
         Invoke(nameof(ApplyMeleeDamage), 1.2f);
 
@@ -458,6 +482,7 @@ public class EnemyMovement : MonoBehaviour
             EnemyType.Range => "RangeEnemy",
             EnemyType.Melee => "MeleeEnemy",
             EnemyType.Suicide => "SuicideEnemy",
+            EnemyType.Egg => "EggEnemy",
             _ => "Enemy"
         };
     }

@@ -283,7 +283,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 0
@@ -310,7 +310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e3ab588deb0a549915f96d46ad2190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 100
+  _playerAwarenessDistance: 200
 --- !u!114 &2569617558954786284
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -329,7 +329,7 @@ MonoBehaviour:
   _deathEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
   _enemyType: 1
   _fireRate: 0.75
-  _shootDistance: 5
+  _shootDistance: 6
   _explosionRadius: 2
   _explosionDelay: 1.5
   _explosionEffect: {fileID: 0}
@@ -363,11 +363,11 @@ MonoBehaviour:
   _spawnSound: {fileID: 0}
   _hurtSound: {fileID: 0}
   _deathSound: {fileID: 0}
-  maxHealth: 20
+  maxHealth: 25
   powerupPrefabs:
   - {fileID: 5185045411227346833, guid: 39106a942426be742a7b2feca58da4ea, type: 3}
   - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}
-  dropChance: 0.1
+  dropChance: 1
 --- !u!1 &6932673321537064675
 GameObject:
   m_ObjectHideFlags: 0
