@@ -1,11 +1,11 @@
+using Assets.Scripts.Powerups;
 using System.Collections;
 using UnityEngine;
 
 public class Powerup : MonoBehaviour
 {
-    [SerializeField] protected GameObject Target;
-    [SerializeField] protected float Duration; // how long the effect lasts
-    [SerializeField] protected float Lifetime = 15; // time the pickup stays active
+    [SerializeField] internal float Duration; // how long the effect lasts
+    [SerializeField] internal float Lifetime = 15; // time the pickup stays active
     
     private float _timeActive = 0;
 
@@ -20,22 +20,21 @@ public class Powerup : MonoBehaviour
 
     public virtual void Activate(GameObject target)
     {
-        ApplyEffect(target);
-
-        if (Duration > 0)
+        PowerupManager manager = target.GetComponent<PowerupManager>();
+        if (manager != null)
         {
-            StartCoroutine(DeactivateAfterTime(target));
+            manager.ApplyPowerup(this, target);
         }
 
         Destroy(gameObject);
     }
 
 
-    protected virtual void ApplyEffect(GameObject target)
-    { 
+    public virtual void ApplyEffect(GameObject target)
+    {
     }
 
-    protected virtual void RemoveEffect(GameObject target)
+    public virtual void RemoveEffect(GameObject target)
     {
     }
 

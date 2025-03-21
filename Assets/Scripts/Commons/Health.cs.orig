@@ -6,11 +6,17 @@ public class Health : MonoBehaviour
 {
     public event Action<float> OnHealthChanged; // Event for UI updates
     public event Action OnDeath; // Event when entity dies
+<<<<<<< HEAD
+
+    [SerializeField] protected float maxHealth = 100f;
+    protected float currentHealth;
+=======
 	[SerializeField] private AudioClip _spawnSound;
 	[SerializeField] private AudioClip _hurtSound;
 	[SerializeField] private AudioClip _deathSound;
-	[SerializeField] protected float maxHealth = 100f;
-    protected float currentHealth;
+	[SerializeField] private float maxHealth = 100f;
+    private float currentHealth;
+>>>>>>> main
 
     protected void Awake()
     {

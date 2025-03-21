@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1620136206209325305}
   - component: {fileID: 2314826819324945040}
   - component: {fileID: 6047561884115228704}
-  - component: {fileID: -208570189269065043}
+  - component: {fileID: -2025330964407378940}
   m_Layer: 7
   m_Name: SpeedPowerup
   m_TagString: Powerup
@@ -163,7 +163,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1.6334584, y: 1.6394744}
   m_EdgeRadius: 0
---- !u!114 &-208570189269065043
+--- !u!114 &-2025330964407378940
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,7 +175,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b170077bbd86dc34fa067faff125161c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Target: {fileID: 7409751530599238737, guid: c112f1006e2014843a748220629a6277, type: 3}
   Duration: 15
   Lifetime: 15
   Strength: 1.5
