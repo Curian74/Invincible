@@ -1753,7 +1753,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
       propertyPath: pools.Array.data[1].size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
       propertyPath: pools.Array.data[2].size
@@ -1761,7 +1761,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
       propertyPath: pools.Array.data[3].size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
       propertyPath: pools.Array.data[2].prefab
