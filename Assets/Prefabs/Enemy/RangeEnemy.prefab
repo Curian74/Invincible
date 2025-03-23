@@ -360,7 +360,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _spawnSound: {fileID: 0}
   _hurtSound: {fileID: 0}
-  _deathSound: {fileID: 0}
+  _deathSound: {fileID: 8300000, guid: 69140d77229a4f74a988118bf902c4de, type: 3}
   maxHealth: 25
   powerupPrefabs:
   - {fileID: 5185045411227346833, guid: 39106a942426be742a7b2feca58da4ea, type: 3}
