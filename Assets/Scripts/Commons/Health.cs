@@ -40,6 +40,10 @@ public class Health : MonoBehaviour
 
     protected virtual void Die()
     {
+          if (_deathSound != null)
+    {
+        AudioSource.PlayClipAtPoint(_deathSound, transform.position);
+    }
         //Co the them animation o day
         HealthBar healthBar = GetComponentInChildren<HealthBar>();
         ExpBar expBar = GetComponentInChildren<ExpBar>();

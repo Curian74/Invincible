@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 2252382235344737008}
   - component: {fileID: 902207187233826005}
   - component: {fileID: 1378120475968309699}
-  - component: {fileID: 6173959115656093622}
   - component: {fileID: 6471344481491737071}
   - component: {fileID: 5264300755224158685}
   - component: {fileID: 1601436016644289051}
+  - component: {fileID: 6694969122294627249}
   m_Layer: 7
   m_Name: Melee
   m_TagString: Enemy
@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 0.0001
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -143,19 +143,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &6173959115656093622
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1879778988435031795}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 30
 --- !u!114 &6471344481491737071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,31 +155,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 085b1bebf0726d741a0f97fc4fe57066, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 3
-  _rotationSpeed: 360
-  _screenBorder: 0
-  _deathEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
+  _speed: 4
+  _deathEffect: {fileID: 109797200405197759, guid: 0c0c79dd0cda084499d99f4a970de2fa, type: 3}
   _enemyType: 0
   _fireRate: 1.5
   _shootDistance: 5
+  _meleeAttackDistance: 1.5
+  _meleeAttackCooldown: 1.5
+  _meleeDamage: 10
   _explosionRadius: 2
   _explosionDelay: 1.5
-  _explosionEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
   _explosionDetectionRadius: 1.5
-  _explosionBaseDamage: 50
-  _minHealthPercentDamage: 10
-  _maxHealthPercentDamage: 25
-  _meleeAttackDistance: 1.2
-  _meleeAttackCooldown: 1.5
-  _meleeDamage: 3
+  _explosionEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
+  _explosionBaseDamage: 30
+  _minHealthPercentDamage: 7
+  _maxHealthPercentDamage: 15
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  _obstacleCheckCircleRadius: 0.5
-  _obstacleCheckDistance: 1.5
-  _obstacleLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
 --- !u!114 &5264300755224158685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56e3ab588deb0a549915f96d46ad2190, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAwarenessDistance: 50
+  _playerAwarenessDistance: 200
 --- !u!60 &1601436016644289051
 PolygonCollider2D:
   m_ObjectHideFlags: 0
@@ -236,7 +216,7 @@ PolygonCollider2D:
   m_CallbackLayers:
     serializedVersion: 2
     m_Bits: 4294967295
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
@@ -290,6 +270,25 @@ PolygonCollider2D:
       - {x: 0.1443058, y: -0.2598433}
       - {x: 0.1543058, y: -0.24984328}
   m_UseDelaunayMesh: 0
+--- !u!114 &6694969122294627249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1879778988435031795}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a99532f5caf36e54f87e2e4c782a64e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 0}
+  _hurtSound: {fileID: 0}
+  _deathSound: {fileID: 8300000, guid: 69140d77229a4f74a988118bf902c4de, type: 3}
+  maxHealth: 25
+  powerupPrefabs:
+  - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}
+  dropChance: 1
 --- !u!1 &4307592748135039076
 GameObject:
   m_ObjectHideFlags: 0
