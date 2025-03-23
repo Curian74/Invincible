@@ -4,7 +4,8 @@ using UnityEngine.UI;
 public class BossSpawner : MonoBehaviour
 {
 	[SerializeField]private GameObject _bringerOfDeathPrefab;
-	//[SerializeField]private Transform _bringerOfDeath;
+    [SerializeField] private AudioClip _spawnSound;   
+    private Rigidbody2D _rb;
     private ScoreManager _scoreManager;
 	private Transform _player;
 	private GameObject _bossHealthBar;
@@ -12,20 +13,20 @@ public class BossSpawner : MonoBehaviour
     {
         _scoreManager = ScoreManager.Instance;
         _player = GameObject.FindWithTag("Player").transform;
-
+        _rb = GetComponent<Rigidbody2D>();
 	}
 
- 
-    void Update()
+    public void spawnBoss()
     {
-		Vector3 offSet = new Vector3(7, 7, 0);
-		var playTime = _scoreManager.GetTimePlayed();
-		if (playTime >= 10f && Mathf.FloorToInt(playTime) % 10 == 0 && !_bringerOfDeathPrefab.gameObject.activeSelf)
-		{
-			_bringerOfDeathPrefab.transform.position = _player.position + offSet;
-			var maxHealth = _bringerOfDeathPrefab.GetComponent<Health>().GetMaxHealth();
-			_bringerOfDeathPrefab.GetComponent<Health>().Heal(maxHealth);
-			_bringerOfDeathPrefab.gameObject.SetActive(true);
-		}
-	}
+        Vector3 offSet = new Vector3(7, 7, 0);
+        if (!_bringerOfDeathPrefab.gameObject.activeSelf)
+        {
+            _bringerOfDeathPrefab.gameObject.GetComponent<Rigidbody2D>().simulated = true;
+            _bringerOfDeathPrefab.transform.position = _player.position + offSet;
+            var maxHealth = _bringerOfDeathPrefab.GetComponent<Health>().GetMaxHealth();
+            _bringerOfDeathPrefab.GetComponent<Health>().Heal(maxHealth);
+            SoundManager.Instance.PlaySFX(_spawnSound);
+            _bringerOfDeathPrefab.gameObject.SetActive(true);
+        }
+    }
 }

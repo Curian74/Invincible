@@ -4,19 +4,20 @@ using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
-    public event Action<float> OnHealthChanged; // Event for UI updates
-    public event Action OnDeath; // Event when entity dies
-	[SerializeField] private AudioClip _spawnSound;
-	[SerializeField] private AudioClip _hurtSound;
-	[SerializeField] private AudioClip _deathSound;
+    public event Action<float> OnHealthChanged; 
+    public event Action OnDeath; 
 	[SerializeField] protected float maxHealth = 100f;
     protected float currentHealth;
+    private protected BoxCollider2D _collider;
+    private protected Rigidbody2D _rb;
     private protected Animator _animator;
 
     protected void Awake()
     {
         _animator = GetComponent<Animator>();
         currentHealth = maxHealth;
+        _collider = GetComponent<BoxCollider2D>();
+        _rb = GetComponent<Rigidbody2D>();
     }
 
     public void TakeDamage(float damage)

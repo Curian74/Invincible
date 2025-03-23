@@ -11,7 +11,8 @@ public class Spell : MonoBehaviour
 	private Vector3 _offset = new Vector3(0, 2f, 0);
 	private float damage = 30;
 	private bool _boxColliderEnabled;
-	void Awake()
+    private bool hasHit = false;
+    void Awake()
 	{
 		_animator = GetComponent<Animator>();
 		_boxCollider = GetComponent<BoxCollider2D>();
@@ -23,13 +24,14 @@ public class Spell : MonoBehaviour
 		transform.position = _player.transform.position + _offset;
 		transform.localScale = new Vector3(4, 6, 1);
 		_boxCollider.enabled = true;
-		gameObject.SetActive(true);
+        hasHit = false;
+        gameObject.SetActive(true);
 		_animator.SetTrigger("SpawnSpell");
 	}
 
 	private void OnTriggerEnter2D(Collider2D other)
 	{
-		if (other.CompareTag("Player"))
+		if (!hasHit && other.CompareTag("Player"))
 		{
 			_playerHealth = other.GetComponent<Health>();
 			if (_playerHealth != null)
@@ -37,7 +39,9 @@ public class Spell : MonoBehaviour
 				_playerHealth.TakeDamage(damage);
 			}
 		}
-	}
+        hasHit = true;
+
+    }
 }
 
 
