@@ -1743,6 +1743,30 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
+      propertyPath: pools.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
+      propertyPath: pools.Array.data[4].tag
+      value: Melee
+      objectReference: {fileID: 0}
+    - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
+      propertyPath: pools.Array.data[1].size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
+      propertyPath: pools.Array.data[2].size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
+      propertyPath: pools.Array.data[3].size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
+      propertyPath: pools.Array.data[2].prefab
+      value: 
+      objectReference: {fileID: 1879778988435031795, guid: 99a41ac494fdd3e4d8c0cf4067717dcd, type: 3}
     - target: {fileID: 5337511005613280481, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.2754116
