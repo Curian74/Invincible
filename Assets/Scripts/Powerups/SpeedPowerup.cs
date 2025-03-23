@@ -11,21 +11,20 @@ public class SpeedPowerup : Powerup
 
     public override void ApplyEffect(GameObject target)
     {
-        KeyboardMovements movement = target.GetComponent<KeyboardMovements>();
-
-        if (movement != null)
+        PlayerStats stats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
+        if (stats != null)
         {
-            movement.speed *= Strength;
+            stats.speed *= Strength;
         }
     }
 
     public override void RemoveEffect(GameObject target)
     {
-        KeyboardMovements movement = target.GetComponent<KeyboardMovements>();
+        PlayerStats stats = GameObject.FindGameObjectWithTag("PlayerStats").GetComponent<PlayerStats>();
 
-        if (movement != null)
+        if (stats != null)
         {
-            movement.speed /= Strength;
+            stats.speed /= Strength;
         }
     }
 }
