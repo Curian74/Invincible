@@ -41,7 +41,7 @@ public class Spawner : MonoBehaviour
     private float _spawnCycleTimer = 0f;
     private bool _isSpawningActive = true;
     private int _cycleCount = 0;
-
+    
     void Awake()
     {
         SetTimeUntilSpawn();
@@ -290,62 +290,27 @@ public class Spawner : MonoBehaviour
 
     public void BurstSpawnOnDeath(Vector2 deathPosition, EggHealth.EnemyType enemyType)
     {
-        int burstCount = Random.Range(5, 10);
+        int burstCount = Random.Range(2, 5);
+
+        List<string> enemyPools = new List<string> { MELEE_POOL, RANGE_POOL, SUICIDE_POOL, EGG_POOL };
 
         for (int i = 0; i < burstCount; i++)
         {
-            Vector2 spawnPosition = GetBurstSpawnPosition(deathPosition);
-            if (spawnPosition == Vector2.zero) continue;
+            Vector2 spawnPosition = deathPosition + Random.insideUnitCircle * 1.5f;
 
-            string enemyPoolType = GetBurstSpawnType(enemyType);
+            string enemyPoolType = enemyPools[Random.Range(0, enemyPools.Count)];
+
             GameObject enemy = ObjectPool.Instance.SpawnFromPool(enemyPoolType, spawnPosition, Quaternion.identity);
 
             if (enemy != null)
             {
                 enemy.SetActive(true);
                 EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
-                enemyMovement?.ResetEnemy();
+                if (enemyMovement != null)
+                    enemyMovement.ResetEnemy();
+
                 _activeEnemies.Add(enemy);
             }
-        }
-    }
-
-    private Vector2 GetBurstSpawnPosition(Vector2 origin)
-    {
-        for (int i = 0; i < 10; i++)
-        {
-            Vector2 randomOffset = Random.insideUnitCircle * 2f;
-            Vector2 spawnPosition = origin + randomOffset;
-
-            bool isTooCloseToEnemies = _activeEnemies.Exists(enemy =>
-                enemy != null && enemy.activeInHierarchy && Vector2.Distance(spawnPosition, enemy.transform.position) < _minDistanceBetweenEnemies);
-
-            if (!isTooCloseToEnemies) return spawnPosition;
-        }
-
-        return Vector2.zero;
-    }
-
-    private string GetBurstSpawnType(EggHealth.EnemyType enemyType)
-    {
-        switch (enemyType)
-        {
-            case EggHealth.EnemyType.Melee:
-                return MELEE_POOL;
-            case EggHealth.EnemyType.Range:
-                return RANGE_POOL;
-            case EggHealth.EnemyType.Suicide:
-                return Random.value > 0.5f ? MELEE_POOL : RANGE_POOL;
-            case EggHealth.EnemyType.Egg:
-                float rand = Random.value;
-                if (rand < 0.4f)
-                    return MELEE_POOL;
-                else if (rand < 0.7f)
-                    return RANGE_POOL;
-                else
-                    return SUICIDE_POOL;
-            default:
-                return MELEE_POOL;
         }
     }
 }

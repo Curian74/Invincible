@@ -31,6 +31,7 @@ public class EnemyMovement : MonoBehaviour
     private float _nextBlinkTime, _nextFireTime, _nextMeleeAttackTime;
     private Vector2 _targetDirection;
     private string _poolName;
+    private bool _killedByPlayer = false;
 
     private Rigidbody2D _rb;
     private PlayerAware _playerAware;
@@ -193,10 +194,11 @@ public class EnemyMovement : MonoBehaviour
     {
         if (_isCountingDown) return;
 
+        _killedByPlayer = false;
         _isCountingDown = true;
         _canMove = false;
         _rb.linearVelocity = Vector2.zero;
-        _rb.bodyType = RigidbodyType2D.Kinematic;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
 
         foreach (Collider2D col in GetComponents<Collider2D>())
             if (!col.isTrigger) col.isTrigger = true;
@@ -231,6 +233,11 @@ public class EnemyMovement : MonoBehaviour
 
         DeathEffect();
 
+        if (_killedByPlayer)
+        {
+            ScoreManager.Instance.AddScore(0);
+        }
+
         Collider2D[] hits = Physics2D.OverlapCircleAll(transform.position, _explosionRadius);
         foreach (Collider2D hit in hits)
         {
@@ -252,9 +259,16 @@ public class EnemyMovement : MonoBehaviour
                 EnemyMovement enemy = hit.GetComponent<EnemyMovement>();
                 if (enemy != null)
                 {
-                    // ScoreManager.Instance.AddScore(1);
+                    if (_killedByPlayer)
+                    {
+                        ScoreManager.Instance.AddScore(1);
+                    }
+
                     if (enemy.GetEnemyType() == EnemyType.Suicide)
+                    {
+                        enemy._killedByPlayer = _killedByPlayer;
                         enemy.TriggerExplosion(Random.Range(0.1f, 0.3f));
+                    }
                     else
                     {
                         enemy.DeathEffect();
@@ -270,14 +284,15 @@ public class EnemyMovement : MonoBehaviour
         ObjectPool.Instance.ReturnToPool(_poolName, gameObject);
     }
 
-    public void TriggerExplosion(float delay)
+    public void TriggerExplosion(float delay, bool killedByPlayer = false)
     {
-        if (_isCountingDown) return;
+        if (_isCountingDown && !killedByPlayer) return;
 
+        _killedByPlayer = killedByPlayer;
         _isCountingDown = true;
         _canMove = false;
         _rb.linearVelocity = Vector2.zero;
-        _rb.bodyType = RigidbodyType2D.Kinematic;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
 
         foreach (Collider2D col in GetComponents<Collider2D>())
             if (!col.isTrigger) col.isTrigger = true;
@@ -285,7 +300,6 @@ public class EnemyMovement : MonoBehaviour
         _sprite.color = _blinkColor;
         Invoke(nameof(Explode), delay);
     }
-
     public void DeathEffect()
     {
         if (_deathEffect != null)
@@ -311,9 +325,12 @@ public class EnemyMovement : MonoBehaviour
 
     private void OnEnemyDeath()
     {
-        // ScoreManager.Instance.AddScore(1);
+        _killedByPlayer = true;
+
         if (_enemyType == EnemyType.Suicide)
+        {
             Explode();
+        }
         else
         {
             DeathEffect();
@@ -351,11 +368,12 @@ public class EnemyMovement : MonoBehaviour
         _isCountingDown = false;
         _isBlinkingRed = false;
         _isAttacking = false;
+        _killedByPlayer = false;
         _nextBlinkTime = 0f;
         _nextFireTime = 0f;
         _nextMeleeAttackTime = 0f;
         _sprite.color = _normalColor;
-        _rb.bodyType = RigidbodyType2D.Kinematic;
+        _rb.bodyType = RigidbodyType2D.Dynamic;
 
         foreach (Collider2D col in GetComponents<Collider2D>())
         {

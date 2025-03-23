@@ -361,7 +361,7 @@ MonoBehaviour:
   _spawnSound: {fileID: 0}
   _hurtSound: {fileID: 0}
   _deathSound: {fileID: 8300000, guid: 69140d77229a4f74a988118bf902c4de, type: 3}
-  maxHealth: 25
+  maxHealth: 15
   powerupPrefabs:
   - {fileID: 5185045411227346833, guid: 39106a942426be742a7b2feca58da4ea, type: 3}
   - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}

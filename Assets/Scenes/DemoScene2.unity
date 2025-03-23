@@ -269,7 +269,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2634728368243244895, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: maxHealth
-      value: 100
+      value: 10000
       objectReference: {fileID: 0}
     - target: {fileID: 7640339517627248873, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1026,6 +1026,34 @@ PrefabInstance:
       propertyPath: _eggPrefab
       value: 
       objectReference: {fileID: 2080434588999792292, guid: a39f7186211364f4dba57b9b0acc581a, type: 3}
+    - target: {fileID: 588394778909894181, guid: 38b330de9f5b9e142a185cee578469ff, type: 3}
+      propertyPath: _meleePrefab
+      value: 
+      objectReference: {fileID: 1879778988435031795, guid: 99a41ac494fdd3e4d8c0cf4067717dcd, type: 3}
+    - target: {fileID: 588394778909894181, guid: 38b330de9f5b9e142a185cee578469ff, type: 3}
+      propertyPath: _spawnAreaMax.x
+      value: 46
+      objectReference: {fileID: 0}
+    - target: {fileID: 588394778909894181, guid: 38b330de9f5b9e142a185cee578469ff, type: 3}
+      propertyPath: _spawnAreaMax.y
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 588394778909894181, guid: 38b330de9f5b9e142a185cee578469ff, type: 3}
+      propertyPath: _spawnAreaMin.x
+      value: -29
+      objectReference: {fileID: 0}
+    - target: {fileID: 588394778909894181, guid: 38b330de9f5b9e142a185cee578469ff, type: 3}
+      propertyPath: _spawnAreaMin.y
+      value: -18.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 588394778909894181, guid: 38b330de9f5b9e142a185cee578469ff, type: 3}
+      propertyPath: _maximumSpawnTime
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 588394778909894181, guid: 38b330de9f5b9e142a185cee578469ff, type: 3}
+      propertyPath: _minimumSpawnTime
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3300617161792780005, guid: 38b330de9f5b9e142a185cee578469ff, type: 3}
       propertyPath: m_Name
       value: EnemySpawner
@@ -1705,11 +1733,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
       propertyPath: pools.Array.data[1].size
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
       propertyPath: pools.Array.data[2].size
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 31046284783464096, guid: fb9718a64701b4e4eae56d153de4cdd7, type: 3}
       propertyPath: pools.Array.data[3].size

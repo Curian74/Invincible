@@ -167,16 +167,12 @@ MonoBehaviour:
   _explosionDelay: 1.5
   _explosionDetectionRadius: 1.5
   _explosionEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
-  _explosionBaseDamage: 50
-  _minHealthPercentDamage: 10
-  _maxHealthPercentDamage: 25
+  _explosionBaseDamage: 30
+  _minHealthPercentDamage: 7
+  _maxHealthPercentDamage: 15
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  _minX: -30
-  _maxX: 47
-  _minY: -20
-  _maxY: 20
 --- !u!114 &5264300755224158685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -289,7 +285,7 @@ MonoBehaviour:
   _spawnSound: {fileID: 0}
   _hurtSound: {fileID: 0}
   _deathSound: {fileID: 8300000, guid: 69140d77229a4f74a988118bf902c4de, type: 3}
-  maxHealth: 30
+  maxHealth: 25
   powerupPrefabs:
   - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}
   dropChance: 1

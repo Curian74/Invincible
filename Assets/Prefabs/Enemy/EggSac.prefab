@@ -181,10 +181,6 @@ MonoBehaviour:
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  _minX: -30
-  _maxX: 47
-  _minY: -20
-  _maxY: 20
 --- !u!114 &5129039264290599821
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -218,7 +214,7 @@ MonoBehaviour:
   - {fileID: 1879778988435031795, guid: 99a41ac494fdd3e4d8c0cf4067717dcd, type: 3}
   - {fileID: 5562014775131117480, guid: 07433a887c2d1ab45829658e50b69a88, type: 3}
   - {fileID: 2496134198608423538, guid: a918338597d07a7459ea9f6b7a9a4631, type: 3}
-  dropChance: 0.8
+  dropChance: 10
   _enemyType: 3
 --- !u!212 &-7292992036373582028
 SpriteRenderer:
