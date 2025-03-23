@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class KeyboardMovements : MonoBehaviour
 {
-    [SerializeField] public float speed = 5;
+    [SerializeField] private PlayerStats playerStats;
     private Rigidbody2D rb;
     private Animator anim;
     private float inputX;
@@ -31,7 +31,7 @@ public class KeyboardMovements : MonoBehaviour
             anim.SetBool("run", false);
         }
 
-        rb.linearVelocity = moveDirection * speed;
+            rb.linearVelocity = moveDirection * playerStats.speed;
     }
 
     //Testing function

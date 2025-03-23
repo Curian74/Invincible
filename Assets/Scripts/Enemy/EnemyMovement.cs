@@ -168,8 +168,8 @@ public class EnemyMovement : MonoBehaviour
                 break;
         }
 
-        if (_enemyType == EnemyType.Melee)
-            anim.SetBool("walk", isMoving && !_isAttacking);
+        // if (_enemyType == EnemyType.Melee)
+        //     anim.SetBool("walk", isMoving && !_isAttacking);
     }
 
     private bool IsAtMeleeRange() =>
