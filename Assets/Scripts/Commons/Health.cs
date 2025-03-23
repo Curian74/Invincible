@@ -11,9 +11,11 @@ public class Health : MonoBehaviour
 	[SerializeField] private AudioClip _deathSound;
 	[SerializeField] protected float maxHealth = 100f;
     protected float currentHealth;
+    private protected Animator _animator;
 
     protected void Awake()
     {
+        _animator = GetComponent<Animator>();
         currentHealth = maxHealth;
     }
 
@@ -39,7 +41,7 @@ public class Health : MonoBehaviour
 
     protected virtual void Die()
     {
-        OnDeath?.Invoke();
+		OnDeath?.Invoke();
         gameObject.SetActive(false);
     }
 

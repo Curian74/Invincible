@@ -147,6 +147,7 @@ GameObject:
   - component: {fileID: 860341137001091619}
   - component: {fileID: 7616076575650888551}
   - component: {fileID: 3925655373466876965}
+  - component: {fileID: 6376851185568017649}
   m_Layer: 7
   m_Name: Boss (Bringer Of Death)
   m_TagString: Enemy
@@ -263,8 +264,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_AngularDamping: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -365,7 +366,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3233327362763001490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
   m_Name: 
@@ -374,6 +375,22 @@ MonoBehaviour:
   _hurtSound: {fileID: 0}
   _deathSound: {fileID: 0}
   maxHealth: 500
+--- !u!114 &6376851185568017649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3233327362763001490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460f6803e3e83564bac41a982b49eb8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 0}
+  _hurtSound: {fileID: 0}
+  _deathSound: {fileID: 0}
+  maxHealth: 100
 --- !u!1 &3990801522180916197
 GameObject:
   m_ObjectHideFlags: 0
