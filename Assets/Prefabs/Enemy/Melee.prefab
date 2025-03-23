@@ -173,6 +173,10 @@ MonoBehaviour:
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  _minX: -30
+  _maxX: 47
+  _minY: -20
+  _maxY: 20
 --- !u!114 &5264300755224158685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -288,6 +292,9 @@ MonoBehaviour:
   maxHealth: 25
   powerupPrefabs:
   - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}
+  - {fileID: 5185045411227346833, guid: 39106a942426be742a7b2feca58da4ea, type: 3}
+  - {fileID: 1729526692616056252, guid: 734d569d88c42cf45a13d7820a912fb1, type: 3}
+  - {fileID: 2231065163056390075, guid: 54f7d75c066f93c4c9da1e1781cd0a92, type: 3}
   dropChance: 1
 --- !u!1 &4307592748135039076
 GameObject:

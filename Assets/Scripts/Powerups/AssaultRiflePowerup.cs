@@ -13,11 +13,12 @@ public class AssaultRiflePowerup : WeaponPowerup
     public override void ApplyEffect(GameObject target)
     {
         Shooting shooting = target.GetComponent<Shooting>();
+        PlayerStats playerStats = shooting.playerStats;
 
         if (shooting != null)
         {
-            currentCooldown = shooting.coolDown;
-            shooting.coolDown = Cooldown;
+            fireRate = playerStats.fireRate / fireRateMultiplier;
+            playerStats.fireRate = fireRate;
             shooting.MultiShot = false;
         }
     }
@@ -25,10 +26,11 @@ public class AssaultRiflePowerup : WeaponPowerup
     public override void RemoveEffect(GameObject target)
     {
         Shooting shooting = target.GetComponent<Shooting>();
+        PlayerStats playerStats = shooting.playerStats;
 
         if (shooting != null)
         {
-            shooting.coolDown = currentCooldown;
+            playerStats.fireRate = fireRate * fireRateMultiplier;
         }
     }
 }

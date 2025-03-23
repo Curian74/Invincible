@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
-     public GameObject upgradePanel;
+    public GameObject upgradePanel;
     public List<UpgradeOption> allUpgrades;
     public List<Button> upgradeButtons;
     public Text upgradeDescriptionText; // UI Text hiển thị mô tả

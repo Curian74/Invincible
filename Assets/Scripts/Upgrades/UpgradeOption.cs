@@ -11,7 +11,7 @@ public class UpgradeOption : ScriptableObject
 
     public enum UpgradeType
     {
-        Health, Damage, Speed, FireRate
+        Health, Damage, Speed//, FireRate
     }
 
     public void Apply(PlayerStats playerStats)
@@ -28,9 +28,9 @@ public class UpgradeOption : ScriptableObject
             case UpgradeType.Speed:
                 playerStats.IncreaseSpeed(value);
                 break;
-            case UpgradeType.FireRate:
-                playerStats.IncreaseFireRate(value);
-                break;
+            //case UpgradeType.FireRate:
+            //    playerStats.IncreaseFireRate(value);
+            //    break;
         }
     }
 

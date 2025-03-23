@@ -2,8 +2,6 @@ using UnityEngine;
 
 public class ShotgunPowerup : WeaponPowerup
 {
-    [SerializeField] public float Cooldown = 0.6f;
-
     public override void Activate(GameObject target)
     {
         base.Activate(target);
@@ -12,11 +10,13 @@ public class ShotgunPowerup : WeaponPowerup
     public override void ApplyEffect(GameObject target)
     {
         Shooting shooting = target.GetComponent<Shooting>();
+        PlayerStats playerStats = shooting.playerStats;
 
         if (shooting != null)
         {
-            currentCooldown = shooting.coolDown;
-            shooting.coolDown = Cooldown;
+            currentFirerate = playerStats.fireRate;
+            fireRate = playerStats.fireRate * fireRateMultiplier;
+            playerStats.fireRate = fireRate;
             shooting.MultiShot = true;
         }
     }
@@ -24,10 +24,11 @@ public class ShotgunPowerup : WeaponPowerup
     public override void RemoveEffect(GameObject target)
     {
         Shooting shooting = target.GetComponent<Shooting>();
+        PlayerStats playerStats = shooting.playerStats;
 
         if (shooting != null)
         {
-            shooting.coolDown = currentCooldown;
+            playerStats.fireRate = fireRate / fireRateMultiplier;
             shooting.MultiShot = false;
         }
     }
