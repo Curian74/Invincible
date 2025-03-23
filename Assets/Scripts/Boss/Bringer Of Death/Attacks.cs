@@ -62,7 +62,7 @@ public class Attacks : MonoBehaviour
 				yield return StartCoroutine(LungeTowardsPlayer());
 				break;
 			case 3:
-				yield return StartCoroutine(CastSpell());
+				yield return StartCoroutine(TeleportToPlayer());
 				break;
 		}
 		if (decision != 2) yield return new WaitForSeconds(3f);
