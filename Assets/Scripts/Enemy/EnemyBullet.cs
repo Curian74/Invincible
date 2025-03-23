@@ -4,7 +4,7 @@ public class EnemyBullet : MonoBehaviour
 {
     [SerializeField] private float _speed = 5f;
     [SerializeField] private float _lifeTime = 3f;
-    [SerializeField] private float _dame = 3f;
+    [SerializeField] private float _damage = 3f;
 
     private Vector2 _direction;
     private float _spawnTime;
@@ -24,15 +24,14 @@ public class EnemyBullet : MonoBehaviour
         }
     }
 
-private void OnTriggerEnter2D(Collider2D collision)
-{
-    if (collision.CompareTag("Player"))
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-          collision.GetComponent<Health>().TakeDamage(_dame);
-        
-        ReturnToPool();
+        if (collision.CompareTag("Player"))
+        {
+            collision.GetComponent<Health>().TakeDamage(_damage);
+            ReturnToPool();
+        }
     }
-}
 
     private void ReturnToPool()
     {

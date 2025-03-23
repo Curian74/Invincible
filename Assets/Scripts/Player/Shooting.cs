@@ -11,6 +11,8 @@ public class Shooting : MonoBehaviour
     private readonly List<GameObject> bulletPool = new List<GameObject>();
     private Animator animator;
     private float coolDownTimer = 0;
+
+    [SerializeField] private PlayerStats playerStats;
     private int currentBulletIndex = 0;
     public bool MultiShot = false;
 
@@ -28,7 +30,7 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         coolDownTimer += Time.deltaTime;
-        if (Input.GetMouseButton(0) && coolDownTimer >= coolDown)
+        if (Input.GetMouseButton(0) && coolDownTimer >= playerStats.fireRate)
         {
             Shoot();
             coolDownTimer = 0;
