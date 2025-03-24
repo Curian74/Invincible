@@ -30,18 +30,21 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.CompareTag("Enemy") || collision.CompareTag("Border"))
+        if (collision.CompareTag("Enemy") || collision.CompareTag("Border"))
         {
             Debug.Log("Hit");
             Health health = collision.GetComponent<Health>();
-            
-            if(health != null)
+
+            if (health != null)
             {
+                float currentHealth = health.GetCurrentHealth();
                 health.TakeDamage(playerStats.damage);
-                if(health.GetCurrentHealth() <= 0)
+
+                // Only grant EXP and Score if this bullet landed the killing blow
+                if (currentHealth > 0 && health.GetCurrentHealth() <= 0)
                 {
                     Exp exp = FindFirstObjectByType<Exp>();
-                    if(exp != null)
+                    if (exp != null)
                     {
                         exp.GainExp(expGain);
                         Debug.Log(exp.GetCurrentExp());
@@ -53,6 +56,7 @@ public class Bullet : MonoBehaviour
             gameObject.SetActive(false);
         }
     }
+
 
     public void SetDirection(Vector2 dir)
     {
