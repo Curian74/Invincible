@@ -86,7 +86,4 @@ public class UpgradeManager : MonoBehaviour
         upgradePanel.SetActive(false);
         Time.timeScale = 1;
     }
-
-
-
 }

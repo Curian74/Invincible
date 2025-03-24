@@ -20,8 +20,6 @@ public class Bullet : MonoBehaviour
     void Update()
     {
         transform.position += playerStats.bulletSpeed * Time.deltaTime * (Vector3)direction;
-        Debug.Log(playerStats.bulletSpeed);
-
         timer += Time.deltaTime;
         if (timer >= playerStats.bulletLifeTime)
         {
@@ -53,7 +51,11 @@ public class Bullet : MonoBehaviour
                 }
             }
 
-            gameObject.SetActive(false);
+            //Xuyen qua neu bulletSpeed >= level 5
+            if(playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.BulletSpeed) < 5)
+            {
+                gameObject.SetActive(false);
+            }
         }
     }
 

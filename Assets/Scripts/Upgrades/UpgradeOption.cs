@@ -40,6 +40,9 @@ public class UpgradeOption : ScriptableObject
                 //    playerStats.IncreaseFireRate(value);
                 //    break;
         }
+
+        Debug.Log($"{upgradeName} chosen {playerStats.GetUpgradeCount(type)} times.");
+
     }
 
 }
