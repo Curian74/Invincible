@@ -2,6 +2,8 @@ using NUnit.Framework;
 using System.Collections;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
+using UnityEngine.TextCore.Text;
 
 public class MechaGolemAttacks : MonoBehaviour
 {
@@ -19,11 +21,17 @@ public class MechaGolemAttacks : MonoBehaviour
     private bool _isPerformingAction = false;
     private int _polygonMissles = 15;
     private float _startAngle = 0f;
+    private LazerController _controller;
     void Awake()
     {
-        _player = GameObject.FindWithTag("Player").transform;
+        _player = GameObject.FindWithTag("Player").transform;      
         _animator = GetComponent<Animator>();
         _poolingManager = new PoolingManager<Rock>(_rockPrefab, _rockPool, null);
+        _controller = GetComponentInChildren<LazerController>(true);
+        if (_controller == null)
+        {
+            Debug.LogError("LazerController not found!");
+        }
     }
 
     
@@ -45,34 +53,35 @@ public class MechaGolemAttacks : MonoBehaviour
         _isPerformingAction = true;
         switch (decision)
         {
-            //case 1:
-            //    yield return StartCoroutine(ThrowRock());
-            //    break;
-            //case 2:
-            //    yield return StartCoroutine(Defend());
-            //    break;
-            //case 3:
-            //    float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
-            //    if (distanceToPlayer < 10f)
-            //    yield return StartCoroutine(ShootLaser());
-            //    break;
             case 1:
-                yield return StartCoroutine(ShootLaser());
+                yield return StartCoroutine(ThrowRock());
                 break;
             case 2:
-                yield return StartCoroutine(ThrowRock());
+                yield return StartCoroutine(Defend());
                 break;
             case 3:
                 float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
                 if (distanceToPlayer < 10f)
                     yield return StartCoroutine(ShootLaser());
                 break;
-
         }
          yield return new WaitForSeconds(2.5f);
         _isPerformingAction = false;
     }
-
+    private void OnEnable()
+    {
+        _isPerformingAction = false ;
+        foreach (var rock in _poolingManager.PooledObjects)
+        {
+            if (rock != null )
+            {
+                rock.multiplier += 0.11f;
+            }
+        }
+        _controller._damageMultiplier += 0.11f;
+        Debug.Log("lazer mul" + _controller._damageMultiplier);
+        
+    }
     private IEnumerator ThrowRock()
     {      
         for (int i = 0; i < 3; i++)
@@ -92,6 +101,7 @@ public class MechaGolemAttacks : MonoBehaviour
                 rock.transform.position = _armFirePoint.position;
                 rock._isHoming = true;
                 rock.gameObject.SetActive(true);
+                SoundManager.Instance.PlaySFX(_throwRock);
                 yield return new WaitForSeconds(0.5f);
             }
         }
@@ -101,8 +111,9 @@ public class MechaGolemAttacks : MonoBehaviour
     private IEnumerator Defend()
     {
         _animator.SetTrigger("Defend");
+        SoundManager.Instance.PlaySFX(_defend);
         float angleStep = 360f / _polygonMissles;  
-        yield return new WaitForSeconds(1.3f);
+        yield return new WaitForSeconds(1.1f);
         for (int i = 0; i < _polygonMissles; i++)
         {
             var rock = _poolingManager.GetObject();
@@ -114,6 +125,7 @@ public class MechaGolemAttacks : MonoBehaviour
                 rock.SetDirection(angle);
             }
         }
+        SoundManager.Instance.PlaySFX(_explode);
         SetIdle();
     }
 
@@ -124,6 +136,7 @@ public class MechaGolemAttacks : MonoBehaviour
     private IEnumerator ShootLaser()
     {
         _animator.SetTrigger("Laser");
+        SoundManager.Instance.PlaySFX(_lazer);
         yield return new WaitForSeconds(2f);
         SetIdle();
     }

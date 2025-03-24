@@ -11,6 +11,7 @@ public class Rock : MonoBehaviour
     private float _life = 0;
     public bool _isHoming = true;
     private float damage = 12;
+    public float multiplier = 1;
     void Awake()
     {
         _animator = GetComponent<Animator>();
@@ -20,8 +21,8 @@ public class Rock : MonoBehaviour
     }
 
     void FixedUpdate()
-    {
-        if (_player == null) return;
+    {     
+        if (_player == null || !_player.gameObject.activeInHierarchy) return;
         if (_life < _lifeTime)
         {
             _life += Time.deltaTime;
@@ -54,7 +55,7 @@ public class Rock : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            other.GetComponent<Health>().TakeDamage(damage);
+            other.GetComponent<Health>().TakeDamage(damage * multiplier);
            
             gameObject.SetActive(false);
         }

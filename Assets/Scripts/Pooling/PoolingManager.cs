@@ -6,6 +6,7 @@ public class PoolingManager<T> where T : MonoBehaviour
     private List<T> pool = new List<T>();
     private readonly T _prefab;
     private Transform _parent;
+    public List<T> PooledObjects => pool;
 
     public PoolingManager(T prefab, int initSize, Transform parent = null)
     {

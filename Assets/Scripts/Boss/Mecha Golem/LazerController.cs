@@ -16,6 +16,7 @@ public class LazerController : MonoBehaviour
     private float _damage = 35;
     private Rigidbody2D _rb;
     private BoxCollider2D _boxCollider;
+    public float _damageMultiplier = 1;
     void Awake()
     {
         _length = GetComponent<SpriteRenderer>().bounds.extents.y;
@@ -80,7 +81,7 @@ public class LazerController : MonoBehaviour
             var playerHealth = other.GetComponent<Health>();
             if (playerHealth != null)
             {
-                playerHealth.TakeDamage(_damage);
+                playerHealth.TakeDamage(_damage * _damageMultiplier);
             }
         }
         _hasHit = false;

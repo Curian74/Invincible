@@ -47,16 +47,15 @@ public class MechaGolemMovements : MonoBehaviour
             {
                 _bossTopBar.SetActive(false);
             }
-        }
-        if (Input.GetMouseButtonDown(0)) 
+        }     
+        if (_player.gameObject.activeInHierarchy)
         {
-            GameObject.FindWithTag("Enemy").GetComponent<Health>().TakeDamage(10);
+            if (distanceToPlayer <= minDistance)
+            {
+                MoveAway();
+            }
+            MoveToTarget();
         }
-        if (distanceToPlayer <= minDistance)
-        {
-            MoveAway();
-        }
-        MoveToTarget();
     }
 
     private void SetNewTargetPosition()
