@@ -4,6 +4,7 @@ using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
+    [SerializeField] private GameObject blackPanel;
     private const int UPGRADE_COUNT = 3;
     public GameObject upgradePanel;
     public List<UpgradeOption> allUpgrades;
@@ -16,11 +17,13 @@ public class UpgradeManager : MonoBehaviour
     {
         upgradePanel.SetActive(false);
         upgradeDescriptionText.text = "";
+        blackPanel.SetActive(false);
     }
 
     public void ShowUpgradeOptions()
     {
         upgradePanel.SetActive(true);
+        blackPanel.SetActive(true);
         Time.timeScale = 0;
 
         currentUpgrades = GetRandomUpgrades(UPGRADE_COUNT);
@@ -62,6 +65,7 @@ public class UpgradeManager : MonoBehaviour
     {
         Debug.Log("Upgrade picked: " + upgrade.upgradeName);
         upgrade.Apply(playerStats);
+        blackPanel.SetActive(false);
         upgradePanel.SetActive(false);
         Time.timeScale = 1;
     }
