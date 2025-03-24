@@ -27,7 +27,7 @@ public class BossSpawner : MonoBehaviour
             return;
         }
 
-        Vector3 offSet = new Vector3(7, 7, 0);
+        Vector3 offSet = new Vector3(5, 5, 0);
 
         if (_count % 2 == 0)
         {

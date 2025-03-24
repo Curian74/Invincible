@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     private int score = 0; // Player's score
     private BossSpawner _bossSpawner;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text gameoverScoreText;
     [SerializeField] private Text timerText;
     [SerializeField] private Text barrageText;
     [SerializeField] private Text hpText;
@@ -65,6 +66,7 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = score.ToString();
+            gameoverScoreText.text = $"Score: {score}";
         }
     }
 
