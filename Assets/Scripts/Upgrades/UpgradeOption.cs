@@ -6,6 +6,7 @@ public class UpgradeOption : ScriptableObject
     public string upgradeName;
     public string description;
     public Sprite icon;
+    public Sprite backgroundColor;
     public UpgradeType type;
     public float value;
 

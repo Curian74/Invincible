@@ -74,8 +74,21 @@ public class EnemyMovement : MonoBehaviour
                     case EnemyType.Melee:
                         shouldMove = distToPlayer > _meleeAttackDistance;
                         break;
+
                     case EnemyType.Range:
-                        shouldMove = distToPlayer > _shootDistance;
+                        if (distToPlayer > _shootDistance)
+                        {
+                            shouldMove = true;
+                        }
+                        else if (distToPlayer < _shootDistance - 1f)
+                        {
+                            _targetDirection = ((Vector2)transform.position - _playerAware.PlayerPosition).normalized;
+                            shouldMove = true;
+                        }
+                        else
+                        {
+                            shouldMove = false;
+                        }
                         break;
                 }
 
@@ -174,7 +187,15 @@ public class EnemyMovement : MonoBehaviour
         GameObject player = GameObject.FindGameObjectWithTag("Player");
         if (player != null && Vector2.Distance(transform.position, player.transform.position) <= _meleeAttackDistance)
         {
-            player.GetComponent<Health>()?.TakeDamage(_meleeDamage);
+            Health playerHealth = player.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                int baseDamage = _meleeDamage;
+                float percentDamage = Random.Range(_minHealthPercentDamage, _maxHealthPercentDamage);
+                int totalDamage = baseDamage + Mathf.RoundToInt(playerHealth.GetMaxHealth() * percentDamage / 1200f);
+
+                playerHealth.TakeDamage(totalDamage);
+            }
         }
         _isAttacking = false;
     }
