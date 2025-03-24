@@ -4,13 +4,13 @@ using UnityEngine.UI;
 
 public class UpgradeManager : MonoBehaviour
 {
+    private const int UPGRADE_COUNT = 3;
     public GameObject upgradePanel;
     public List<UpgradeOption> allUpgrades;
     public List<Button> upgradeButtons;
     public Text upgradeDescriptionText; // UI Text hiển thị mô tả
     public PlayerStats playerStats;
     private List<UpgradeOption> currentUpgrades;
-
 
     private void Start()
     {
@@ -23,7 +23,7 @@ public class UpgradeManager : MonoBehaviour
         upgradePanel.SetActive(true);
         Time.timeScale = 0;
 
-        currentUpgrades = GetRandomUpgrades(3);
+        currentUpgrades = GetRandomUpgrades(UPGRADE_COUNT);
 
         for (int i = 0; i < upgradeButtons.Count; i++)
         {
@@ -31,6 +31,8 @@ public class UpgradeManager : MonoBehaviour
             {
                 UpgradeOption upgrade = currentUpgrades[i];
                 upgradeButtons[i].GetComponentInChildren<Text>().text = upgrade.upgradeName;
+                Image upgradeImage = upgradeButtons[i].transform.Find("Icon").GetComponent<Image>();
+                upgradeImage.sprite = upgrade.icon;
                 upgradeButtons[i].onClick.RemoveAllListeners();
                 upgradeButtons[i].onClick.AddListener(() => ApplyUpgrade(upgrade));
 

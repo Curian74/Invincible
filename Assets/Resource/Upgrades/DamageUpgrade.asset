@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: af3f2363678a64948897ba6ce3cd8441, type: 3}
-  m_Name: NewUpgrade 2
+  m_Name: DamageUpgrade
   m_EditorClassIdentifier: 
-  upgradeName: Spd
-  description: Tang Speed
-  icon: {fileID: -1259905345474778919, guid: 36d8689188185414eb6cee394e77032f, type: 3}
-  type: 2
-  value: 2
+  upgradeName: Damage
+  description: Tang dmg
+  icon: {fileID: -7831799048446627316, guid: be5a19dda705abe4c8b02924742a9e41, type: 3}
+  type: 1
+  value: 5
