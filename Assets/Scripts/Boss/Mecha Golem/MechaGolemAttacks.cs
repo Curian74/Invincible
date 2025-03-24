@@ -79,7 +79,6 @@ public class MechaGolemAttacks : MonoBehaviour
             }
         }
         _controller._damageMultiplier += 0.11f;
-        Debug.Log("lazer mul" + _controller._damageMultiplier);
         
     }
     private IEnumerator ThrowRock()

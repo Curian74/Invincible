@@ -12,7 +12,7 @@ public class LazerController : MonoBehaviour
     private Vector3 _pivotPoint;
     private int _frameCounter;
     private bool _isFlipped;
-    private bool _hasHit;
+    private bool _hasHit = false;
     private float _damage = 35;
     private Rigidbody2D _rb;
     private BoxCollider2D _boxCollider;
@@ -30,7 +30,7 @@ public class LazerController : MonoBehaviour
 
     void OnEnable()
     {
-        _hasHit = false;
+       // _hasHit = false;
         if (_player != null)
         {
             if (transform.parent?.parent != null)
