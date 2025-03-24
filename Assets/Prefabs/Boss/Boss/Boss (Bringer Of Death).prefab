@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2578998006436303750}
   - component: {fileID: 5337806940399535655}
   - component: {fileID: 5950109699349294920}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: FastSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,9 +147,10 @@ GameObject:
   - component: {fileID: 860341137001091619}
   - component: {fileID: 7616076575650888551}
   - component: {fileID: 3925655373466876965}
-  m_Layer: 0
+  - component: {fileID: 6376851185568017649}
+  m_Layer: 7
   m_Name: Boss (Bringer Of Death)
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,8 +236,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 428658465
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: -4551999497626061999, guid: 38e26291822c9b9479504c21a5a98126, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -263,8 +264,8 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 1
+  m_AngularDamping: 0
+  m_GravityScale: 0
   m_Material: {fileID: 0}
   m_IncludeLayers:
     serializedVersion: 2
@@ -365,7 +366,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3233327362763001490}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
   m_Name: 
@@ -374,6 +375,22 @@ MonoBehaviour:
   _hurtSound: {fileID: 0}
   _deathSound: {fileID: 0}
   maxHealth: 500
+--- !u!114 &6376851185568017649
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3233327362763001490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 460f6803e3e83564bac41a982b49eb8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _spawnSound: {fileID: 0}
+  _hurtSound: {fileID: 0}
+  _deathSound: {fileID: 0}
+  maxHealth: 100
 --- !u!1 &3990801522180916197
 GameObject:
   m_ObjectHideFlags: 0
@@ -386,7 +403,7 @@ GameObject:
   - component: {fileID: 2666528769809737511}
   - component: {fileID: 6628168614581863092}
   - component: {fileID: 7596152746751115768}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: BossTopBar
   m_Icon: {fileID: 0}
@@ -489,7 +506,7 @@ GameObject:
   - component: {fileID: 4043883431003923499}
   - component: {fileID: 2592946057687460964}
   - component: {fileID: 6661182420060246855}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: StrongSlash
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -628,7 +645,7 @@ GameObject:
   - component: {fileID: 8097385444873770075}
   - component: {fileID: 348304305936961327}
   - component: {fileID: 3514979641284907347}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: HealthSlider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -730,7 +747,7 @@ GameObject:
   - component: {fileID: 7248281070563285676}
   - component: {fileID: 3045098015514537070}
   - component: {fileID: 3188378677756498706}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -805,7 +822,7 @@ GameObject:
   - component: {fileID: 3771040695372393624}
   - component: {fileID: 8607210105353614669}
   - component: {fileID: 8892143543059549416}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +895,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6385253874654843686}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -916,7 +933,7 @@ GameObject:
   - component: {fileID: 3693741159543789818}
   - component: {fileID: 8972540757058576510}
   - component: {fileID: 623485822637967339}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: BossName
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,6 +6,7 @@ public class ScoreManager : MonoBehaviour
     public static ScoreManager Instance;
     private float playedTime = 0f;
     private int score = 0; // Player's score
+    private BossSpawner _bossSpawner;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text timerText;
 
@@ -21,18 +22,24 @@ public class ScoreManager : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        _bossSpawner = FindFirstObjectByType<BossSpawner>();
     }
 
     void Start()
     {
         UpdateScoreUI();
         UpdateTimerUI();
+       
     }
 
     void Update()
     {
         playedTime += Time.deltaTime; // Increment played time
         UpdateTimerUI();
+        if (playedTime >= 10f && Mathf.FloorToInt(playedTime) % 10 == 0)
+        {
+            _bossSpawner.spawnBoss();
+        }
     }
 
     public void AddScore(int points)
