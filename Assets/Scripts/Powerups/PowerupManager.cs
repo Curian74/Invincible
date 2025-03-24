@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Assets.Scripts.Powerups
@@ -13,18 +12,6 @@ namespace Assets.Scripts.Powerups
         public void ApplyPowerup(Powerup powerup, GameObject target)
         {
             Type powerupType = powerup.GetType();
-
-            if (powerup is WeaponPowerup)
-            {
-                Type existingWeaponPowerupType = activePowerups.Keys.FirstOrDefault(t => typeof(WeaponPowerup).IsAssignableFrom(t));
-                if (existingWeaponPowerupType != null)
-                {
-                    var (existingCoroutine, existingPowerup) = activePowerups[existingWeaponPowerupType];
-                    StopCoroutine(existingCoroutine);
-                    existingPowerup.RemoveEffect(target);
-                    activePowerups.Remove(existingWeaponPowerupType);
-                }
-            }
 
             if (activePowerups.ContainsKey(powerupType))
             {
