@@ -7,10 +7,10 @@ public class GameOverScreen : MonoBehaviour
     [SerializeField] private Text scoreDisplay;
     public void Setup()
     {
+        Time.timeScale = 0;
         gameObject.SetActive(true);
         var score = FindAnyObjectByType<ScoreDisplay>().score;
         scoreDisplay.text = $"Score: {score}";
-        Time.timeScale = 0;
     }
 
     public void RestartButton()
