@@ -15,6 +15,7 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private Text hyperVelocityText;
     [SerializeField] private Text infernoText;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private int _spawnTime = 10;
     private int _lastSpawnTime = -1;
 
     void Awake()
@@ -46,7 +47,7 @@ public class ScoreManager : MonoBehaviour
 
         int currentTime = Mathf.FloorToInt(playedTime);
 
-        if (currentTime % 5 == 0 && _lastSpawnTime != currentTime)
+        if (playedTime >= 10 && currentTime % _spawnTime == 0 && _lastSpawnTime != currentTime)
         {
             _bossSpawner.spawnBoss();  
             _lastSpawnTime = currentTime; 

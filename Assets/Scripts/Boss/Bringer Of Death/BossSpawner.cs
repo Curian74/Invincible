@@ -40,6 +40,7 @@ public class BossSpawner : MonoBehaviour
 
         if (!_currentBoss.activeSelf)
         {
+            _currentBoss.GetComponent<Rigidbody2D>().simulated = true;
             _currentBoss.transform.position = _player.position + offSet;
             var maxHealth = _currentBoss.GetComponent<Health>().GetMaxHealth();
             _currentBoss.GetComponent<Health>().Heal(maxHealth);
