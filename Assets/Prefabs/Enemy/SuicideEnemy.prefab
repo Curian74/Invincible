@@ -127,7 +127,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 9999
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -162,8 +162,8 @@ MonoBehaviour:
   _meleeAttackDistance: 2
   _meleeAttackCooldown: 0.5
   _meleeDamage: 1
-  _explosionRadius: 5
-  _explosionDelay: 5
+  _explosionRadius: 3.5
+  _explosionDelay: 2
   _explosionDetectionRadius: 2
   _explosionEffect: {fileID: 6561672938953546687, guid: 863b64511b38ad94d8eca19f802d443f, type: 3}
   _explosionBaseDamage: 25
