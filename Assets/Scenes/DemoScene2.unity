@@ -296,6 +296,10 @@ PrefabInstance:
       propertyPath: playerStats
       value: 
       objectReference: {fileID: 1812897476}
+    - target: {fileID: 7112533652376604496, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
+      propertyPath: maxHealth
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 7640339517627248873, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1595,6 +1599,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   blackPanel: {fileID: 20770305}
+  upgradePanelDelayTime: 0.5
   upgradePanel: {fileID: 191285903}
   allUpgrades:
   - {fileID: 11400000, guid: 86aa6ad35ff950e4190202616d91e9f7, type: 2}
@@ -1604,7 +1609,6 @@ MonoBehaviour:
   - {fileID: 702520801}
   - {fileID: 367940249}
   - {fileID: 205855670}
-  upgradeDescriptionText: {fileID: 342598242}
   playerStats: {fileID: 1812897476}
 --- !u!4 &535251139
 Transform:
