@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3f2363678a64948897ba6ce3cd8441, type: 3}
   m_Name: HPUpgrade
   m_EditorClassIdentifier: 
-  upgradeName: Mau
-  description: Tang mau
+  upgradeName: Endurance
+  description: Heal and increase your max health
   icon: {fileID: 6673721456387919133, guid: c058a767262c42443aa3aa6b6935a516, type: 3}
+  backgroundColor: {fileID: 8186919086506980120, guid: 54234daa6fede4540b5dfbada6f77142, type: 3}
   type: 0
   value: 15

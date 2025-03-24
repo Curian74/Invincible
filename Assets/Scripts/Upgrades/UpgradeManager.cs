@@ -33,7 +33,10 @@ public class UpgradeManager : MonoBehaviour
             if (i < currentUpgrades.Count)
             {
                 UpgradeOption upgrade = currentUpgrades[i];
-                upgradeButtons[i].GetComponentInChildren<Text>().text = upgrade.upgradeName;
+                Text[] texts = upgradeButtons[i].GetComponentsInChildren<Text>();
+                texts[0].text = upgrade.upgradeName;
+                texts[1].text = upgrade.description;
+                upgradeButtons[i].GetComponent<Image>().sprite = upgrade.backgroundColor;
                 Image upgradeImage = upgradeButtons[i].transform.Find("Icon").GetComponent<Image>();
                 upgradeImage.sprite = upgrade.icon;
                 upgradeButtons[i].onClick.RemoveAllListeners();

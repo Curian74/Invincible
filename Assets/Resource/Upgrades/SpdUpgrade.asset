@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3f2363678a64948897ba6ce3cd8441, type: 3}
   m_Name: SpdUpgrade
   m_EditorClassIdentifier: 
-  upgradeName: Spd
-  description: Tang Speed
+  upgradeName: Phantom
+  description: Increases movement speed
   icon: {fileID: -7647195212560154248, guid: cab8de90bdc670e4caf31e878c62c741, type: 3}
+  backgroundColor: {fileID: -2692101316330617974, guid: c0e73a4e12747dd46b7ca90d2284fb29, type: 3}
   type: 2
   value: 2

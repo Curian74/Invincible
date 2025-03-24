@@ -12,8 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: af3f2363678a64948897ba6ce3cd8441, type: 3}
   m_Name: DamageUpgrade
   m_EditorClassIdentifier: 
-  upgradeName: Damage
-  description: Tang dmg
+  upgradeName: Inferno
+  description: Increases firepower damage
   icon: {fileID: -7327087088233937103, guid: f11aa06a6ecf4a44fb787ff10deb7f11, type: 3}
+  backgroundColor: {fileID: -7995968565900951740, guid: d05bc581a65fcb14094c810312ac3c3c, type: 3}
   type: 1
   value: 5
