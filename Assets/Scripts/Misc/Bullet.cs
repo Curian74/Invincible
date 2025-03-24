@@ -52,7 +52,7 @@ public class Bullet : MonoBehaviour
             }
 
             //Xuyen qua neu bulletSpeed >= level 5
-            if(playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.BulletSpeed) < 5)
+            if(playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.BulletSpeed) < 2)
             {
                 gameObject.SetActive(false);
             }
