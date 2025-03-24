@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 999999
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -173,6 +173,10 @@ MonoBehaviour:
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
+  _minX: -30
+  _maxX: 47
+  _minY: -20
+  _maxY: 20
 --- !u!114 &5264300755224158685
 MonoBehaviour:
   m_ObjectHideFlags: 0
