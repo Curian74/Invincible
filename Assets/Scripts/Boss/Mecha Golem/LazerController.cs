@@ -2,23 +2,25 @@
 
 public class LazerController : MonoBehaviour
 {
+    [SerializeField] int delayFrames = 35;
     float rotationSpeed = 65f;
     float maxAngle = 360f; 
     float offsetAbovePlayer = 1f;
-    [SerializeField] int delayFrames = 35; 
-
     private float _length;
     private Transform _player;
     private float _currentAngle;
     private Vector3 _pivotPoint;
     private int _frameCounter;
     private bool _isFlipped;
-
+    private bool _hasHit;
+    private float _damage = 35;
+    private Rigidbody2D _rb;
+    private BoxCollider2D _boxCollider;
     void Awake()
     {
         _length = GetComponent<SpriteRenderer>().bounds.extents.y;
         _player = GameObject.FindWithTag("Player")?.transform;
-
+        _rb = GetComponent<Rigidbody2D>();
         if (_player == null)
         {
             Debug.LogError("No player found!");
@@ -27,6 +29,7 @@ public class LazerController : MonoBehaviour
 
     void OnEnable()
     {
+        _hasHit = false;
         if (_player != null)
         {
             if (transform.parent?.parent != null)
@@ -68,5 +71,18 @@ public class LazerController : MonoBehaviour
         Quaternion rotation = Quaternion.Euler(0, 0, _currentAngle);
         transform.position = _pivotPoint + rotation * (Vector3.up * _length);
         transform.rotation = rotation;
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (_hasHit == false && other.CompareTag("Player"))
+        {
+            var playerHealth = other.GetComponent<Health>();
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(_damage);
+            }
+        }
+        _hasHit = false;
     }
 }

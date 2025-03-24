@@ -14,6 +14,7 @@ TagManager:
   - Border
   - PlayerStats
   - Lazer
+  - MechaGolemTopBar
   layers:
   - Default
   - TransparentFX

@@ -10,13 +10,18 @@ public class MechaGolemMovements : MonoBehaviour
     private Transform _player;
     private Vector2 targetPosition;
     private SpriteRenderer _spriteRenderer;
-
+    private GameObject _bossTopBar;
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player").transform;
         _spriteRenderer = GetComponent<SpriteRenderer>(); // Get sprite renderer
+        _bossTopBar = GameObject.FindGameObjectWithTag("MechaGolemTopBar");
+        if(_bossTopBar == null)
+        {
+            Debug.Log("top bar null");
+        }
     }
 
     void Start()
@@ -31,6 +36,21 @@ public class MechaGolemMovements : MonoBehaviour
             || IsPlayingAnimation("Charge") || IsPlayingAnimation("Death"))
         {
             return;
+        }
+        if(_bossTopBar != null)
+        {
+            if (distanceToPlayer <= 15f)
+            {
+                _bossTopBar.SetActive(true);
+            }
+            else
+            {
+                _bossTopBar.SetActive(false);
+            }
+        }
+        if (Input.GetMouseButtonDown(0)) 
+        {
+            GameObject.FindWithTag("Enemy").GetComponent<Health>().TakeDamage(10);
         }
         if (distanceToPlayer <= minDistance)
         {

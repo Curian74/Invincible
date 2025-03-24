@@ -45,16 +45,27 @@ public class MechaGolemAttacks : MonoBehaviour
         _isPerformingAction = true;
         switch (decision)
         {
+            //case 1:
+            //    yield return StartCoroutine(ThrowRock());
+            //    break;
+            //case 2:
+            //    yield return StartCoroutine(Defend());
+            //    break;
+            //case 3:
+            //    float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+            //    if (distanceToPlayer < 10f)
+            //    yield return StartCoroutine(ShootLaser());
+            //    break;
             case 1:
-                yield return StartCoroutine(ThrowRock());
+                yield return StartCoroutine(ShootLaser());
                 break;
             case 2:
-                yield return StartCoroutine(Defend());
+                yield return StartCoroutine(ThrowRock());
                 break;
             case 3:
                 float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
                 if (distanceToPlayer < 10f)
-                yield return StartCoroutine(ShootLaser());
+                    yield return StartCoroutine(ShootLaser());
                 break;
 
         }
