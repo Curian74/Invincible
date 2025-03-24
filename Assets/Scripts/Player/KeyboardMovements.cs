@@ -1,12 +1,19 @@
+using System.Collections;
 using UnityEngine;
 
 public class KeyboardMovements : MonoBehaviour
 {
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private float dashSpeedMultiplier = 5f;
+    [SerializeField] private float dashDuration = 0.075f;
+    [SerializeField] private float dashCooldown = 2.0f;
+
     private Rigidbody2D rb;
     private Animator anim;
     private float inputX;
     private float inputY;
+    private bool isDashing = false;
+    private bool canDash = true;
 
     void Start()
     {
@@ -24,31 +31,39 @@ public class KeyboardMovements : MonoBehaviour
         if (moveDirection.magnitude > 0)
         {
             anim.SetBool("run", true);
-            moveDirection.Normalize(); // Ensures uniform speed in all directions
+            moveDirection.Normalize();
         }
         else
         {
             anim.SetBool("run", false);
         }
 
+        if (!isDashing)
+        {
             rb.linearVelocity = moveDirection * playerStats.speed;
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift) && canDash)
+        {
+            StartCoroutine(Dash(moveDirection));
+        }
     }
 
-    //Testing function
-    // void OnCollisionEnter2D(Collision2D collision)
-    // {
-    //     if (collision.gameObject.CompareTag("Enemy"))
-    //     {
-    //         Health health = GetComponent<Health>();
-    //         if (health != null)
-    //         {
-    //             health.TakeDamage(15);
-    //             HealthBar healthBar = FindFirstObjectByType<HealthBar>();
-    //             if (healthBar != null)
-    //             {
-    //                 healthBar.UpdateHealthBar(health.GetCurrentHealth() / health.GetMaxHealth());
-    //             }
-    //         }
-    //     }
-    // }
+    private IEnumerator Dash(Vector2 dashDirection)
+    {
+        if (dashDirection == Vector2.zero) yield break;
+
+        isDashing = true;
+        canDash = false;
+
+        rb.linearVelocity = dashSpeedMultiplier * playerStats.speed * dashDirection;
+
+        yield return new WaitForSeconds(dashDuration);
+
+        isDashing = false;
+        rb.linearVelocity = dashDirection * playerStats.speed;
+
+        yield return new WaitForSeconds(dashCooldown);
+        canDash = true;
+    }
 }
