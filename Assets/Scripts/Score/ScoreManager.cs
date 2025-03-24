@@ -32,6 +32,8 @@ public class ScoreManager : MonoBehaviour
             return;
         }
         _bossSpawner = FindFirstObjectByType<BossSpawner>();
+
+
     }
 
     void Start()
@@ -74,7 +76,12 @@ public class ScoreManager : MonoBehaviour
     {
         if (timerText != null)
         {
+            Debug.Log("timer txt not null");
             timerText.text = Helper.FormatTime(playedTime);
+        }
+        else
+        {
+            Debug.Log("timer txt null");
         }
     }
 
