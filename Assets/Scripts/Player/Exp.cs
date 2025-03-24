@@ -9,8 +9,6 @@ public class Exp : MonoBehaviour
     private int level = 1;
     [SerializeField] private float maxExp = 100f;
     [SerializeField] private float maxExpIncrease = 50f;
-    [SerializeField] private UpgradeManager upgradeManager;
-
 
     private void Awake()
     {
@@ -37,7 +35,6 @@ public class Exp : MonoBehaviour
         maxExp += maxExpIncrease; // Increase EXP needed for next level
 
         OnLevelUp?.Invoke(level);
-        upgradeManager.ShowUpgradeOptions();
         Debug.Log($"Leveled Up! New Level: {level}");
     }
 

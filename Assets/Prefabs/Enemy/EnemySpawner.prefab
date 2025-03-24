@@ -47,8 +47,6 @@ MonoBehaviour:
   _meleePrefab: {fileID: 6204635262521180871, guid: 21bbec8ef1dce2b4aaeb3dea78dae8c8, type: 3}
   _rangePrefab: {fileID: 5562014775131117480, guid: 07433a887c2d1ab45829658e50b69a88, type: 3}
   _suicidePrefab: {fileID: 2496134198608423538, guid: a918338597d07a7459ea9f6b7a9a4631, type: 3}
-  _eggPrefab: {fileID: 2080434588999792292, guid: a39f7186211364f4dba57b9b0acc581a, type: 3}
-  _bulletPrefab: {fileID: 7094175945680701664, guid: 55e9ead2bb1e3cc45bc7cddbbab39bae, type: 3}
   _minimumSpawnTime: 0.5
   _maximumSpawnTime: 1
   _spawnAreaMin: {x: -30, y: -19}
@@ -56,9 +54,4 @@ MonoBehaviour:
   _meleeCount: 5
   _rangeCount: 3
   _suicideCount: 1
-  _eggCount: 1
-  _bulletCount: 30
   _minDistanceBetweenEnemies: 2
-  _minDistanceFromPlayer: 4
-  _spawnCycleActiveTime: 45
-  _spawnCyclePauseTime: 30

@@ -11,7 +11,7 @@ public class SlownessDebuff : Powerup
 
     public override void ApplyEffect(GameObject target)
     {
-        PlayerStats movement = target.GetComponent<PlayerStats>();
+        KeyboardMovements movement = target.GetComponent<KeyboardMovements>();
 
         if (movement != null)
         {
@@ -21,7 +21,7 @@ public class SlownessDebuff : Powerup
 
     public override void RemoveEffect(GameObject target)
     {
-        PlayerStats movement = target.GetComponent<PlayerStats>();
+        KeyboardMovements movement = target.GetComponent<KeyboardMovements>();
 
         if (movement != null)
         {

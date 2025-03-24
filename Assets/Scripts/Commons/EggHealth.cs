@@ -3,7 +3,7 @@ using static UnityEngine.EventSystems.EventTrigger;
 
 public class EggHealth : EnemyHealth
 {
-    public enum EnemyType { Melee, Range, Suicide, Egg }
+    public enum EnemyType { Melee, Range, Suicide }
     [SerializeField] private EnemyType _enemyType;
 
     private Spawner _spawner;

@@ -12,7 +12,6 @@ TagManager:
   - BossTopBar
   - BringerOfDeath
   - Border
-  - PlayerStats
   layers:
   - Default
   - TransparentFX

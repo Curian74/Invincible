@@ -5,12 +5,11 @@ public class Shooting : MonoBehaviour
 {
     [SerializeField] private Transform firePoint;
     [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private float coolDown = 0.5f;
     [SerializeField] private int bulletPoolSize = 30;
-    private List<GameObject> bulletPool = new List<GameObject>();
+    private readonly List<GameObject> bulletPool = new List<GameObject>();
     private Animator animator;
     private float coolDownTimer = 0;
-
-    [SerializeField] private PlayerStats playerStats;
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -25,7 +24,7 @@ public class Shooting : MonoBehaviour
     void Update()
     {
         coolDownTimer += Time.deltaTime;
-        if (Input.GetMouseButton(0) && coolDownTimer >= playerStats.fireRate)
+        if (Input.GetMouseButton(0) && coolDownTimer >= coolDown)
         {
             Shoot();
             coolDownTimer = 0;

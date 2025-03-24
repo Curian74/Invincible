@@ -4,10 +4,9 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float speed = 10f;
     [SerializeField] private float lifeTime = 2f;
-    // [SerializeField] private float damage = 5f;
+    [SerializeField] private float damage = 5f;
     [SerializeField] private float expGain = 5f;
     // [SerializeField] private float mobScore = 1f;
-    [SerializeField] PlayerStats playerStats;
 
     private Vector2 direction;
     private float timer;
@@ -37,7 +36,7 @@ public class Bullet : MonoBehaviour
             
             if(health != null)
             {
-                health.TakeDamage(playerStats.damage);
+                health.TakeDamage(damage);
                 if(health.GetCurrentHealth() <= 0)
                 {
                     Exp exp = FindFirstObjectByType<Exp>();

@@ -13,7 +13,7 @@ public class PlayerAware : MonoBehaviour
 
     void Update()
     {
-        FindNearestPlayer();
+        FindNearestTurret();
 
         if (_player == null) 
         {
@@ -27,7 +27,7 @@ public class PlayerAware : MonoBehaviour
         AwareOfPlayer = enemyToTurretVector.magnitude <= _playerAwarenessDistance;
     }
 
-    private void FindNearestPlayer()
+    private void FindNearestTurret()
     {
         GameObject[] turrets = GameObject.FindGameObjectsWithTag("Player");
 
