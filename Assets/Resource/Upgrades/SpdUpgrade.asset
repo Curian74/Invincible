@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Spd
   description: Tang Speed
-  icon: {fileID: 9202094985950219199, guid: e5704a5c88fca4642b144835a3ef73a0, type: 3}
+  icon: {fileID: -7647195212560154248, guid: cab8de90bdc670e4caf31e878c62c741, type: 3}
   type: 2
   value: 2

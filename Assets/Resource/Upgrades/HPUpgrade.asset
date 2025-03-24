@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upgradeName: Mau
   description: Tang mau
-  icon: {fileID: -1259905345474778919, guid: 36d8689188185414eb6cee394e77032f, type: 3}
+  icon: {fileID: 6673721456387919133, guid: c058a767262c42443aa3aa6b6935a516, type: 3}
   type: 0
   value: 15
