@@ -27,7 +27,8 @@ public class MechaGolemMovements : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
-        if(IsPlayingAnimation("Laser") || IsPlayingAnimation("Defend"))
+        if(IsPlayingAnimation("Laser") || IsPlayingAnimation("Defend") 
+            || IsPlayingAnimation("Charge") || IsPlayingAnimation("Death"))
         {
             return;
         }
@@ -64,9 +65,9 @@ public class MechaGolemMovements : MonoBehaviour
     public void FlipSprite(Vector2 target)
     {
         if (target.x > transform.position.x)
-            transform.localScale = new Vector3(6, 6, 1);  
+            transform.localScale = new Vector3(8, 8, 1);  
         else if (target.x < transform.position.x)
-            transform.localScale = new Vector3(-6, 6, 1); 
+            transform.localScale = new Vector3(-8, 8, 1); 
     }
 
     private bool IsPlayingAnimation(string animationName)

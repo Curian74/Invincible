@@ -210,7 +210,7 @@ TextureImporter:
         width: 12
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -227,12 +227,12 @@ TextureImporter:
       name: Laser_sheet_1
       rect:
         serializedVersion: 2
-        x: 34
+        x: 33
         y: 1246
-        width: 38
-        height: 41
+        width: 39
+        height: 42
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -249,12 +249,12 @@ TextureImporter:
       name: Laser_sheet_2
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1181
+        x: 187
+        y: 1238
         width: 7
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -271,12 +271,12 @@ TextureImporter:
       name: Laser_sheet_3
       rect:
         serializedVersion: 2
-        x: 65
+        x: 199
         y: 1180
-        width: 7
-        height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 1
+        height: 22
+      alignment: 9
+      pivot: {x: 22.080765, y: 4.3993444}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -293,12 +293,12 @@ TextureImporter:
       name: Laser_sheet_4
       rect:
         serializedVersion: 2
-        x: 42
-        y: 1156
-        width: 22
-        height: 22
+        x: 35
+        y: 1146
+        width: 37
+        height: 41
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -315,12 +315,12 @@ TextureImporter:
       name: Laser_sheet_5
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1146
+        x: 149
+        y: 1152
         width: 8
         height: 7
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 24.265728, y: -0.9118129}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -337,12 +337,12 @@ TextureImporter:
       name: Laser_sheet_6
       rect:
         serializedVersion: 2
-        x: 64
-        y: 1146
+        x: 248
+        y: 1153
         width: 8
         height: 6
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 23.618637, y: 2.774638}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -359,12 +359,12 @@ TextureImporter:
       name: Laser_sheet_7
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1079
+        x: 120
+        y: 1125
         width: 9
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -381,12 +381,12 @@ TextureImporter:
       name: Laser_sheet_8
       rect:
         serializedVersion: 2
-        x: 63
-        y: 1079
+        x: 128
+        y: 1103
         width: 9
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -403,12 +403,12 @@ TextureImporter:
       name: Laser_sheet_9
       rect:
         serializedVersion: 2
-        x: 42
-        y: 1056
-        width: 22
-        height: 22
+        x: 35
+        y: 1047
+        width: 37
+        height: 39
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -425,12 +425,12 @@ TextureImporter:
       name: Laser_sheet_10
       rect:
         serializedVersion: 2
-        x: 34
-        y: 1046
+        x: 179
+        y: 1087
         width: 9
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -447,12 +447,12 @@ TextureImporter:
       name: Laser_sheet_11
       rect:
         serializedVersion: 2
-        x: 63
-        y: 1046
+        x: 176
+        y: 1118
         width: 9
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -469,12 +469,12 @@ TextureImporter:
       name: Laser_sheet_12
       rect:
         serializedVersion: 2
-        x: 34
-        y: 977
+        x: 198
+        y: 1011
         width: 11
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -491,12 +491,12 @@ TextureImporter:
       name: Laser_sheet_13
       rect:
         serializedVersion: 2
-        x: 42
-        y: 956
-        width: 22
-        height: 22
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        x: 34
+        y: 947
+        width: 38
+        height: 39
+      alignment: 9
+      pivot: {x: 0.5000001, y: 0.51211154}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -513,12 +513,12 @@ TextureImporter:
       name: Laser_sheet_14
       rect:
         serializedVersion: 2
-        x: 61
-        y: 977
+        x: 206
+        y: 997
         width: 11
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -535,12 +535,12 @@ TextureImporter:
       name: Laser_sheet_15
       rect:
         serializedVersion: 2
-        x: 34
-        y: 946
+        x: 270
+        y: 980
         width: 11
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -557,12 +557,12 @@ TextureImporter:
       name: Laser_sheet_16
       rect:
         serializedVersion: 2
-        x: 61
-        y: 946
+        x: 220
+        y: 973
         width: 11
         height: 10
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -579,12 +579,12 @@ TextureImporter:
       name: Laser_sheet_17
       rect:
         serializedVersion: 2
-        x: 36
-        y: 877
+        x: 169
+        y: 902
         width: 9
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -601,12 +601,12 @@ TextureImporter:
       name: Laser_sheet_18
       rect:
         serializedVersion: 2
-        x: 42
-        y: 856
-        width: 22
-        height: 22
+        x: 36
+        y: 849
+        width: 34
+        height: 35
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -623,12 +623,12 @@ TextureImporter:
       name: Laser_sheet_19
       rect:
         serializedVersion: 2
-        x: 61
-        y: 877
+        x: 166
+        y: 891
         width: 9
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -645,12 +645,12 @@ TextureImporter:
       name: Laser_sheet_20
       rect:
         serializedVersion: 2
-        x: 36
-        y: 848
+        x: 161
+        y: 904
         width: 9
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -667,12 +667,12 @@ TextureImporter:
       name: Laser_sheet_21
       rect:
         serializedVersion: 2
-        x: 61
-        y: 848
+        x: 151
+        y: 913
         width: 9
         height: 8
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -689,12 +689,12 @@ TextureImporter:
       name: Laser_sheet_22
       rect:
         serializedVersion: 2
-        x: 38
-        y: 777
+        x: 120
+        y: 808
         width: 7
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -711,12 +711,12 @@ TextureImporter:
       name: Laser_sheet_23
       rect:
         serializedVersion: 2
-        x: 42
-        y: 756
-        width: 22
-        height: 22
+        x: 39
+        y: 751
+        width: 28
+        height: 31
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -733,12 +733,12 @@ TextureImporter:
       name: Laser_sheet_24
       rect:
         serializedVersion: 2
-        x: 61
-        y: 777
+        x: 262
+        y: 809
         width: 7
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -755,12 +755,12 @@ TextureImporter:
       name: Laser_sheet_25
       rect:
         serializedVersion: 2
-        x: 38
-        y: 750
+        x: 126
+        y: 778
         width: 7
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -777,12 +777,12 @@ TextureImporter:
       name: Laser_sheet_26
       rect:
         serializedVersion: 2
-        x: 61
-        y: 750
+        x: 110
+        y: 790
         width: 7
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -799,12 +799,12 @@ TextureImporter:
       name: Laser_sheet_27
       rect:
         serializedVersion: 2
-        x: 39
-        y: 651
-        width: 28
-        height: 31
+        x: 40
+        y: 652
+        width: 27
+        height: 29
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -821,12 +821,12 @@ TextureImporter:
       name: Laser_sheet_28
       rect:
         serializedVersion: 2
-        x: 61
-        y: 677
+        x: 143
+        y: 700
         width: 6
         height: 6
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -847,9 +847,9 @@ TextureImporter:
         y: 544
         width: 271
         height: 46
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.059604265, y: 0.48669964}
+      border: {x: 13, y: 12, z: 0, w: 14}
       customData: 
       outline: []
       physicsShape: []
@@ -869,9 +869,9 @@ TextureImporter:
         y: 449
         width: 265
         height: 34
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.03623784, y: 0.5116496}
+      border: {x: 7, y: 8, z: 0, w: 8}
       customData: 
       outline: []
       physicsShape: []
@@ -891,9 +891,9 @@ TextureImporter:
         y: 353
         width: 262
         height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.014412625, y: 0.48637608}
+      border: {x: 0, y: 5, z: 0, w: 5}
       customData: 
       outline: []
       physicsShape: []
@@ -913,9 +913,9 @@ TextureImporter:
         y: 253
         width: 262
         height: 28
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      alignment: 9
+      pivot: {x: 0.015036634, y: 0.48502895}
+      border: {x: 2, y: 5, z: 0, w: 5}
       customData: 
       outline: []
       physicsShape: []
@@ -931,13 +931,13 @@ TextureImporter:
       name: Laser_sheet_33
       rect:
         serializedVersion: 2
-        x: 40
+        x: 42
         y: 154
-        width: 260
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        width: 258
+        height: 21
+      alignment: 9
+      pivot: {x: 0.012230437, y: 0.58043706}
+      border: {x: 0, y: 4, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
@@ -953,13 +953,13 @@ TextureImporter:
       name: Laser_sheet_34
       rect:
         serializedVersion: 2
-        x: 40
-        y: 54
-        width: 260
-        height: 25
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
+        x: 41
+        y: 50
+        width: 259
+        height: 29
+      alignment: 9
+      pivot: {x: 0.0075916303, y: 0.56795764}
+      border: {x: 0, y: 7, z: 0, w: 5}
       customData: 
       outline: []
       physicsShape: []
@@ -975,7 +975,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 864982f9013629e42a49244da43c3489
     internalID: 0
     vertices: []
     indices: 

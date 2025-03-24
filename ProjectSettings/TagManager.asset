@@ -13,6 +13,7 @@ TagManager:
   - BringerOfDeath
   - Border
   - PlayerStats
+  - Lazer
   layers:
   - Default
   - TransparentFX
