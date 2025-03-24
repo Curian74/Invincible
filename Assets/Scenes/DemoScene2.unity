@@ -1994,7 +1994,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3233327362763001490, guid: e615644714098fc45b359b73155cf31d, type: 3}
       propertyPath: m_TagString
-      value: Enemy
+      value: Boss
       objectReference: {fileID: 0}
     - target: {fileID: 3969867382530735703, guid: e615644714098fc45b359b73155cf31d, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2042,7 +2042,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6376851185568017649, guid: e615644714098fc45b359b73155cf31d, type: 3}
       propertyPath: maxHealth
-      value: 50
+      value: 150
       objectReference: {fileID: 0}
     - target: {fileID: 6376851185568017649, guid: e615644714098fc45b359b73155cf31d, type: 3}
       propertyPath: _deathSound
@@ -3378,6 +3378,83 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1451605591}
   m_CullTransparentMesh: 1
+--- !u!1001 &1462128560
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 1514953055052253221, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_Name
+      value: Boss (Mecha Stone Golem)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1514953055052253221, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 3.9
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637502895707424206, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3314044570271920694, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: _rockPrefab
+      value: 
+      objectReference: {fileID: 6317636468926801855, guid: 9fc9cc3ef7190ed409e76fcce9030b73, type: 3}
+    - target: {fileID: 3732045746360585725, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3732045746360585725, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6560095068390952353, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
+      propertyPath: maxHealth
+      value: 200
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
 --- !u!1 &1479949938
 GameObject:
   m_ObjectHideFlags: 0
@@ -7116,6 +7193,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _bringerOfDeathPrefab: {fileID: 1926207683}
+  _mechanicGolemPrefab: {fileID: 1514953055052253221, guid: 42749afa1d5f44a479b7ed930b097f52, type: 3}
   _spawnSound: {fileID: 8300000, guid: 0e22fc2bafa1ad44ea7b29239d9ace59, type: 3}
 --- !u!4 &2013634722
 Transform:
@@ -72185,3 +72263,4 @@ SceneRoots:
   - {fileID: 279272557}
   - {fileID: 2013634722}
   - {fileID: 609207054}
+  - {fileID: 1462128560}

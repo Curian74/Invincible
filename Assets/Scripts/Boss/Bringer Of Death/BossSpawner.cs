@@ -20,11 +20,12 @@ public class BossSpawner : MonoBehaviour
 	}
 
     public void spawnBoss()
-    {   
+    {
+        Debug.Log("Count: " + _count);
         if (_count % 2 == 0)
         {
             Vector3 offSet = new Vector3(7, 7, 0);
-            if (!_bringerOfDeathPrefab.gameObject.activeSelf && !_mechanicGolemPrefab.gameObject.activeSelf)
+            if (!_mechanicGolemPrefab.gameObject.activeSelf)
             {
                 _bringerOfDeathPrefab.gameObject.GetComponent<Rigidbody2D>().simulated = true;
                 _bringerOfDeathPrefab.transform.position = _player.position + offSet;
@@ -37,7 +38,7 @@ public class BossSpawner : MonoBehaviour
         else
         {
             Vector3 offSet = new Vector3(7, 7, 0);
-            if (!_mechanicGolemPrefab.gameObject.activeSelf && !_bringerOfDeathPrefab.gameObject.activeSelf)
+            if (!_bringerOfDeathPrefab.gameObject.activeSelf)
             {
                 _mechanicGolemPrefab.gameObject.GetComponent<Rigidbody2D>().simulated = true;
                 _mechanicGolemPrefab.transform.position = _player.position + offSet;
