@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DNFD_Movement_Speed_Up_Icon_0: -7647195212560154248
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
