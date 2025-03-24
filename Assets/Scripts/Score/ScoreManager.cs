@@ -9,13 +9,19 @@ public class ScoreManager : MonoBehaviour
     private BossSpawner _bossSpawner;
     [SerializeField] private Text scoreText;
     [SerializeField] private Text timerText;
+    [SerializeField] private Text barrageText;
+    [SerializeField] private Text hpText;
+    [SerializeField] private Text speedText;
+    [SerializeField] private Text hyperVelocityText;
+    [SerializeField] private Text infernoText;
+    [SerializeField] private PlayerStats playerStats;
 
     void Awake()
     {
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Ensures persistence between scenes
+            DontDestroyOnLoad(gameObject);
         }
         else
         {
@@ -29,7 +35,7 @@ public class ScoreManager : MonoBehaviour
     {
         UpdateScoreUI();
         UpdateTimerUI();
-       
+        UpdateUpgradeLevelUI();
     }
 
     void Update()
@@ -62,6 +68,15 @@ public class ScoreManager : MonoBehaviour
         {
             timerText.text = Helper.FormatTime(playedTime);
         }
+    }
+
+    public void UpdateUpgradeLevelUI()
+    {
+        barrageText.text = playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.BulletLifeTime).ToString();
+        hpText.text = playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.Health).ToString();
+        speedText.text = playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.Speed).ToString();
+        hyperVelocityText.text = playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.BulletSpeed).ToString();
+        infernoText.text = playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.Damage).ToString();
     }
 
     public int GetScore()

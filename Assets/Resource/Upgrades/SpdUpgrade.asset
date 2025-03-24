@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3f2363678a64948897ba6ce3cd8441, type: 3}
+  m_Name: SpdUpgrade
+  m_EditorClassIdentifier: 
+  upgradeName: Phantom
+  description: Increases movement speed
+  icon: {fileID: -7647195212560154248, guid: cab8de90bdc670e4caf31e878c62c741, type: 3}
+  backgroundColor: {fileID: -2692101316330617974, guid: c0e73a4e12747dd46b7ca90d2284fb29, type: 3}
+  type: 2
+  value: 2

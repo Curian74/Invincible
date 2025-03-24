@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af3f2363678a64948897ba6ce3cd8441, type: 3}
+  m_Name: HPUpgrade
+  m_EditorClassIdentifier: 
+  upgradeName: Endurance
+  description: Heal and increase your max health
+  icon: {fileID: 6673721456387919133, guid: c058a767262c42443aa3aa6b6935a516, type: 3}
+  backgroundColor: {fileID: -3017524493629421183, guid: b40d433859d7ac84bbaef8c466cbe4f1, type: 3}
+  type: 0
+  value: 15

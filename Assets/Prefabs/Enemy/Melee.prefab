@@ -106,7 +106,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 0.0001
+  m_Mass: 1
   m_LinearDamping: 0
   m_AngularDamping: 0.05
   m_GravityScale: 1
@@ -286,9 +286,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a99532f5caf36e54f87e2e4c782a64e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnSound: {fileID: 0}
-  _hurtSound: {fileID: 0}
-  _deathSound: {fileID: 8300000, guid: 69140d77229a4f74a988118bf902c4de, type: 3}
   maxHealth: 25
   powerupPrefabs:
   - {fileID: 1729912826090028818, guid: 9445c3fbce4d00449b6927fefb402638, type: 3}
@@ -296,6 +293,8 @@ MonoBehaviour:
   - {fileID: 1729526692616056252, guid: 734d569d88c42cf45a13d7820a912fb1, type: 3}
   - {fileID: 2231065163056390075, guid: 54f7d75c066f93c4c9da1e1781cd0a92, type: 3}
   dropChance: 1
+  healthBonus: 15
+  _deathSound: {fileID: 8300000, guid: 0188ffcbb97917d4ba4ab42ef3c8b1b9, type: 3}
 --- !u!1 &4307592748135039076
 GameObject:
   m_ObjectHideFlags: 0

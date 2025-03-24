@@ -6,12 +6,13 @@ public class UpgradeOption : ScriptableObject
     public string upgradeName;
     public string description;
     public Sprite icon;
+    public Sprite backgroundColor;
     public UpgradeType type;
     public float value;
 
     public enum UpgradeType
     {
-        Health, Damage, Speed//, FireRate
+        Health, Damage, Speed, BulletLifeTime, BulletSpeed
     }
 
     public void Apply(PlayerStats playerStats)
@@ -28,10 +29,20 @@ public class UpgradeOption : ScriptableObject
             case UpgradeType.Speed:
                 playerStats.IncreaseSpeed(value);
                 break;
-            //case UpgradeType.FireRate:
-            //    playerStats.IncreaseFireRate(value);
-            //    break;
+            case UpgradeType.BulletLifeTime:
+                playerStats.IncreaseBulletLifeTime(value);
+                break;
+
+            case UpgradeType.BulletSpeed:
+                playerStats.IncreaseBulletSpeed(value);
+                break;
+                //case UpgradeType.FireRate:
+                //    playerStats.IncreaseFireRate(value);
+                //    break;
         }
+
+        Debug.Log($"{upgradeName} chosen {playerStats.GetUpgradeCount(type)} times.");
+
     }
 
 }
