@@ -8,6 +8,7 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float expGain = 5f;
     // [SerializeField] private float mobScore = 1f;
     [SerializeField] PlayerStats playerStats;
+    [SerializeField] private int minPiercingLevel = 5;
 
     private Vector2 direction;
     private float timer;
@@ -29,7 +30,7 @@ public class Bullet : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy") || collision.CompareTag("Border"))
+        if (collision.CompareTag("Enemy"))
         {
             Debug.Log("Hit");
             Health health = collision.GetComponent<Health>();
@@ -52,10 +53,15 @@ public class Bullet : MonoBehaviour
             }
 
             //Xuyen qua neu bulletSpeed >= level 5
-            if(playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.BulletSpeed) < 2)
+            if (playerStats.GetUpgradeCount(UpgradeOption.UpgradeType.BulletSpeed) < minPiercingLevel)
             {
                 gameObject.SetActive(false);
             }
+        }
+
+        else if(collision.gameObject.CompareTag("Border"))
+        {
+            gameObject.SetActive(false);
         }
     }
 

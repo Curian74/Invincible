@@ -82,6 +82,7 @@ public class UpgradeManager : MonoBehaviour
     {
         Debug.Log("Upgrade picked: " + upgrade.upgradeName);
         upgrade.Apply(playerStats);
+        ScoreManager.Instance.UpdateUpgradeLevelUI();
         blackPanel.SetActive(false);
         upgradePanel.SetActive(false);
         Time.timeScale = 1;
