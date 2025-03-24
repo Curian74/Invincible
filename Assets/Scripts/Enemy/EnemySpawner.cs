@@ -3,44 +3,23 @@ using System.Collections.Generic;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _meleePrefab;
-    [SerializeField] private GameObject _rangePrefab;
-    [SerializeField] private GameObject _suicidePrefab;
-    [SerializeField] private GameObject _eggPrefab;
-    [SerializeField] private GameObject _bulletPrefab;
-    [SerializeField] private float _minimumSpawnTime;
-    [SerializeField] private float _maximumSpawnTime;
+    [SerializeField] private GameObject _meleePrefab, _rangePrefab, _suicidePrefab, _eggPrefab, _bulletPrefab;
+    [SerializeField] private float _minimumSpawnTime, _maximumSpawnTime;
+    [SerializeField] private Vector2 _spawnAreaMin, _spawnAreaMax;
+    [SerializeField] private int _meleeCount = 5, _rangeCount = 3, _suicideCount = 1, _eggCount = 1, _bulletCount = 30;
+    [SerializeField] private float _minDistanceBetweenEnemies = 2f, _minDistanceFromPlayer = 4f;
+    [SerializeField] private float _spawnCycleActiveTime = 45f, _spawnCyclePauseTime = 30f;
 
-    [SerializeField] private Vector2 _spawnAreaMin;
-    [SerializeField] private Vector2 _spawnAreaMax;
-
-    [SerializeField] private int _meleeCount = 5;
-    [SerializeField] private int _rangeCount = 3;
-    [SerializeField] private int _suicideCount = 1;
-    [SerializeField] private int _eggCount = 1;
-    [SerializeField] private int _bulletCount = 30;
-    private int _currentMeleeCount = 0;
-    private int _currentRangeCount = 0;
-    private int _currentSuicideCount = 0;
-    private int _currentEggCount = 0;
-
-    private const string MELEE_POOL = "MeleeEnemy";
-    private const string RANGE_POOL = "RangeEnemy";
-    private const string SUICIDE_POOL = "SuicideEnemy";
-    private const string EGG_POOL = "EggEnemy";
-    private const string BULLET_POOL = "EnemyBullet";
-    private float _timeUntilSpawn;
-    private List<GameObject> _activeEnemies = new List<GameObject>();
-    [SerializeField] private float _minDistanceBetweenEnemies = 2f;
-    [SerializeField] private float _minDistanceFromPlayer = 4f;
-
-    private GameObject _player;
-
-    [SerializeField] private float _spawnCycleActiveTime = 45f;
-    [SerializeField] private float _spawnCyclePauseTime = 30f;
-    private float _spawnCycleTimer = 0f;
+    private const string MELEE_POOL = "MeleeEnemy", RANGE_POOL = "RangeEnemy", 
+                         SUICIDE_POOL = "SuicideEnemy", EGG_POOL = "EggEnemy", 
+                         BULLET_POOL = "EnemyBullet";
+    
+    private float _timeUntilSpawn, _spawnCycleTimer = 0f;
     private bool _isSpawningActive = true;
-    private int _cycleCount = 0;
+    private static int _cycleCount = 0;
+    private int _currentMeleeCount, _currentRangeCount, _currentSuicideCount, _currentEggCount;
+    private List<GameObject> _activeEnemies = new List<GameObject>();
+    private GameObject _player;
     
     void Awake()
     {
@@ -53,7 +32,6 @@ public class Spawner : MonoBehaviour
     void Update()
     {
         UpdateSpawnCycle();
-
         if (_isSpawningActive)
         {
             _timeUntilSpawn -= Time.deltaTime;
@@ -63,14 +41,14 @@ public class Spawner : MonoBehaviour
                 SetTimeUntilSpawn();
             }
         }
-
         CleanupInactiveEnemies();
     }
+
+    public static int GetCurrentCycle() => _cycleCount;
 
     private void UpdateSpawnCycle()
     {
         _spawnCycleTimer += Time.deltaTime;
-
         if (_isSpawningActive && _spawnCycleTimer >= _spawnCycleActiveTime)
         {
             _isSpawningActive = false;
@@ -81,30 +59,31 @@ public class Spawner : MonoBehaviour
             _isSpawningActive = true;
             _spawnCycleTimer = 0f;
             _cycleCount++;
-
             IncreasePoolSizes();
         }
     }
 
     private void IncreasePoolSizes()
     {
-        int meleeIncrease = Random.Range(3, 8);
-        int rangeIncrease = Random.Range(2, 6);
-        int suicideIncrease = Random.Range(1, 5);
-        int eggIncrease = Random.Range(1, 3);
-        int bulletIncrease = Random.Range(15, 31);
+        int[] increases = {
+            Random.Range(3, 8),  // melee
+            Random.Range(2, 6),  // range
+            Random.Range(1, 5),  // suicide
+            Random.Range(1, 3),  // egg
+            Random.Range(15, 31) // bullet
+        };
+        
+        _meleeCount += increases[0];
+        _rangeCount += increases[1];
+        _suicideCount += increases[2];
+        _eggCount += increases[3];
+        _bulletCount += increases[4];
 
-        _meleeCount += meleeIncrease;
-        _rangeCount += rangeIncrease;
-        _suicideCount += suicideIncrease;
-        _eggCount += eggIncrease;
-        _bulletCount += bulletIncrease;
-
-        ExpandObjectPools(MELEE_POOL, meleeIncrease, _meleePrefab);
-        ExpandObjectPools(RANGE_POOL, rangeIncrease, _rangePrefab);
-        ExpandObjectPools(SUICIDE_POOL, suicideIncrease, _suicidePrefab);
-        ExpandObjectPools(EGG_POOL, eggIncrease, _eggPrefab);
-        ExpandObjectPools(BULLET_POOL, bulletIncrease, _bulletPrefab);
+        string[] poolTags = { MELEE_POOL, RANGE_POOL, SUICIDE_POOL, EGG_POOL, BULLET_POOL };
+        GameObject[] prefabs = { _meleePrefab, _rangePrefab, _suicidePrefab, _eggPrefab, _bulletPrefab };
+        
+        for (int i = 0; i < poolTags.Length; i++)
+            ExpandObjectPools(poolTags[i], increases[i], prefabs[i]);
     }
 
     private void ExpandObjectPools(string poolTag, int increaseAmount, GameObject prefab)
@@ -162,19 +141,16 @@ public class Spawner : MonoBehaviour
         _currentEggCount = eggsActive;
     }
 
-    private bool ValidateObjectPool()
-    {
-        return ObjectPool.Instance.pools.Exists(pool =>
-            pool.tag == MELEE_POOL || pool.tag == RANGE_POOL ||
-            pool.tag == SUICIDE_POOL || pool.tag == EGG_POOL ||
-            pool.tag == BULLET_POOL);
-    }
+    private bool ValidateObjectPool() => ObjectPool.Instance.pools.Exists(pool =>
+        pool.tag == MELEE_POOL || pool.tag == RANGE_POOL ||
+        pool.tag == SUICIDE_POOL || pool.tag == EGG_POOL ||
+        pool.tag == BULLET_POOL);
 
     private void SpawnEnemy()
     {
         string enemyPoolType = DetermineEnemyTypeToSpawn();
-
         Vector2 spawnPosition = FindValidSpawnPosition();
+        
         if (spawnPosition == Vector2.zero)
         {
             SetTimeUntilSpawn();
@@ -189,24 +165,17 @@ public class Spawner : MonoBehaviour
         }
 
         if (!enemy.activeInHierarchy)
-        {
             enemy.SetActive(true);
-        }
 
         EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
         if (enemyMovement != null)
-        {
             enemyMovement.ResetEnemy();
-        }
 
         Rigidbody2D rb = enemy.GetComponent<Rigidbody2D>();
         if (rb != null)
-        {
             rb.collisionDetectionMode = CollisionDetectionMode2D.Continuous;
-        }
 
         enemy.tag = "Enemy";
-
         _activeEnemies.Add(enemy);
     }
 
@@ -215,13 +184,16 @@ public class Spawner : MonoBehaviour
         const int MAX_ATTEMPTS = 30;
         for (int i = 0; i < MAX_ATTEMPTS; i++)
         {
-            Vector2 randomPosition = new Vector2(Random.Range(_spawnAreaMin.x, _spawnAreaMax.x), Random.Range(_spawnAreaMin.y, _spawnAreaMax.y));
+            Vector2 randomPosition = new Vector2(
+                Random.Range(_spawnAreaMin.x, _spawnAreaMax.x), 
+                Random.Range(_spawnAreaMin.y, _spawnAreaMax.y)
+            );
 
-            bool isTooCloseToPlayer = _player != null && Vector2.Distance(randomPosition, _player.transform.position) < _minDistanceFromPlayer;
+            bool isTooCloseToPlayer = _player != null && 
+                Vector2.Distance(randomPosition, _player.transform.position) < _minDistanceFromPlayer;
 
             bool isTooCloseToEnemies = _activeEnemies.Exists(enemy =>
-                enemy != null &&
-                enemy.activeInHierarchy &&
+                enemy != null && enemy.activeInHierarchy &&
                 Vector2.Distance(randomPosition, enemy.transform.position) < _minDistanceBetweenEnemies);
 
             if (!isTooCloseToPlayer && !isTooCloseToEnemies)
@@ -230,10 +202,12 @@ public class Spawner : MonoBehaviour
 
         for (int i = 0; i < 10; i++)
         {
-            Vector2 randomPosition = new Vector2(Random.Range(_spawnAreaMin.x, _spawnAreaMax.x), Random.Range(_spawnAreaMin.y, _spawnAreaMax.y));
-            bool isTooCloseToPlayer = _player != null && Vector2.Distance(randomPosition, _player.transform.position) < _minDistanceFromPlayer;
-
-            if (!isTooCloseToPlayer)
+            Vector2 randomPosition = new Vector2(
+                Random.Range(_spawnAreaMin.x, _spawnAreaMax.x), 
+                Random.Range(_spawnAreaMin.y, _spawnAreaMax.y)
+            );
+            
+            if (_player == null || Vector2.Distance(randomPosition, _player.transform.position) >= _minDistanceFromPlayer)
                 return randomPosition;
         }
 
@@ -245,10 +219,7 @@ public class Spawner : MonoBehaviour
         if (_currentMeleeCount >= _meleeCount && _currentRangeCount >= _rangeCount &&
             _currentSuicideCount >= _suicideCount && _currentEggCount >= _eggCount)
         {
-            _currentMeleeCount = 0;
-            _currentRangeCount = 0;
-            _currentSuicideCount = 0;
-            _currentEggCount = 0;
+            _currentMeleeCount = _currentRangeCount = _currentSuicideCount = _currentEggCount = 0;
         }
 
         List<string> availableTypes = new List<string>();
@@ -258,16 +229,17 @@ public class Spawner : MonoBehaviour
         if (_currentEggCount < _eggCount) availableTypes.Add(EGG_POOL);
 
         if (availableTypes.Count == 0)
-        {
             return DetermineEnemyTypeToSpawn();
-        }
 
         string selectedType = availableTypes[Random.Range(0, availableTypes.Count)];
 
-        if (selectedType == MELEE_POOL) _currentMeleeCount++;
-        else if (selectedType == RANGE_POOL) _currentRangeCount++;
-        else if (selectedType == SUICIDE_POOL) _currentSuicideCount++;
-        else if (selectedType == EGG_POOL) _currentEggCount++;
+        switch (selectedType)
+        {
+            case MELEE_POOL: _currentMeleeCount++; break;
+            case RANGE_POOL: _currentRangeCount++; break;
+            case SUICIDE_POOL: _currentSuicideCount++; break;
+            case EGG_POOL: _currentEggCount++; break;
+        }
 
         return selectedType;
     }
@@ -291,15 +263,12 @@ public class Spawner : MonoBehaviour
     public void BurstSpawnOnDeath(Vector2 deathPosition, EggHealth.EnemyType enemyType)
     {
         int burstCount = Random.Range(2, 5);
-
-        List<string> enemyPools = new List<string> { MELEE_POOL, RANGE_POOL, SUICIDE_POOL, EGG_POOL };
+        string[] enemyPools = { MELEE_POOL, RANGE_POOL, SUICIDE_POOL, EGG_POOL };
 
         for (int i = 0; i < burstCount; i++)
         {
             Vector2 spawnPosition = deathPosition + Random.insideUnitCircle * 1.5f;
-
-            string enemyPoolType = enemyPools[Random.Range(0, enemyPools.Count)];
-
+            string enemyPoolType = enemyPools[Random.Range(0, enemyPools.Length)];
             GameObject enemy = ObjectPool.Instance.SpawnFromPool(enemyPoolType, spawnPosition, Quaternion.identity);
 
             if (enemy != null)
@@ -308,7 +277,6 @@ public class Spawner : MonoBehaviour
                 EnemyMovement enemyMovement = enemy.GetComponent<EnemyMovement>();
                 if (enemyMovement != null)
                     enemyMovement.ResetEnemy();
-
                 _activeEnemies.Add(enemy);
             }
         }
