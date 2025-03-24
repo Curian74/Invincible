@@ -10,13 +10,18 @@ public class MechaGolemMovements : MonoBehaviour
     private Transform _player;
     private Vector2 targetPosition;
     private SpriteRenderer _spriteRenderer;
-
+    private GameObject _bossTopBar;
     void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
         _animator = GetComponent<Animator>();
         _player = GameObject.FindWithTag("Player").transform;
         _spriteRenderer = GetComponent<SpriteRenderer>(); // Get sprite renderer
+        _bossTopBar = GameObject.FindGameObjectWithTag("MechaGolemTopBar");
+        if(_bossTopBar == null)
+        {
+            Debug.Log("top bar null");
+        }
     }
 
     void Start()
@@ -27,15 +32,30 @@ public class MechaGolemMovements : MonoBehaviour
     void Update()
     {
         float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
-        if(IsPlayingAnimation("Laser") || IsPlayingAnimation("Defend"))
+        if(IsPlayingAnimation("Laser") || IsPlayingAnimation("Defend") 
+            || IsPlayingAnimation("Charge") || IsPlayingAnimation("Death"))
         {
             return;
         }
-        if (distanceToPlayer <= minDistance)
+        if(_bossTopBar != null)
         {
-            MoveAway();
+            if (distanceToPlayer <= 15f)
+            {
+                _bossTopBar.SetActive(true);
+            }
+            else
+            {
+                _bossTopBar.SetActive(false);
+            }
+        }     
+        if (_player.gameObject.activeInHierarchy)
+        {
+            if (distanceToPlayer <= minDistance)
+            {
+                MoveAway();
+            }
+            MoveToTarget();
         }
-        MoveToTarget();
     }
 
     private void SetNewTargetPosition()
@@ -64,9 +84,9 @@ public class MechaGolemMovements : MonoBehaviour
     public void FlipSprite(Vector2 target)
     {
         if (target.x > transform.position.x)
-            transform.localScale = new Vector3(6, 6, 1);  
+            transform.localScale = new Vector3(8, 8, 1);  
         else if (target.x < transform.position.x)
-            transform.localScale = new Vector3(-6, 6, 1); 
+            transform.localScale = new Vector3(-8, 8, 1); 
     }
 
     private bool IsPlayingAnimation(string animationName)
