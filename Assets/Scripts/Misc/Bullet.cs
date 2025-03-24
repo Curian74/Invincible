@@ -32,6 +32,7 @@ public class Bullet : MonoBehaviour
     {
         if(collision.CompareTag("Enemy") || collision.CompareTag("Border"))
         {
+            Debug.Log("Hit");
             Health health = collision.GetComponent<Health>();
             
             if(health != null)
