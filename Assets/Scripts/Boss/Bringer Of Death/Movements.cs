@@ -24,17 +24,18 @@ public class Movements : MonoBehaviour
 
 	void Update()
 	{
+		float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
 		DetectPlayer();
 		_animator.SetBool("PlayerDetected", _playerDetected);
 		if (IsPlayingAnimation("Appear"))
 		{
 			return;
 		}
-		if (_playerDetected)
+		if (_playerDetected && distanceToPlayer >= 1f)
 		{
 			MoveTowardsPlayer();
 		}
-		float distanceToPlayer = Vector3.Distance(transform.position, _player.position);
+		
 		if (distanceToPlayer <= 15f)
 		{
 			_bossTopBar.SetActive(true);
