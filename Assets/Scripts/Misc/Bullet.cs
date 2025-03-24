@@ -2,8 +2,8 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    [SerializeField] private float speed = 10f;
-    [SerializeField] private float lifeTime = 2f;
+    // [SerializeField] private float speed = 10f;
+    // [SerializeField] private float lifeTime = 2f;
     // [SerializeField] private float damage = 5f;
     [SerializeField] private float expGain = 5f;
     // [SerializeField] private float mobScore = 1f;
@@ -19,10 +19,11 @@ public class Bullet : MonoBehaviour
 
     void Update()
     {
-        transform.position += speed * Time.deltaTime * (Vector3)direction;
+        transform.position += playerStats.bulletSpeed * Time.deltaTime * (Vector3)direction;
+        Debug.Log(playerStats.bulletSpeed);
 
         timer += Time.deltaTime;
-        if (timer >= lifeTime)
+        if (timer >= playerStats.bulletLifeTime)
         {
             gameObject.SetActive(false);
         }
@@ -40,7 +41,6 @@ public class Bullet : MonoBehaviour
                 float currentHealth = health.GetCurrentHealth();
                 health.TakeDamage(playerStats.damage);
 
-                // Only grant EXP and Score if this bullet landed the killing blow
                 if (currentHealth > 0 && health.GetCurrentHealth() <= 0)
                 {
                     Exp exp = FindFirstObjectByType<Exp>();
