@@ -17,18 +17,18 @@ namespace Assets.Scripts.Commons
 			_animator.SetTrigger("Death");
             SoundManager.Instance.PlaySFX(_deathSound);
 			_rb.simulated = false;
-			StartCoroutine(DieAfterDelay());
+			DieAfterDelay();
 		}
 
         private void OnEnable()
         {
-            maxHealth += 20f;
+            maxHealth += 100f;
 			Heal(maxHealth);
 			Debug.Log(maxHealth);
         }
-        private IEnumerator DieAfterDelay()
+        private void DieAfterDelay()
 		{
-			yield return new WaitForSeconds(1f);
+			// yield return new WaitForSeconds(1f);
 			base.Die();
 		}
 	}

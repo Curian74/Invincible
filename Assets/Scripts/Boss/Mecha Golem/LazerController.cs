@@ -3,7 +3,7 @@
 public class LazerController : MonoBehaviour
 {
     [SerializeField] int delayFrames = 35;
-    float rotationSpeed = 65f;
+    float rotationSpeed = 50f;
     float maxAngle = 360f; 
     float offsetAbovePlayer = 1f;
     private float _length;
@@ -13,7 +13,7 @@ public class LazerController : MonoBehaviour
     private int _frameCounter;
     private bool _isFlipped;
     private bool _hasHit = false;
-    private float _damage = 35;
+    [SerializeField] private float _damage = 15;
     private Rigidbody2D _rb;
     private BoxCollider2D _boxCollider;
     public float _damageMultiplier = 1;

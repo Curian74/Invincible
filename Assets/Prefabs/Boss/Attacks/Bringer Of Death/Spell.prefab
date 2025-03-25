@@ -69,6 +69,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca17632bb7e8664886d872101d85a09, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageMultiplier: 1
 --- !u!212 &1597092455955178193
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -158,7 +159,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: -0.014686987, y: -0.15094818}
+  m_Offset: {x: -0.014686987, y: 0.023609102}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -168,5 +169,5 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 0.41598055, y: 0.60810375}
+  m_Size: {x: 0.41598055, y: 0.25898886}
   m_EdgeRadius: 0

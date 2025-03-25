@@ -30,7 +30,7 @@ public class Exp : MonoBehaviour
         Debug.Log($"Current EXP: {currentExp}/{maxExp}");
     }
 
-    private void LevelUp()
+    public void LevelUp()
     {
         level++;
         currentExp = 0;
