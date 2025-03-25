@@ -23,9 +23,6 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float _blinkRate = 0.2f;
     [SerializeField] private Color _normalColor = Color.white, _blinkColor = Color.red;
 
-    [Header("Boundaries")]
-    [SerializeField] private float _minX = -30f, _maxX = 47f, _minY = -20f, _maxY = 20f;
-
     private bool _canMove = true, _isCountingDown = false, _isAttacking = false;
     private bool _isBlinkingRed = false, _isExploding = false;
     private float _nextBlinkTime, _nextFireTime, _nextMeleeAttackTime;
@@ -98,8 +95,6 @@ public class EnemyMovement : MonoBehaviour
                 if (_enemyType == EnemyType.Melee)
                     _anim.SetBool("walk", shouldMove && !_isAttacking);
 
-                EnforceBoundaries();
-
                 HandleTypeSpecificBehavior(distToPlayer);
             }
             else
@@ -136,22 +131,6 @@ public class EnemyMovement : MonoBehaviour
         return direction.normalized;
     }
 
-    private void EnforceBoundaries()
-    {
-        Vector2 nextPos = (Vector2)transform.position + _rb.linearVelocity * Time.fixedDeltaTime;
-        Vector2 clampedPos = new Vector2(
-            Mathf.Clamp(nextPos.x, _minX, _maxX),
-            Mathf.Clamp(nextPos.y, _minY, _maxY)
-        );
-
-        if (nextPos != clampedPos)
-        {
-            transform.position = clampedPos;
-            _rb.linearVelocity = Vector2.zero;
-            if (nextPos.x != clampedPos.x || nextPos.y != clampedPos.y)
-                _targetDirection = Random.insideUnitCircle.normalized;
-        }
-    }
 
     private void HandleTypeSpecificBehavior(float distToPlayer)
     {
@@ -374,36 +353,25 @@ public class EnemyMovement : MonoBehaviour
 
     public void ResetEnemy()
     {
-        CancelInvoke();
+        if (_rb.bodyType != RigidbodyType2D.Dynamic)
+            _rb.bodyType = RigidbodyType2D.Dynamic;
 
-        Health health = GetComponent<Health>();
-        if (health != null)
-        {
-            float amountToHeal = health.GetMaxHealth() - health.GetCurrentHealth();
-            if (amountToHeal > 0) health.Heal(amountToHeal);
-        }
-
-        _targetDirection = transform.up;
         _rb.linearVelocity = Vector2.zero;
         _rb.angularVelocity = 0f;
-        _isCountingDown = false;
-        _isBlinkingRed = false;
-        _isAttacking = false;
-        _killedByPlayer = false;
-        _nextBlinkTime = 0f;
-        _nextFireTime = 0f;
-        _nextMeleeAttackTime = 0f;
+
+        _isCountingDown = _isBlinkingRed = _isAttacking = _killedByPlayer = false;
+        _nextBlinkTime = _nextFireTime = _nextMeleeAttackTime = 0f;
         _sprite.color = _normalColor;
-        _rb.bodyType = RigidbodyType2D.Dynamic;
+        _canMove = enabled = true;
+
+        Health health = GetComponent<Health>();
+        health?.Heal(health.GetMaxHealth() - health.GetCurrentHealth());
 
         foreach (Collider2D col in GetComponents<Collider2D>())
         {
-            if (_enemyType == EnemyType.Suicide) col.isTrigger = false;
             col.enabled = true;
+            if (_enemyType == EnemyType.Suicide) col.isTrigger = false;
         }
-
-        enabled = true;
-        _canMove = true;
     }
 
     public void SetMovement(bool canMove) => _canMove = canMove;

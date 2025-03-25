@@ -34,14 +34,8 @@ public class EnemyHealth : Health
     {
         if (_deathSound != null)
         {
-            AudioSource.PlayClipAtPoint(_deathSound, transform.position, 1f); // Đảm bảo âm lượng là 1f
-            Debug.Log("Death sound played.");
+            AudioSource.PlayClipAtPoint(_deathSound, transform.position, 1f); 
         }
-        else
-        {
-            Debug.LogWarning("No death sound assigned to this enemy.");
-        }
-
         TryDropPowerup();
         base.Die();
     }
