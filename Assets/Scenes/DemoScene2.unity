@@ -1981,7 +1981,7 @@ MonoBehaviour:
   hyperVelocityText: {fileID: 552907956}
   infernoText: {fileID: 1295224548}
   playerStats: {fileID: 1812897476}
-  _spawnTime: 45
+  _spawnTime: 5
 --- !u!1001 &450370047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2685,6 +2685,10 @@ PrefabInstance:
       propertyPath: _detectionRange
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 2592946057687460964, guid: e615644714098fc45b359b73155cf31d, type: 3}
+      propertyPath: _attackDamage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 3233327362763001490, guid: e615644714098fc45b359b73155cf31d, type: 3}
       propertyPath: m_Name
       value: Boss (Bringer Of Death) (1)
@@ -2737,13 +2741,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5337806940399535655, guid: e615644714098fc45b359b73155cf31d, type: 3}
+      propertyPath: _attackDamage
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 5756376790376182440, guid: e615644714098fc45b359b73155cf31d, type: 3}
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6376851185568017649, guid: e615644714098fc45b359b73155cf31d, type: 3}
       propertyPath: maxHealth
-      value: 150
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 6376851185568017649, guid: e615644714098fc45b359b73155cf31d, type: 3}
       propertyPath: _deathSound
@@ -5479,9 +5487,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad973d41fb412734c9d4ac671aea8171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scoreDisplay: {fileID: 692287443}
-  restartBtn: {fileID: 530028215}
-  mainMenuBtn: {fileID: 1733368527}
 --- !u!114 &1544823886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9319,7 +9324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1787329867
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9530,7 +9535,7 @@ MonoBehaviour:
   damage: 4
   speed: 5
   fireRate: 0.3
-  bulletLifeTime: 0.5
+  bulletLifeTime: 1
   bulletSpeed: 10
 --- !u!1 &1825739861
 GameObject:
@@ -10227,7 +10232,7 @@ Transform:
   m_GameObject: {fileID: 2013634720}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 236.29999, y: 133, z: -0.624982}
+  m_LocalPosition: {x: 8.8, y: -1.5, z: -0.624982}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

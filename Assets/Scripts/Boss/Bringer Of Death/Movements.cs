@@ -36,14 +36,14 @@ public class Movements : MonoBehaviour
 			MoveTowardsPlayer();
 		}
 		
-		if (distanceToPlayer <= 15f)
-		{
-			_bossTopBar.SetActive(true);
-		}
-		else
-		{
-			_bossTopBar.SetActive(false);
-		}
+		// if (distanceToPlayer <= 15f)
+		// {
+		// 	_bossTopBar.SetActive(true);
+		// }
+		// else
+		// {
+		// 	_bossTopBar.SetActive(false);
+		// }
 	}
 
 	private void DetectPlayer()

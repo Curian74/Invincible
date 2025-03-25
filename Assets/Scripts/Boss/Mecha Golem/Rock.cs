@@ -28,7 +28,7 @@ public class Rock : MonoBehaviour
             _life += Time.deltaTime;
             if (_isHoming)
             {
-                _lifeTime = 3;
+                _lifeTime = 1f;
                 Vector2 direction = (_player.position - transform.position).normalized;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 _rb.rotation = angle;

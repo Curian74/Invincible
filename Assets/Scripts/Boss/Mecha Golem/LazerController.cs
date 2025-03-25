@@ -3,7 +3,7 @@
 public class LazerController : MonoBehaviour
 {
     [SerializeField] int delayFrames = 35;
-    float rotationSpeed = 65f;
+    float rotationSpeed = 50f;
     float maxAngle = 360f; 
     float offsetAbovePlayer = 1f;
     private float _length;

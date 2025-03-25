@@ -22,7 +22,7 @@ namespace Assets.Scripts.Commons
 
         private void OnEnable()
         {
-            maxHealth += 20f;
+            maxHealth += 100f;
 			Heal(maxHealth);
 			Debug.Log(maxHealth);
         }
