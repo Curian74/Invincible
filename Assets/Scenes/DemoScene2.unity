@@ -302,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 1812897476}
     - target: {fileID: 7112533652376604496, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: maxHealth
-      value: 200
+      value: 300
       objectReference: {fileID: 0}
     - target: {fileID: 7112533652376604496, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: gameoverScreen
@@ -1981,7 +1981,7 @@ MonoBehaviour:
   hyperVelocityText: {fileID: 552907956}
   infernoText: {fileID: 1295224548}
   playerStats: {fileID: 1812897476}
-  _spawnTime: 5
+  _spawnTime: 45
 --- !u!1001 &450370047
 PrefabInstance:
   m_ObjectHideFlags: 0

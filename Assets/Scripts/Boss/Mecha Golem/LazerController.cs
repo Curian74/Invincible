@@ -12,7 +12,6 @@ public class LazerController : MonoBehaviour
     private Vector3 _pivotPoint;
     private int _frameCounter;
     private bool _isFlipped;
-    private bool _hasHit = false;
     [SerializeField] private float _damage = 15;
     private Rigidbody2D _rb;
     private BoxCollider2D _boxCollider;
@@ -76,7 +75,7 @@ public class LazerController : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (_hasHit == false && other.CompareTag("Player"))
+        if (other.CompareTag("Player"))
         {
             var playerHealth = other.GetComponent<Health>();
             if (playerHealth != null)
@@ -84,6 +83,5 @@ public class LazerController : MonoBehaviour
                 playerHealth.TakeDamage(_damage * _damageMultiplier);
             }
         }
-        _hasHit = false;
     }
 }
