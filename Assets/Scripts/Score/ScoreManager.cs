@@ -1,4 +1,8 @@
+using System;
+using System.Collections;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class ScoreManager : MonoBehaviour
@@ -32,8 +36,36 @@ public class ScoreManager : MonoBehaviour
             return;
         }
         _bossSpawner = FindFirstObjectByType<BossSpawner>();
+    }
 
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
 
+    private void OnSceneLoaded(UnityEngine.SceneManagement.Scene scene, LoadSceneMode mode)
+    {
+        Debug.Log("OnSceneLoaded: " + scene.name);
+        Debug.Log(mode);
+
+        StartCoroutine(DelayedObjectFetch());
+    }
+
+    private IEnumerator DelayedObjectFetch()
+    {
+        yield return new WaitForSeconds(0f);
+
+        scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        //gameoverScoreText = GameObject.Find("GameoverScoreText").GetComponent<Text>();
+        timerText = GameObject.Find("TimerText").GetComponent<Text>();
+        barrageText = GameObject.Find("Barrage").GetComponent<Text>();
+        hpText = GameObject.Find("Health").GetComponent<Text>();
+        speedText = GameObject.Find("Speed").GetComponent<Text>();
+        hyperVelocityText = GameObject.Find("Velocity").GetComponent<Text>();
+        infernoText = GameObject.Find("Inferno").GetComponent<Text>();
+        playerStats = FindFirstObjectByType<PlayerStats>();
+
+        Debug.Log("All objects fetched successfully.");
     }
 
     void Start()
@@ -76,12 +108,10 @@ public class ScoreManager : MonoBehaviour
     {
         if (timerText != null)
         {
-            Debug.Log("timer txt not null");
             timerText.text = Helper.FormatTime(playedTime);
         }
         else
         {
-            Debug.Log("timer txt null");
         }
     }
 
@@ -102,5 +132,10 @@ public class ScoreManager : MonoBehaviour
     public float GetTimePlayed()
     {
         return playedTime;
+    }
+
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }

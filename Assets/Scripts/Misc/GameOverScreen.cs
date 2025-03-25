@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -12,6 +13,13 @@ public class GameOverScreen : MonoBehaviour
     {
         restartBtn.onClick.AddListener(Restart);
         mainMenuBtn.onClick.AddListener(MainMenu);
+        //StartCoroutine(Delay(1));
+        gameObject.SetActive(false);
+    }
+
+    private IEnumerator Delay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
     }
 
     public void Setup()

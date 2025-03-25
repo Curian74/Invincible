@@ -2858,7 +2858,7 @@ GameObject:
   - component: {fileID: 692287444}
   - component: {fileID: 692287443}
   m_Layer: 5
-  m_Name: ScoreText
+  m_Name: GameoverScoreText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3060,7 +3060,7 @@ GameObject:
   - component: {fileID: 739803917}
   - component: {fileID: 739803916}
   m_Layer: 5
-  m_Name: HP
+  m_Name: Health
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5441,7 +5441,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1544823884
 RectTransform:
   m_ObjectHideFlags: 0
