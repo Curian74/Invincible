@@ -302,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 1812897476}
     - target: {fileID: 7112533652376604496, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 200
       objectReference: {fileID: 0}
     - target: {fileID: 7112533652376604496, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: gameoverScreen
@@ -327,6 +327,14 @@ PrefabInstance:
     - target: {fileID: 7712486563230401556, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: m_Name
       value: HP
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721161594854857548, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
+      propertyPath: maxExp
+      value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 7721161594854857548, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
+      propertyPath: maxExpIncrease
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7721161594854857548, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: upgradeManager
@@ -564,10 +572,6 @@ MonoBehaviour:
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  _minX: -30
-  _maxX: 47
-  _minY: -20
-  _maxY: 20
 --- !u!50 &121167662
 Rigidbody2D:
   serializedVersion: 5
@@ -1977,7 +1981,7 @@ MonoBehaviour:
   hyperVelocityText: {fileID: 552907956}
   infernoText: {fileID: 1295224548}
   playerStats: {fileID: 1812897476}
-  _spawnTime: 10
+  _spawnTime: 45
 --- !u!1001 &450370047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4601,10 +4605,6 @@ MonoBehaviour:
   _blinkRate: 0.2
   _normalColor: {r: 1, g: 1, b: 1, a: 1}
   _blinkColor: {r: 1, g: 0, b: 0, a: 1}
-  _minX: -30
-  _maxX: 47
-  _minY: -20
-  _maxY: 20
 --- !u!114 &1216968563
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9527,11 +9527,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0954d36e09e7d114b8d1395d04aa7e3c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 4
   speed: 5
   fireRate: 0.3
-  bulletLifeTime: 2
-  bulletSpeed: 20
+  bulletLifeTime: 0.5
+  bulletSpeed: 10
 --- !u!1 &1825739861
 GameObject:
   m_ObjectHideFlags: 0

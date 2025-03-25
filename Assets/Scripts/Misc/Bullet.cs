@@ -45,10 +45,18 @@ public class Bullet : MonoBehaviour
                     Exp exp = FindFirstObjectByType<Exp>();
                     if (exp != null)
                     {
-                        exp.GainExp(expGain);
-                        Debug.Log(exp.GetCurrentExp());
+                        if (collision.gameObject.CompareTag("Boss"))
+                        {
+                            exp.LevelUp();
+                            ScoreManager.Instance.AddScore(10);
+                        }
+                        else
+                        {
+                            exp.GainExp(expGain);
+                            Debug.Log(exp.GetCurrentExp());
+                            ScoreManager.Instance.AddScore(1);
+                        }
                     }
-                    ScoreManager.Instance.AddScore(1);
                 }
             }
 
@@ -59,7 +67,7 @@ public class Bullet : MonoBehaviour
             }
         }
 
-        else if(collision.gameObject.CompareTag("Border"))
+        else if (collision.gameObject.CompareTag("Border"))
         {
             gameObject.SetActive(false);
         }

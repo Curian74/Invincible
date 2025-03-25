@@ -17,4 +17,4 @@ MonoBehaviour:
   icon: {fileID: 6673721456387919133, guid: c058a767262c42443aa3aa6b6935a516, type: 3}
   backgroundColor: {fileID: -3017524493629421183, guid: b40d433859d7ac84bbaef8c466cbe4f1, type: 3}
   type: 0
-  value: 15
+  value: 50

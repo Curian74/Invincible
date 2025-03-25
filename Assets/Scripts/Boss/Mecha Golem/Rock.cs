@@ -10,7 +10,7 @@ public class Rock : MonoBehaviour
     private float _lifeTime = 5f;
     private float _life = 0;
     public bool _isHoming = true;
-    private float damage = 12;
+    [SerializeField] private float damage = 5;
     public float multiplier = 1;
     void Awake()
     {
