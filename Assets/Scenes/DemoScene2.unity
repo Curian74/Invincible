@@ -1981,7 +1981,7 @@ MonoBehaviour:
   hyperVelocityText: {fileID: 552907956}
   infernoText: {fileID: 1295224548}
   playerStats: {fileID: 1812897476}
-  _spawnTime: 5
+  _spawnTime: 45
 --- !u!1001 &450370047
 PrefabInstance:
   m_ObjectHideFlags: 0
