@@ -8,19 +8,19 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Vector2 _spawnAreaMin, _spawnAreaMax;
     [SerializeField] private int _meleeCount = 5, _rangeCount = 3, _suicideCount = 1, _eggCount = 1, _bulletCount = 30;
     [SerializeField] private float _minDistanceBetweenEnemies = 2f, _minDistanceFromPlayer = 4f;
-    [SerializeField] private float _spawnCycleActiveTime = 45f, _spawnCyclePauseTime = 30f;
+    [SerializeField] private float _spawnCycleActiveTime = 45f;
 
-    private const string MELEE_POOL = "MeleeEnemy", RANGE_POOL = "RangeEnemy", 
-                         SUICIDE_POOL = "SuicideEnemy", EGG_POOL = "EggEnemy", 
+    private const string MELEE_POOL = "MeleeEnemy", RANGE_POOL = "RangeEnemy",
+                         SUICIDE_POOL = "SuicideEnemy", EGG_POOL = "EggEnemy",
                          BULLET_POOL = "EnemyBullet";
-    
+
     private float _timeUntilSpawn, _spawnCycleTimer = 0f;
     private bool _isSpawningActive = true;
     private static int _cycleCount = 0;
     private int _currentMeleeCount, _currentRangeCount, _currentSuicideCount, _currentEggCount;
     private List<GameObject> _activeEnemies = new List<GameObject>();
     private GameObject _player;
-    
+
     void Awake()
     {
         SetTimeUntilSpawn();
@@ -49,17 +49,23 @@ public class Spawner : MonoBehaviour
     private void UpdateSpawnCycle()
     {
         _spawnCycleTimer += Time.deltaTime;
+
         if (_isSpawningActive && _spawnCycleTimer >= _spawnCycleActiveTime)
         {
             _isSpawningActive = false;
             _spawnCycleTimer = 0f;
         }
-        else if (!_isSpawningActive && _spawnCycleTimer >= _spawnCyclePauseTime)
+        else if (!_isSpawningActive)
         {
-            _isSpawningActive = true;
-            _spawnCycleTimer = 0f;
-            _cycleCount++;
-            IncreasePoolSizes();
+            GameObject activeBoss = GameObject.FindGameObjectWithTag("Boss");
+
+            if (activeBoss == null || !activeBoss.activeInHierarchy)
+            {
+                _isSpawningActive = true;
+                _spawnCycleTimer = 0f;
+                _cycleCount++;
+                IncreasePoolSizes();
+            }
         }
     }
 
@@ -72,7 +78,7 @@ public class Spawner : MonoBehaviour
             Random.Range(1, 3),  // egg
             Random.Range(15, 31) // bullet
         };
-        
+
         _meleeCount += increases[0];
         _rangeCount += increases[1];
         _suicideCount += increases[2];
@@ -81,7 +87,7 @@ public class Spawner : MonoBehaviour
 
         string[] poolTags = { MELEE_POOL, RANGE_POOL, SUICIDE_POOL, EGG_POOL, BULLET_POOL };
         GameObject[] prefabs = { _meleePrefab, _rangePrefab, _suicidePrefab, _eggPrefab, _bulletPrefab };
-        
+
         for (int i = 0; i < poolTags.Length; i++)
             ExpandObjectPools(poolTags[i], increases[i], prefabs[i]);
     }
@@ -150,7 +156,7 @@ public class Spawner : MonoBehaviour
     {
         string enemyPoolType = DetermineEnemyTypeToSpawn();
         Vector2 spawnPosition = FindValidSpawnPosition();
-        
+
         if (spawnPosition == Vector2.zero)
         {
             SetTimeUntilSpawn();
@@ -185,11 +191,11 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < MAX_ATTEMPTS; i++)
         {
             Vector2 randomPosition = new Vector2(
-                Random.Range(_spawnAreaMin.x, _spawnAreaMax.x), 
+                Random.Range(_spawnAreaMin.x, _spawnAreaMax.x),
                 Random.Range(_spawnAreaMin.y, _spawnAreaMax.y)
             );
 
-            bool isTooCloseToPlayer = _player != null && 
+            bool isTooCloseToPlayer = _player != null &&
                 Vector2.Distance(randomPosition, _player.transform.position) < _minDistanceFromPlayer;
 
             bool isTooCloseToEnemies = _activeEnemies.Exists(enemy =>
@@ -203,10 +209,10 @@ public class Spawner : MonoBehaviour
         for (int i = 0; i < 10; i++)
         {
             Vector2 randomPosition = new Vector2(
-                Random.Range(_spawnAreaMin.x, _spawnAreaMax.x), 
+                Random.Range(_spawnAreaMin.x, _spawnAreaMax.x),
                 Random.Range(_spawnAreaMin.y, _spawnAreaMax.y)
             );
-            
+
             if (_player == null || Vector2.Distance(randomPosition, _player.transform.position) >= _minDistanceFromPlayer)
                 return randomPosition;
         }
