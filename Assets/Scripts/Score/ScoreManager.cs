@@ -82,7 +82,7 @@ public class ScoreManager : MonoBehaviour
 
         int currentTime = Mathf.FloorToInt(playedTime);
 
-        if (playedTime >= 10 && currentTime % _spawnTime == 0 && _lastSpawnTime != currentTime)
+        if (playedTime >= _spawnTime && currentTime % _spawnTime == 0 && _lastSpawnTime != currentTime)
         {
             _bossSpawner.spawnBoss();  
             _lastSpawnTime = currentTime; 

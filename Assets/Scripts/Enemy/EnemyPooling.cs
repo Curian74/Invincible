@@ -50,7 +50,7 @@ public class ObjectPool : MonoBehaviour
         }
 
         GameObject objectToSpawn = poolDictionary[tag].Dequeue();
-        ResetGameObject(objectToSpawn);
+        // ResetGameObject(objectToSpawn);
         objectToSpawn.transform.position = position;
         objectToSpawn.transform.rotation = rotation;
         objectToSpawn.SetActive(true);
@@ -70,31 +70,31 @@ public class ObjectPool : MonoBehaviour
         poolDictionary[tag].Enqueue(objectToReturn);
     }
     
-    private void ResetGameObject(GameObject obj)
-    {
-        MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
-        foreach (MonoBehaviour script in scripts)
-        {
-            if (script != null && script.enabled)
-            {
-                script.CancelInvoke();
-            }
-        }
+    // private void ResetGameObject(GameObject obj)
+    // {
+    //     MonoBehaviour[] scripts = obj.GetComponents<MonoBehaviour>();
+    //     foreach (MonoBehaviour script in scripts)
+    //     {
+    //         if (script != null && script.enabled)
+    //         {
+    //             script.CancelInvoke();
+    //         }
+    //     }
         
-        obj.transform.position = Vector3.zero;
-        obj.transform.rotation = Quaternion.identity;
+    //     obj.transform.position = Vector3.zero;
+    //     obj.transform.rotation = Quaternion.identity;
         
-        Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector2.zero;
-            rb.angularVelocity = 0f;
-        }
+    //     Rigidbody2D rb = obj.GetComponent<Rigidbody2D>();
+    //     if (rb != null)
+    //     {
+    //         rb.linearVelocity = Vector2.zero;
+    //         rb.angularVelocity = 0f;
+    //     }
         
-        EnemyMovement enemyMovement = obj.GetComponent<EnemyMovement>();
-        if (enemyMovement != null)
-        {
-            enemyMovement.ResetEnemy();
-        }
-    }
+    //     EnemyMovement enemyMovement = obj.GetComponent<EnemyMovement>();
+    //     if (enemyMovement != null)
+    //     {
+    //         enemyMovement.ResetEnemy();
+    //     }
+    // }
 }

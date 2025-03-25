@@ -10,7 +10,7 @@ public class EggHealth : EnemyHealth
 
     private void Start()
     {
-        _spawner = FindAnyObjectByType<Spawner>(); // Ensure we have a reference to Spawner
+        _spawner = FindAnyObjectByType<Spawner>(); 
     }
 
     public EnemyType GetEnemyType() => _enemyType;
