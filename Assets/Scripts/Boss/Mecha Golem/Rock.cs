@@ -10,7 +10,7 @@ public class Rock : MonoBehaviour
     private float _lifeTime = 5f;
     private float _life = 0;
     public bool _isHoming = true;
-    private float damage = 12;
+    [SerializeField] private float damage = 5;
     public float multiplier = 1;
     void Awake()
     {
@@ -28,7 +28,7 @@ public class Rock : MonoBehaviour
             _life += Time.deltaTime;
             if (_isHoming)
             {
-                _lifeTime = 3;
+                _lifeTime = 1f;
                 Vector2 direction = (_player.position - transform.position).normalized;
                 float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
                 _rb.rotation = angle;

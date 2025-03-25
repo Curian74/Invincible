@@ -50,7 +50,7 @@ public class ScoreManager : MonoBehaviour
 
         int currentTime = Mathf.FloorToInt(playedTime);
 
-        if (playedTime >= 10 && currentTime % _spawnTime == 0 && _lastSpawnTime != currentTime)
+        if (playedTime >= _spawnTime && currentTime % _spawnTime == 0 && _lastSpawnTime != currentTime)
         {
             _bossSpawner.spawnBoss();  
             _lastSpawnTime = currentTime; 
@@ -76,12 +76,12 @@ public class ScoreManager : MonoBehaviour
     {
         if (timerText != null)
         {
-            Debug.Log("timer txt not null");
+            // Debug.Log("timer txt not null");
             timerText.text = Helper.FormatTime(playedTime);
         }
         else
         {
-            Debug.Log("timer txt null");
+            // Debug.Log("timer txt null");
         }
     }
 

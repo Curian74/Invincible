@@ -37,17 +37,17 @@ public class MechaGolemMovements : MonoBehaviour
         {
             return;
         }
-        if(_bossTopBar != null)
-        {
-            if (distanceToPlayer <= 15f)
-            {
-                _bossTopBar.SetActive(true);
-            }
-            else
-            {
-                _bossTopBar.SetActive(false);
-            }
-        }     
+        // if(_bossTopBar != null)
+        // {
+        //     if (distanceToPlayer <= 15f)
+        //     {
+        //         _bossTopBar.SetActive(true);
+        //     }
+        //     else
+        //     {
+        //         _bossTopBar.SetActive(false);
+        //     }
+        // }     
         if (_player.gameObject.activeInHierarchy)
         {
             if (distanceToPlayer <= minDistance)
