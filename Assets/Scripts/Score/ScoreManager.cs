@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     private int score = 0; // Player's score
     private BossSpawner _bossSpawner;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text gameoverScoreText;
     [SerializeField] private Text timerText;
     [SerializeField] private Text barrageText;
     [SerializeField] private Text hpText;
@@ -31,6 +32,8 @@ public class ScoreManager : MonoBehaviour
             return;
         }
         _bossSpawner = FindFirstObjectByType<BossSpawner>();
+
+
     }
 
     void Start()
@@ -65,6 +68,7 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = score.ToString();
+            gameoverScoreText.text = $"Score: {score}";
         }
     }
 
@@ -72,7 +76,12 @@ public class ScoreManager : MonoBehaviour
     {
         if (timerText != null)
         {
+            Debug.Log("timer txt not null");
             timerText.text = Helper.FormatTime(playedTime);
+        }
+        else
+        {
+            Debug.Log("timer txt null");
         }
     }
 
