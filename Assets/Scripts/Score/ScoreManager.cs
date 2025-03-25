@@ -56,6 +56,7 @@ public class ScoreManager : MonoBehaviour
         yield return new WaitForSeconds(0f);
 
         scoreText = GameObject.Find("ScoreText").GetComponent<Text>();
+        playedTime = 0f;
         //gameoverScoreText = GameObject.Find("GameoverScoreText").GetComponent<Text>();
         timerText = GameObject.Find("TimerText").GetComponent<Text>();
         barrageText = GameObject.Find("Barrage").GetComponent<Text>();
@@ -64,6 +65,7 @@ public class ScoreManager : MonoBehaviour
         hyperVelocityText = GameObject.Find("Velocity").GetComponent<Text>();
         infernoText = GameObject.Find("Inferno").GetComponent<Text>();
         playerStats = FindFirstObjectByType<PlayerStats>();
+        _bossSpawner = GameObject.Find("BossSpawner").GetComponent<BossSpawner>();
 
         Debug.Log("All objects fetched successfully.");
     }

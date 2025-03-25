@@ -302,7 +302,7 @@ PrefabInstance:
       objectReference: {fileID: 1812897476}
     - target: {fileID: 7112533652376604496, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: maxHealth
-      value: 200
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7112533652376604496, guid: 9e0d5ca1b7216dd418e0667eb43ce06e, type: 3}
       propertyPath: gameoverScreen
@@ -1981,7 +1981,7 @@ MonoBehaviour:
   hyperVelocityText: {fileID: 552907956}
   infernoText: {fileID: 1295224548}
   playerStats: {fileID: 1812897476}
-  _spawnTime: 45
+  _spawnTime: 30
 --- !u!1001 &450370047
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5487,6 +5487,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad973d41fb412734c9d4ac671aea8171, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scoreDisplay: {fileID: 692287443}
+  restartBtn: {fileID: 530028215}
+  mainMenuBtn: {fileID: 1733368527}
 --- !u!114 &1544823886
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5707,6 +5710,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3964620033265876304, guid: 75dce24c045be5144aeb928dc14e9fe1, type: 3}
       propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3964620033265876304, guid: 75dce24c045be5144aeb928dc14e9fe1, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4742547214153044998, guid: 75dce24c045be5144aeb928dc14e9fe1, type: 3}

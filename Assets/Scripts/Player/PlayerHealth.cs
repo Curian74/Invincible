@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class PlayerHealth : Health
 {
-    // [SerializeField] private GameOverScreen gameoverScreen;
+    [SerializeField] private GameOverScreen gameoverScreen;
 
     public void IncreaseHealth(float amount)
     {
@@ -13,7 +13,7 @@ public class PlayerHealth : Health
     protected override void Die()
     {
         base.Die();
-        // gameoverScreen.Setup();
+        gameoverScreen.Setup();
     }
 
 }
