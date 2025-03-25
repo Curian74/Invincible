@@ -42,27 +42,28 @@ public class Health : MonoBehaviour
     }
 
     protected virtual void Die()
-    {
-		OnDeath?.Invoke();
-    //      if (_deathSound != null)
-    //{
-    //    AudioSource.PlayClipAtPoint(_deathSound, transform.position);
-    //}
-    //    //Co the them animation o day
-    //    HealthBar healthBar = GetComponentInChildren<HealthBar>();
-    //    ExpBar expBar = GetComponentInChildren<ExpBar>();
+    {      
+        OnDeath?.Invoke();
+        //      if (_deathSound != null)
+        //{
+        //    AudioSource.PlayClipAtPoint(_deathSound, transform.position);
+        //}
+        //    //Co the them animation o day
+        //    HealthBar healthBar = GetComponentInChildren<HealthBar>();
+        //    ExpBar expBar = GetComponentInChildren<ExpBar>();
 
-    //    if (healthBar != null)
-    //    {
-    //        healthBar.gameObject.SetActive(false);
-    //    }
+        //    if (healthBar != null)
+        //    {
+        //        healthBar.gameObject.SetActive(false);
+        //    }
 
-    //    if (expBar != null)
-    //    {
-    //        expBar.gameObject.SetActive(false);
-    //    }
+        //    if (expBar != null)
+        //    {
+        //        expBar.gameObject.SetActive(false);
+        //    }
 
-    //    OnDeath?.Invoke();
+        //    OnDeath?.Invoke();
+        
         gameObject.SetActive(false);
     }
 

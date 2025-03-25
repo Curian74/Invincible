@@ -22,7 +22,7 @@ public class HealthBar : MonoBehaviour
 		}
 		else
 		{
-			Debug.LogError("Boss Health component not found!");
+			Debug.LogError("Health component not found!");
 		}
 	}
 

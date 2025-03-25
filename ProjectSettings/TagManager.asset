@@ -13,6 +13,9 @@ TagManager:
   - BringerOfDeath
   - Border
   - PlayerStats
+  - Lazer
+  - MechaGolemTopBar
+  - Boss
   - UpgradeIcon
   - UpgradeDesc
   layers:

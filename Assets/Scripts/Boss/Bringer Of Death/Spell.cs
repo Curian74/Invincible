@@ -10,6 +10,7 @@ public class Spell : MonoBehaviour
 	private BoxCollider2D _boxCollider;
 	private Vector3 _offset = new Vector3(0, 2f, 0);
 	private float damage = 30;
+	public float damageMultiplier = 1f;
 	private bool _boxColliderEnabled;
     private bool hasHit = false;
     void Awake()
@@ -36,11 +37,16 @@ public class Spell : MonoBehaviour
 			_playerHealth = other.GetComponent<Health>();
 			if (_playerHealth != null)
 			{
-				_playerHealth.TakeDamage(damage);
+				_playerHealth.TakeDamage(damage * damageMultiplier);
 			}
 		}
         hasHit = true;
 
+    }
+
+    private void OnEnable()
+    {
+        damageMultiplier += 0.11f;
     }
 }
 

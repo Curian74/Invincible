@@ -103,7 +103,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackDamage: 30
-  _damageMultiplier: 1.2
+  damageMultiplier: 1
 --- !u!50 &5950109699349294920
 Rigidbody2D:
   serializedVersion: 5
@@ -146,7 +146,6 @@ GameObject:
   - component: {fileID: 5756376790376182440}
   - component: {fileID: 860341137001091619}
   - component: {fileID: 7616076575650888551}
-  - component: {fileID: 3925655373466876965}
   - component: {fileID: 6376851185568017649}
   m_Layer: 7
   m_Name: Boss (Bringer Of Death)
@@ -359,22 +358,6 @@ MonoBehaviour:
   _castingSpellSound: {fileID: 8300000, guid: 997d5c63eb51eef4f8b4ef56ad9f9930, type: 3}
   _spellSound: {fileID: 8300000, guid: d4c49009dd51adc4f82e7fd222e4b052, type: 3}
   _appearSound: {fileID: 8300000, guid: 11309ec055d0ac44ab29afba21ba2a99, type: 3}
---- !u!114 &3925655373466876965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3233327362763001490}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6d0dfd561a897ae4baadec5e439a4c0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _spawnSound: {fileID: 8300000, guid: 0e22fc2bafa1ad44ea7b29239d9ace59, type: 3}
-  _hurtSound: {fileID: 0}
-  _deathSound: {fileID: 0}
-  maxHealth: 500
 --- !u!114 &6376851185568017649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -387,10 +370,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 460f6803e3e83564bac41a982b49eb8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnSound: {fileID: 0}
-  _hurtSound: {fileID: 0}
-  _deathSound: {fileID: 0}
   maxHealth: 100
+  _deathSound: {fileID: 0}
 --- !u!1 &3990801522180916197
 GameObject:
   m_ObjectHideFlags: 0
@@ -606,7 +587,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackDamage: 30
-  _damageMultiplier: 1.5
+  damageMultiplier: 1
 --- !u!50 &6661182420060246855
 Rigidbody2D:
   serializedVersion: 5

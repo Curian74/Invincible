@@ -20,7 +20,13 @@ namespace Assets.Scripts.Commons
 			StartCoroutine(DieAfterDelay());
 		}
 
-		private IEnumerator DieAfterDelay()
+        private void OnEnable()
+        {
+            maxHealth += 20f;
+			Heal(maxHealth);
+			Debug.Log(maxHealth);
+        }
+        private IEnumerator DieAfterDelay()
 		{
 			yield return new WaitForSeconds(1f);
 			base.Die();

@@ -15,7 +15,11 @@ public class PlayerMovement : MonoBehaviour
 	void Update()
 	{
 		inputX = Input.GetAxis("Horizontal");
-		inputY = Input.GetAxis("Vertical");
+        if (Input.GetMouseButtonDown(0))
+        {
+            GameObject.FindWithTag("Boss").GetComponent<Health>().TakeDamage(10);
+        }
+        inputY = Input.GetAxis("Vertical");
 		rb.linearVelocity = new Vector2(inputX * speed, inputY * speed);
 	}
 

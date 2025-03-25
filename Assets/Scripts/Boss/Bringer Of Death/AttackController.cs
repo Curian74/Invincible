@@ -3,8 +3,8 @@ using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class AttackController : MonoBehaviour
 {
-	[SerializeField] private float _attackDamage = 30;
-	[SerializeField] private float _damageMultiplier = 1;
+	[SerializeField] private float _attackDamage = 30f;
+	[SerializeField] public float damageMultiplier = 1f;
 	private string _playerTag = "Player";
 	private Transform _player;
 	private PolygonCollider2D _collider;
@@ -22,7 +22,7 @@ public class AttackController : MonoBehaviour
 	{
 		if (other.CompareTag(_playerTag))
 		{
-			float overallDamage = _attackDamage * _damageMultiplier;
+			float overallDamage = _attackDamage * damageMultiplier;
 			_playerHealth = other.GetComponent<Health>();
 			if (_playerHealth != null)
 			{
@@ -31,6 +31,9 @@ public class AttackController : MonoBehaviour
 		}
 	}
 
-
+    private void OnEnable()
+    {
+        damageMultiplier += 0.11f;
+    }
 
 }

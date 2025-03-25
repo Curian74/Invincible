@@ -8,6 +8,7 @@ public class ScoreManager : MonoBehaviour
     private int score = 0; // Player's score
     private BossSpawner _bossSpawner;
     [SerializeField] private Text scoreText;
+    [SerializeField] private Text gameoverScoreText;
     [SerializeField] private Text timerText;
     [SerializeField] private Text barrageText;
     [SerializeField] private Text hpText;
@@ -15,6 +16,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField] private Text hyperVelocityText;
     [SerializeField] private Text infernoText;
     [SerializeField] private PlayerStats playerStats;
+    [SerializeField] private int _spawnTime = 10;
+    private int _lastSpawnTime = -1;
 
     void Awake()
     {
@@ -29,6 +32,8 @@ public class ScoreManager : MonoBehaviour
             return;
         }
         _bossSpawner = FindFirstObjectByType<BossSpawner>();
+
+
     }
 
     void Start()
@@ -40,11 +45,15 @@ public class ScoreManager : MonoBehaviour
 
     void Update()
     {
-        playedTime += Time.deltaTime; // Increment played time
+        playedTime += Time.deltaTime; 
         UpdateTimerUI();
-        if (playedTime >= 10f && Mathf.FloorToInt(playedTime) % 10 == 0)
+
+        int currentTime = Mathf.FloorToInt(playedTime);
+
+        if (playedTime >= 10 && currentTime % _spawnTime == 0 && _lastSpawnTime != currentTime)
         {
-            _bossSpawner.spawnBoss();
+            _bossSpawner.spawnBoss();  
+            _lastSpawnTime = currentTime; 
         }
     }
 
@@ -59,6 +68,7 @@ public class ScoreManager : MonoBehaviour
         if (scoreText != null)
         {
             scoreText.text = score.ToString();
+            gameoverScoreText.text = $"Score: {score}";
         }
     }
 
@@ -66,7 +76,12 @@ public class ScoreManager : MonoBehaviour
     {
         if (timerText != null)
         {
+            Debug.Log("timer txt not null");
             timerText.text = Helper.FormatTime(playedTime);
+        }
+        else
+        {
+            Debug.Log("timer txt null");
         }
     }
 
