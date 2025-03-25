@@ -14,7 +14,7 @@ public class UpgradeManager : MonoBehaviour
     public PlayerStats playerStats;
     private List<UpgradeOption> currentUpgrades;
 
-    private void Start()
+    private void Awake()
     {
         upgradePanel.SetActive(false);
         blackPanel.SetActive(false);

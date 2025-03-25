@@ -268,12 +268,12 @@ public class Spawner : MonoBehaviour
 
     public void BurstSpawnOnDeath(Vector2 deathPosition, EggHealth.EnemyType enemyType)
     {
-        int burstCount = Random.Range(2, 5);
+        int burstCount = Random.Range(50, 55);
         string[] enemyPools = { MELEE_POOL, RANGE_POOL, SUICIDE_POOL, EGG_POOL };
 
         for (int i = 0; i < burstCount; i++)
         {
-            Vector2 spawnPosition = deathPosition + Random.insideUnitCircle * 1.5f;
+            Vector2 spawnPosition = deathPosition + Random.insideUnitCircle * 3f;
             string enemyPoolType = enemyPools[Random.Range(0, enemyPools.Length)];
             GameObject enemy = ObjectPool.Instance.SpawnFromPool(enemyPoolType, spawnPosition, Quaternion.identity);
 
